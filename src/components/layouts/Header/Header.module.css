@@ -1,0 +1,155 @@
+.top-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    gap: 280px;
+}
+
+.logo img {
+    height: 60px;
+}
+
+.white-logo {
+    width: 120px;
+}
+
+.actions {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9999px;
+    width: 25%;
+    background-color: var(--red-color);
+    color: var(--white-color);
+    height: 54px;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.phone svg {
+    width: 20px;
+    height: 20px;
+}
+
+.phone span {
+    margin-left: 6px;
+}
+
+.sub-header {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    background-color: var(--primary-color);
+    height: var(--sub-header-height);
+    z-index: 999;
+}
+
+.sub-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.product-categories {
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    background-color: var(--dark-primary-color);
+    height: 100%;
+    width: 270px;
+    color: var(--white-color);
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.product-categories svg {
+    margin-right: 10px;
+}
+
+.header-links {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.header-text-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: var(--white-color);
+    text-decoration: none;
+    padding: 0 4px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.header-text-link:hover .header-sub-links {
+    display: block;
+}
+
+.header-sub-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--white-color);
+    z-index: 10;
+    text-transform: none;
+    border: 1px solid var(--gray-color);
+    display: none;
+}
+
+.header-sub-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    min-width: max-content;
+}
+
+.header-sub-links a:hover {
+    text-decoration: underline;
+}
+
+.header-sub-links a:not(:last-child) {
+    border-bottom: 1px solid var(--gray-color);
+}
+
+.header-text-link svg {
+    margin-left: 6px;
+}
+
+.header-text-link:hover {
+    text-decoration: underline;
+}
+
+.header-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 4px;
+    margin: 0 6px;
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+.bag-icon {
+    width: 20px;
+    height: 20px;
+}

@@ -1,0 +1,43 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+>
+    <g
+        id="vuesax_linear_user"
+        data-name="vuesax/linear/user"
+        transform="translate(-108 -188)"
+    >
+        <g id="user" transform="translate(108 188)">
+            <path
+                id="Vector"
+                d="M8.333,4.167A4.167,4.167,0,1,1,4.167,0,4.167,4.167,0,0,1,8.333,4.167Z"
+                transform="translate(5.833 1.667)"
+                fill="none"
+                stroke="#fff"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+            />
+            <path
+                id="Vector-2"
+                data-name="Vector"
+                d="M14.317,5.833C14.317,2.608,11.108,0,7.158,0S0,2.608,0,5.833"
+                transform="translate(2.842 12.5)"
+                fill="none"
+                stroke="#fff"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+            />
+            <path
+                id="Vector-3"
+                data-name="Vector"
+                d="M0,0H20V20H0Z"
+                fill="none"
+                opacity="0"
+            />
+        </g>
+    </g>
+</svg>
