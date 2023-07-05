@@ -1,0 +1,39 @@
+.footer {
+    background-color: var(--primary-color);
+    padding: 50px 0;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2.5fr 2fr 2fr;
+    column-gap: 70px;
+}
+
+.footer-content h1,
+.footer-content h2,
+.footer-content h3,
+.footer-content h4,
+.footer-content h5,
+.footer-content h6,
+.footer-content p {
+    font-size: 16px;
+    color: var(--white-color);
+    margin-top: 24px;
+    line-height: 1.4;
+}
+
+.contact-info-wrapper {
+    margin-top: 24px;
+}
+
+.footer-content .contact-info {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info svg {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+}
