@@ -51,6 +51,7 @@
     top: 0;
     background-color: var(--primary-color);
     height: var(--sub-header-height);
+    z-index: 999;
 }
 
 .sub-header-content {
@@ -83,6 +84,7 @@
 }
 
 .header-text-link {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -93,6 +95,43 @@
     text-decoration: none;
     padding: 0 4px;
     margin: 0 10px;
+    cursor: pointer;
+}
+
+.header-text-link:hover .header-sub-links {
+    display: block;
+}
+
+.header-sub-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--white-color);
+    z-index: 10;
+    text-transform: none;
+    border: 1px solid var(--gray-color);
+    display: none;
+}
+
+.header-sub-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    min-width: max-content;
+}
+
+.header-sub-links a:hover {
+    text-decoration: underline;
+}
+
+.header-sub-links a:not(:last-child) {
+    border-bottom: 1px solid var(--gray-color);
+}
+
+.header-text-link svg {
+    margin-left: 6px;
 }
 
 .header-text-link:hover {
@@ -107,6 +146,7 @@
     padding: 0 4px;
     margin: 0 6px;
     color: var(--white-color);
+    cursor: pointer;
 }
 
 .bag-icon {

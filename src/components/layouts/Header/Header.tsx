@@ -2,14 +2,15 @@ import { ReactComponent as AlignLeftIcon } from '@/assets/icons/alignLeft.svg';
 import { ReactComponent as BagIcon } from '@/assets/icons/bag.svg';
 import { ReactComponent as PhoneIcon } from '@/assets/icons/phone.svg';
 import { ReactComponent as UserIcon } from '@/assets/icons/user.svg';
+import { ReactComponent as ChevronDown } from '@/assets/icons/chevronDown.svg';
 import logo from '@/assets/images/sgn-logo.png';
+import whiteLogo from '@/assets/images/white-logo.png';
 import config from '@/config';
 import classNames from 'classnames/bind';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 import Search from './Search';
-import whiteLogo from '@/assets/images/white-logo.png';
 
 const cx = classNames.bind(styles);
 
@@ -18,7 +19,19 @@ const headerLinks = [
         title: 'Trang chủ',
         to: config.routes.home,
     },
-    { title: 'Sản phẩm', to: config.routes.products },
+    {
+        title: 'Sản phẩm',
+        to: config.routes.products,
+        subHeader: [
+            { title: 'Thùng Carton - Hộp Carton', to: config.routes.home },
+            { title: 'Bong Bóng Khí - Xốp Hơi', to: config.routes.home },
+            { title: 'Bóng Keo - PE', to: config.routes.home },
+            { title: 'Túi Giấy KRAFT', to: config.routes.home },
+            { title: 'Túi Niêm Phong', to: config.routes.home },
+            { title: 'Giấy Photocopy - Tập Học Sinh', to: config.routes.home },
+            { title: 'Giấy Gói Hàng', to: config.routes.home },
+        ],
+    },
     { title: 'Giới thiệu', to: config.routes.info },
     { title: 'dịch vụ', to: config.routes.service },
     { title: 'tin tức', to: config.routes.new },
@@ -76,6 +89,18 @@ const Header: React.FC = () => {
                         {headerLinks.map((link, index) => (
                             <Link key={index} to={link.to} className={cx('header-text-link')}>
                                 {link.title}
+                                {link.subHeader && (
+                                    <>
+                                        <ChevronDown />
+                                        <div className={cx('header-sub-links')}>
+                                            {link.subHeader.map((link, index) => (
+                                                <Link key={index} to={link.to}>
+                                                    {link.title}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </>
+                                )}
                             </Link>
                         ))}
                         <Link to={config.routes.home} className={cx('header-icon-link')}>
