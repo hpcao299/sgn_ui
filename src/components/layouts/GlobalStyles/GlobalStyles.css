@@ -1,3 +1,15 @@
+:root {
+    --primary-color: #27aae2;
+    --dark-primary-color: #027aad;
+    --gray-color: #dadada;
+    --red-color: #ff2544;
+    --text-color: #201f20;
+    --white-color: #fff;
+
+    --top-header-height: 88px;
+    --sub-header-height: 60px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,5 +18,16 @@
 
 html,
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    color: var(--text-color);
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#root {
+    min-height: 200vh;
 }
