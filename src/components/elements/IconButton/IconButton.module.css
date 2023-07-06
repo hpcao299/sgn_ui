@@ -1,0 +1,51 @@
+.button {
+    border-radius: 100%;
+    border: 1px solid transparent;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Button color styles */
+.button.primary.contained {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.button.primary.contained:hover {
+    background-color: var(--light-primary-color);
+}
+
+.button.primary.outlined {
+    background-color: var(--white-color);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.button.primary.outlined:hover {
+    border-color: var(--light-primary-color);
+    color: var(--light-primary-color);
+}
+
+.button.red.contained {
+    background-color: var(--red-color);
+    color: var(--white-color);
+}
+
+.button.red.contained:hover {
+    background-color: var(--light-red-color);
+}
+
+/* Button size styles */
+.button.small {
+    height: 30px;
+    width: 100vw;
+    max-width: 30px;
+}
+
+.button.small svg {
+    width: 16px;
+    height: 16px;
+}

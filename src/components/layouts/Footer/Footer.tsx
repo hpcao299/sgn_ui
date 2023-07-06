@@ -1,8 +1,10 @@
 import { ReactComponent as MailIcon } from '@/assets/icons/mail.svg';
 import { ReactComponent as PhoneIcon } from '@/assets/icons/phone.svg';
 import { ReactComponent as WwwIcon } from '@/assets/icons/www.svg';
+import config from '@/config';
 import classNames from 'classnames/bind';
 import React, { Suspense } from 'react';
+import { useLocation } from 'react-router-dom';
 import styles from './Footer.module.css';
 
 const Feed = React.lazy(() => import('./Feed'));
@@ -25,8 +27,15 @@ const contactsList = [
 ];
 
 const Footer: React.FC = () => {
+    const location = useLocation();
+
     return (
-        <div className={cx('footer')}>
+        <div
+            className={cx(
+                'footer',
+                location.pathname === config.routes.home && 'footer-contain-banner',
+            )}
+        >
             <div className={cx('container', 'footer-content')}>
                 <div className="">
                     <h1>CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI SÀI GÒN NGUYỄN</h1>

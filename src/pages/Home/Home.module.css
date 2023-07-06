@@ -1,0 +1,15 @@
+.section {
+    margin-top: 80px;
+    padding-bottom: 80px;
+}
+
+.section:not(:last-child) {
+    border-bottom: 1px solid #ececec;
+}
+
+.section-title {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 40px;
+}
