@@ -7,6 +7,7 @@ const cx = classNames.bind(styles);
 interface ButtonProps {
     size?: 'large' | 'medium' | 'small';
     color?: 'primary' | 'red';
+    variant?: 'contained' | 'outlined';
     className?: string;
     children?: React.ReactNode;
 
@@ -14,9 +15,16 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = props => {
-    const { children, className, size = 'medium', color = 'primary', ...attrs } = props;
+    const {
+        children,
+        className,
+        size = 'medium',
+        color = 'primary',
+        variant = 'contained',
+        ...attrs
+    } = props;
     return (
-        <button className={cx('button', size, color, className)} {...attrs}>
+        <button className={cx('button', size, color, variant, className)} {...attrs}>
             {children}
         </button>
     );

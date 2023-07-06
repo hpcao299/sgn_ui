@@ -1,0 +1,25 @@
+.wrapper {
+    align-items: center;
+}
+
+.wrapper button {
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    background-color: #eeeeee;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.wrapper input {
+    margin: 0 10px;
+    border: 1px solid #cbcbcb;
+    border-radius: 4px;
+    background-color: transparent;
+    outline: none;
+    width: 50px;
+    height: 30px;
+    text-align: center;
+}
