@@ -1,11 +1,10 @@
-import classNames from 'classnames/bind';
-import React from 'react';
-import styles from './SliderProductsList.module.css';
-import './carousel.css';
-import Carousel from 'nuka-carousel';
-import { ProductItem } from '@/components/elements';
 import { ReactComponent as ChevronLeft } from '@/assets/icons/chevronLeft.svg';
 import { ReactComponent as ChevronRight } from '@/assets/icons/chevronRight.svg';
+import { ProductItem } from '@/components/elements';
+import classNames from 'classnames/bind';
+import Carousel from 'nuka-carousel';
+import React from 'react';
+import styles from './SliderProductsList.module.css';
 
 const cx = classNames.bind(styles);
 
@@ -24,7 +23,7 @@ const SliderProductsList: React.FC = () => {
     };
 
     return (
-        <div className={cx('container')}>
+        <div className={cx('container', 'products-carousel')}>
             <Carousel
                 {...settings}
                 renderCenterLeftControls={({ previousSlide, previousDisabled }) => (
