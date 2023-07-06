@@ -1,12 +1,12 @@
-import { ReactComponent as UserIcon } from '@/assets/icons/user.svg';
 import { ReactComponent as LockIcon } from '@/assets/icons/lock.svg';
+import { ReactComponent as UserIcon } from '@/assets/icons/user.svg';
 import { InputField } from '@/components/custom-fields';
-import { PageDetails, Button } from '@/components/elements';
+import { Button, PageDetails } from '@/components/elements';
 import config from '@/config';
 import classNames from 'classnames/bind';
 import React from 'react';
-import styles from './Login.module.css';
 import { Link } from 'react-router-dom';
+import styles from './Login.module.css';
 
 const cx = classNames.bind(styles);
 

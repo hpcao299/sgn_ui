@@ -83,6 +83,15 @@
     height: 100%;
 }
 
+.text-link-wrapper {
+    position: relative;
+    height: 100%;
+}
+
+.text-link-wrapper:hover .header-sub-links {
+    display: block;
+}
+
 .header-text-link {
     position: relative;
     display: flex;
@@ -96,10 +105,6 @@
     padding: 0 4px;
     margin: 0 10px;
     cursor: pointer;
-}
-
-.header-text-link:hover .header-sub-links {
-    display: block;
 }
 
 .header-sub-links {
