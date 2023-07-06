@@ -32,9 +32,11 @@
 .button.medium {
     font-size: 16px;
     height: 48px;
+    min-width: 200px;
 }
 
 .button.small {
     height: 30px;
     font-weight: 400;
+    min-width: 130px;
 }

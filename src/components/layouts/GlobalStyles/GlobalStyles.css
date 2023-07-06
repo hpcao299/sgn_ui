@@ -12,6 +12,7 @@
     --top-header-height: 88px;
     --sub-header-height: 60px;
     --page-details-height: 90px;
+    --sidebar-width: 270px;
 }
 
 * {
@@ -30,4 +31,8 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.flex {
+    display: flex;
 }

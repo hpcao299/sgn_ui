@@ -3,6 +3,10 @@
     padding: 50px 0;
 }
 
+.footer-contain-banner {
+    padding-top: 124px;
+}
+
 .footer-content {
     display: grid;
     grid-template-columns: 2.5fr 2fr 2fr;
