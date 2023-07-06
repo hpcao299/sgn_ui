@@ -1,13 +1,17 @@
 :root {
     --primary-color: #27aae2;
+    --light-primary-color: #3db3e5;
     --dark-primary-color: #027aad;
     --gray-color: #dadada;
     --red-color: #ff2544;
+    --light-red-color: #ff3f5a;
     --text-color: #201f20;
     --white-color: #fff;
+    --background-color: #fafafa;
 
     --top-header-height: 88px;
     --sub-header-height: 60px;
+    --page-details-height: 90px;
 }
 
 * {
@@ -26,8 +30,4 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-}
-
-#root {
-    min-height: 200vh;
 }

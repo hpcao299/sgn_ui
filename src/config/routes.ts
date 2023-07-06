@@ -12,6 +12,7 @@ const routes = {
 
     login: '/login',
     signup: '/signup',
+    forgotPassword: '/forgot-password',
 };
 
 export default routes;

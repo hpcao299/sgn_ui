@@ -1,0 +1,43 @@
+.wrapper {
+    background-color: var(--background-color);
+    height: var(--page-details-height);
+    padding: 30px 0;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content h2 {
+    font-weight: 600;
+}
+
+.content a {
+    font-size: 16px;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.link-wrapper {
+    display: inline-block;
+    position: relative;
+    padding-right: 12px;
+}
+
+.link-wrapper:not(:first-child) {
+    padding-left: 12px;
+}
+
+.link-wrapper:not(:first-child)::after {
+    position: absolute;
+    left: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    content: url(@/assets/icons/chevronRight.svg);
+}
+
+.content a:hover {
+    text-decoration: underline;
+}
