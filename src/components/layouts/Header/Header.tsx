@@ -87,11 +87,13 @@ const Header: React.FC = () => {
                     )}
                     <div className={cx('header-links')}>
                         {headerLinks.map((link, index) => (
-                            <Link key={index} to={link.to} className={cx('header-text-link')}>
-                                {link.title}
+                            <div key={index} className={cx('text-link-wrapper')}>
+                                <Link to={link.to} className={cx('header-text-link')}>
+                                    {link.title}
+                                    {link.subHeader && <ChevronDown />}
+                                </Link>
                                 {link.subHeader && (
                                     <>
-                                        <ChevronDown />
                                         <div className={cx('header-sub-links')}>
                                             {link.subHeader.map((link, index) => (
                                                 <Link key={index} to={link.to}>
@@ -101,7 +103,7 @@ const Header: React.FC = () => {
                                         </div>
                                     </>
                                 )}
-                            </Link>
+                            </div>
                         ))}
                         <Link to={config.routes.home} className={cx('header-icon-link')}>
                             <UserIcon />
