@@ -13,6 +13,11 @@
     font-size: 16px;
     font-weight: 600;
     margin: 16px 0 8px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .product-price {

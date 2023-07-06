@@ -1,8 +1,44 @@
 .container {
     display: flex;
     gap: 24px;
+    position: relative;
 }
 
 .item {
     width: calc((100% - 120px) / 5);
+}
+
+.control-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    background-color: transparent;
+    outline: none;
+    height: 50px;
+    width: 24px;
+    cursor: pointer;
+}
+
+.control-btn svg {
+    width: 16px;
+    height: 16px;
+    color: var(--text-color);
+}
+
+.control-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.prev-btn {
+    left: -48px;
+}
+
+.next-btn {
+    right: -48px;
 }

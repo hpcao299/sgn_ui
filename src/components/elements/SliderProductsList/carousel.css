@@ -1,0 +1,11 @@
+body .slider-container {
+    width: 100%;
+}
+
+body .slider-control-bottomcenter {
+    display: none;
+}
+
+.slider-list .slide {
+    padding: 0 15px !important;
+}

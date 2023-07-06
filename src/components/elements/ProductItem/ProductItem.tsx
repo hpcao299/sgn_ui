@@ -12,7 +12,7 @@ const ProductItem: React.FC = () => {
     return (
         <div className={cx('product-item')}>
             <img
-                src="http://thungcartonsgn.vn/files/sanpham/10/1/jpg/1-hop-carton-15x12x10-cm.jpg"
+                src="http://trangvangtructuyen.vn/files/products/cong_ty_tnhh_dau_tu_thuong_mai_sai_gon_nguyen_604odh2k.jpg"
                 alt=""
                 className={cx('product-img')}
             />
