@@ -21,12 +21,12 @@ const LoginPage: React.FC = () => {
             <PageDetails title="Đăng nhập" paths={paths} />
             <div className={cx('container')}>
                 <div className={cx('wrapper')}>
-                    <h2>Đăng Nhập</h2>
+                    <h2>Đăng nhập</h2>
                     <div className={cx('form')}>
                         <InputField
                             name="username"
                             type="text"
-                            placeholder="Tài khoản"
+                            placeholder="Tài khoản hoặc email"
                             Icon={UserIcon}
                         />
                         <InputField

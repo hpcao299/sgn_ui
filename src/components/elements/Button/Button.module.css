@@ -6,6 +6,7 @@
     border: none;
     outline: none;
     padding: 0 8px;
+    text-transform: capitalize;
 }
 
 /* Color styles */
