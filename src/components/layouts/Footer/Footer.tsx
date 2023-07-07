@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
     const location = useLocation();
 
     return (
-        <div
+        <footer
             className={cx(
                 'footer',
                 location.pathname === config.routes.home && 'footer-contain-banner',
@@ -67,13 +67,13 @@ const Footer: React.FC = () => {
                         })}
                     </div>
                 </div>
-                <div className="">
+                <div>
                     <Suspense fallback={<p>Loading facebook page...</p>}>
                         <Feed />
                     </Suspense>
                 </div>
             </div>
-        </div>
+        </footer>
     );
 };
 

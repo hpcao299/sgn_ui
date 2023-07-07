@@ -1,7 +1,7 @@
 import Sidebar from '@/components/layouts/Sidebar';
 import React, { Suspense } from 'react';
 import Banner from './components/Banner';
-import { SliderProductsList } from '@/components/elements';
+import { RenderOnView, SliderProductsList } from '@/components/elements';
 import classNames from 'classnames/bind';
 import styles from './Home.module.css';
 const cx = classNames.bind(styles);
@@ -26,9 +26,11 @@ const HomePage: React.FC = () => {
                 </div>
             </div>
 
-            <Suspense fallback={<p>Loading news...</p>}>
-                <News />
-            </Suspense>
+            <RenderOnView>
+                <Suspense fallback={<p>Loading news...</p>}>
+                    <News />
+                </Suspense>
+            </RenderOnView>
         </>
     );
 };

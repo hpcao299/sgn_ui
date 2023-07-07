@@ -1,10 +1,11 @@
-import React from 'react';
-import classNames from 'classnames/bind';
-import styles from './News.module.css';
+import banner from '@/assets/images/footer-banner.png';
 import new1 from '@/assets/images/new_1.png';
 import new2 from '@/assets/images/new_2.png';
 import new3 from '@/assets/images/new_3.png';
-import banner from '@/assets/images/footer-banner.png';
+import classNames from 'classnames/bind';
+import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import styles from './News.module.css';
 
 const cx = classNames.bind(styles);
 
@@ -37,7 +38,12 @@ const News: React.FC = () => {
                 <div className={cx('news-content')}>
                     {news.map((item, index) => (
                         <div key={index} className={cx('news-item')}>
-                            <img src={item.img} alt="New Image" className={cx('news-img')} />
+                            <LazyLoadImage
+                                src={item.img}
+                                alt="New Image"
+                                className={cx('news-img')}
+                                effect="blur"
+                            />
                             <div className={cx('news-date')}>{item.date}</div>
                             <h5 className={cx('news-title')}>{item.title}</h5>
                             <p className={cx('news-desc')}>{item.desc}</p>
@@ -46,7 +52,7 @@ const News: React.FC = () => {
                 </div>
             </div>
 
-            <img src={banner} alt="Banner" className={cx('news-banner')} />
+            <LazyLoadImage src={banner} alt="Banner" className={cx('news-banner')} effect="blur" />
         </div>
     );
 };

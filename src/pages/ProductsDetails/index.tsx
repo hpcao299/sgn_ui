@@ -1,10 +1,11 @@
-import { Button, PageDetails, QuantitySelector } from '@/components/elements';
+import { Button, PageDetails, QuantitySelector, RenderOnView } from '@/components/elements';
 import config from '@/config';
 import classNames from 'classnames/bind';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './ProductDetails.module.css';
-import RelatedProducts from './components/RelatedProducts';
+
+const RelatedProducts = React.lazy(() => import('./components/RelatedProducts'));
 
 const cx = classNames.bind(styles);
 
@@ -75,7 +76,9 @@ const ProductsDetailsPage: React.FC = () => {
                     </p>
                 </div>
             </div>
-            <RelatedProducts />
+            <RenderOnView>
+                <RelatedProducts />
+            </RenderOnView>
         </>
     );
 };
