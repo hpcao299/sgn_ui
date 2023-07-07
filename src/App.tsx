@@ -4,11 +4,13 @@ import GlobalStyles from './components/layouts/GlobalStyles/GlobalStyles';
 import { privateRoutes, publicRoutes } from './routes/routes';
 import PrivateRoute from './components/layouts/PrivateRoute/PrivateRoute';
 import NotFoundPage from './pages/NotFound';
+import { ScrollToTop } from './utils';
 
 function App() {
     return (
         <GlobalStyles>
             <DefaultLayout>
+                <ScrollToTop />
                 <Routes>
                     {publicRoutes.map((route, index) => (
                         <Route key={index} path={route.path} Component={route.component} />
