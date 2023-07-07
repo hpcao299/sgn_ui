@@ -1,21 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import config from '@/config';
 import { auth } from '@/config/firebase';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 interface AuthContextValues {
     currentUser: unknown;
-    signUp: (email: string, password: string) => unknown;
-    login: (email: string, password: string) => unknown;
-    signOut: () => unknown;
+    signUp: (email: string, password: string) => Promise<unknown>;
+    login: (email: string, password: string) => Promise<unknown>;
+    signOut: () => Promise<unknown>;
 }
 
 const defaultValues = {
     currentUser: null,
-    signUp: () => {},
-    login: () => {},
-    signOut: () => {},
+    signUp: () => Promise.resolve(),
+    login: () => Promise.resolve(),
+    signOut: () => Promise.resolve(),
 };
 
 export const AuthContext = createContext<AuthContextValues>(defaultValues);
@@ -27,40 +26,37 @@ interface AuthContextProviderProps {
 }
 
 const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) => {
-    const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState<unknown>(null);
 
-    const signUp = (email: string, password: string) => {
-        auth.createUserWithEmailAndPassword(email, password)
-            .then(userCredential => {
-                const user = userCredential.user;
-                setCurrentUser(user);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+    const signUp = async (email: string, password: string) => {
+        try {
+            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+            const user = userCredential.user;
+            setCurrentUser(user);
+            return Promise.resolve(user);
+        } catch (error) {
+            return Promise.reject(error);
+        }
     };
 
-    const login = (email: string, password: string) => {
-        auth.signInWithEmailAndPassword(email, password)
-            .then(userCredential => {
-                const user = userCredential.user;
-                setCurrentUser(user);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+    const login = async (email: string, password: string) => {
+        try {
+            const userCredential = await auth.signInWithEmailAndPassword(email, password);
+            const user = userCredential.user;
+            setCurrentUser(user);
+            return Promise.resolve(user);
+        } catch (error: any) {
+            return Promise.reject(error);
+        }
     };
 
-    const signOut = () => {
-        auth.signOut()
-            .then(() => {
-                console.log('signed out');
-                navigate(config.routes.home);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+    const signOut = async () => {
+        try {
+            await auth.signOut();
+            return Promise.resolve();
+        } catch (error) {
+            return Promise.reject(error);
+        }
     };
 
     useEffect(() => {

@@ -11,6 +11,22 @@
     font-weight: 500;
 }
 
+.button.loading {
+    cursor: not-allowed;
+    opacity: 0.75;
+    user-select: none;
+    pointer-events: none;
+}
+
+@keyframes loader-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 /* Color styles */
 .button.primary.contained {
     background-color: var(--primary-color);

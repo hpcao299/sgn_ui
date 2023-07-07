@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactComponent as LockIcon } from '@/assets/icons/lock.svg';
 import { ReactComponent as MailIcon } from '@/assets/icons/mail.svg';
 import { InputField } from '@/components/custom-fields';
 import { Button, PageDetails } from '@/components/elements';
 import config from '@/config';
 import classNames from 'classnames/bind';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Signup.module.css';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import constants from '@/constants';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 const cx = classNames.bind(styles);
 
@@ -30,6 +32,9 @@ const paths = [
 ];
 
 const SignupPage: React.FC = () => {
+    const { signUp } = useAuthContext();
+    const [isLoading, setIsLoading] = useState<boolean>();
+    const [error, setError] = useState<string>();
     const {
         control,
         handleSubmit,
@@ -37,8 +42,21 @@ const SignupPage: React.FC = () => {
         watch,
     } = useForm<ISignUpForm>({ defaultValues });
 
-    const onSubmit: SubmitHandler<ISignUpForm> = data => {
-        console.log('data: ', data);
+    const onSubmit: SubmitHandler<ISignUpForm> = async data => {
+        const { email, password } = data;
+        setIsLoading(true);
+
+        try {
+            await signUp(email, password);
+        } catch (error: any) {
+            if (error.code === 'auth/email-already-in-use') {
+                setError('Email đã được dùng bởi tài khoản khác.');
+            } else {
+                setError(error.message);
+            }
+        }
+
+        setIsLoading(false);
     };
 
     return (
@@ -47,6 +65,7 @@ const SignupPage: React.FC = () => {
             <div className={cx('container')}>
                 <div className={cx('wrapper')}>
                     <h2>Đăng ký tài khoản</h2>
+                    {error && <p className={cx('error-text')}>{error}</p>}
                     <form onSubmit={handleSubmit(onSubmit)} className={cx('form')}>
                         <Controller
                             name="email"
@@ -110,7 +129,12 @@ const SignupPage: React.FC = () => {
                                 />
                             )}
                         />
-                        <Button type="submit" color="primary" className={cx('signup-btn')}>
+                        <Button
+                            type="submit"
+                            color="primary"
+                            loading={isLoading}
+                            className={cx('signup-btn')}
+                        >
                             Đăng Ký
                         </Button>
                     </form>

@@ -3,3 +3,8 @@ export interface Route {
     component: React.FC;
     layout?: React.FC;
 }
+
+export interface FirebaseError {
+    code: string;
+    message: string;
+}
