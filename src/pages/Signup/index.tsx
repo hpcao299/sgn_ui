@@ -6,7 +6,7 @@ import { Button, PageDetails } from '@/components/elements';
 import config from '@/config';
 import classNames from 'classnames/bind';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Signup.module.css';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import constants from '@/constants';
@@ -32,6 +32,7 @@ const paths = [
 ];
 
 const SignupPage: React.FC = () => {
+    const navigate = useNavigate();
     const { signUp } = useAuthContext();
     const [isLoading, setIsLoading] = useState<boolean>();
     const [error, setError] = useState<string>();
@@ -48,6 +49,7 @@ const SignupPage: React.FC = () => {
 
         try {
             await signUp(email, password);
+            navigate(config.routes.profileUpdate);
         } catch (error: any) {
             if (error.code === 'auth/email-already-in-use') {
                 setError('Email đã được dùng bởi tài khoản khác.');

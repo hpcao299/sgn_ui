@@ -9,6 +9,7 @@ import ShoppingCartPage from '@/pages/ShoppingCart';
 import LoginPage from '@/pages/Login';
 import SignupPage from '@/pages/Signup';
 import ProfilePage from '@/pages/Profile';
+import ProfileUpdatePage from '@/pages/ProfileUpdate';
 
 const publicRoutes: Route[] = [
     {
@@ -39,6 +40,7 @@ const privateRoutes: Route[] = [
         component: ShoppingCartPage,
     },
     { path: config.routes.profile, component: ProfilePage },
+    { path: config.routes.profileUpdate, component: ProfileUpdatePage },
 ];
 
 export { publicRoutes, privateRoutes };

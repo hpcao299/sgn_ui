@@ -11,6 +11,7 @@ const routes = {
     cart: '/shopping-cart',
 
     profile: '/account/profile',
+    profileUpdate: '/account/update-profile',
 
     login: '/login',
     signup: '/signup',

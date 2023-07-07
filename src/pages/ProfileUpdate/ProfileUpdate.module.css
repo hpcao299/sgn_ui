@@ -1,0 +1,35 @@
+.container {
+    padding: 60px 0 100px;
+}
+
+.wrapper {
+    box-shadow: 0px 0px 24px #0000001a;
+    max-width: 510px;
+    margin: 0 auto;
+    padding: 50px 70px;
+    background-color: var(--white-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper h2 {
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.error-text {
+    color: var(--red-color);
+    text-align: center;
+    margin-top: 12px;
+}
+
+.form {
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.submit-btn {
+    margin-top: 16px;
+}
