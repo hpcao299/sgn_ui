@@ -7,8 +7,22 @@ import classNames from 'classnames/bind';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Signup.module.css';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import constants from '@/constants';
 
 const cx = classNames.bind(styles);
+
+interface ISignUpForm {
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
+
+const defaultValues: ISignUpForm = {
+    email: '',
+    password: '',
+    confirmPassword: '',
+};
 
 const paths = [
     { to: config.routes.home, title: 'Trang chủ' },
@@ -16,35 +30,90 @@ const paths = [
 ];
 
 const SignupPage: React.FC = () => {
+    const {
+        control,
+        handleSubmit,
+        formState: { errors },
+        watch,
+    } = useForm<ISignUpForm>({ defaultValues });
+
+    const onSubmit: SubmitHandler<ISignUpForm> = data => {
+        console.log('data: ', data);
+    };
+
     return (
         <>
             <PageDetails title="Đăng ký tài khoản" paths={paths} />
             <div className={cx('container')}>
                 <div className={cx('wrapper')}>
                     <h2>Đăng ký tài khoản</h2>
-                    <div className={cx('form')}>
-                        <InputField
+                    <form onSubmit={handleSubmit(onSubmit)} className={cx('form')}>
+                        <Controller
                             name="email"
-                            type="text"
-                            placeholder="Email của bạn"
-                            Icon={MailIcon}
+                            control={control}
+                            rules={{
+                                required: 'Vui lòng nhập email của bạn.',
+                                pattern: {
+                                    value: constants.regExps.email,
+                                    message: 'Email không hợp lệ.',
+                                },
+                            }}
+                            render={({ field }) => (
+                                <InputField
+                                    type="text"
+                                    placeholder="Email của bạn"
+                                    Icon={MailIcon}
+                                    error={errors.email?.message || ''}
+                                    {...field}
+                                />
+                            )}
                         />
-                        <InputField
+                        <Controller
                             name="password"
-                            type="password"
-                            placeholder="Mật khẩu"
-                            Icon={LockIcon}
+                            control={control}
+                            rules={{
+                                required: 'Vui lòng nhập mật khẩu của bạn.',
+                                pattern: {
+                                    value: constants.regExps.password,
+                                    message: 'Mật khẩu cần ít nhất 6 kí tự.',
+                                },
+                            }}
+                            render={({ field }) => (
+                                <InputField
+                                    type="password"
+                                    autoComplete="off"
+                                    placeholder="Mật khẩu"
+                                    Icon={LockIcon}
+                                    error={errors.password?.message || ''}
+                                    {...field}
+                                />
+                            )}
                         />
-                        <InputField
+                        <Controller
                             name="confirmPassword"
-                            type="password"
-                            placeholder="Nhập lại mật khẩu"
-                            Icon={LockIcon}
+                            control={control}
+                            rules={{
+                                validate: value => {
+                                    if (watch('password') !== value) {
+                                        return 'Mật khẩu được nhập lại không trùng khớp.';
+                                    }
+                                },
+                            }}
+                            render={({ field }) => (
+                                <InputField
+                                    type="password"
+                                    autoComplete="off"
+                                    placeholder="Nhập lại mật khẩu"
+                                    Icon={LockIcon}
+                                    error={errors.confirmPassword?.message || ''}
+                                    {...field}
+                                />
+                            )}
                         />
                         <Button type="submit" color="primary" className={cx('signup-btn')}>
                             Đăng Ký
                         </Button>
-                    </div>
+                    </form>
                     <p className={cx('text-link')}>
                         <span>Đã có tài khoản?</span>{' '}
                         <Link to={config.routes.login}>Đăng nhập</Link>

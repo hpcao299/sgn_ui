@@ -17,7 +17,7 @@
 .error-text {
     color: var(--red-color);
     margin: 6px 12px;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .input {

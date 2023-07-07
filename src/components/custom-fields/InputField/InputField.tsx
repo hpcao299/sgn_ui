@@ -5,26 +5,23 @@ import styles from './InputField.module.css';
 const cx = classNames.bind(styles);
 
 interface InputFieldProps {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    field?: any;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    form?: any;
-
     Icon?: React.FC<React.SVGProps<SVGSVGElement>>;
     type?: string;
+    error?: string;
     [keys: string]: unknown;
 }
 
-const InputField: React.FC<InputFieldProps> = params => {
-    const { Icon, ...props } = params;
+const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>((params, ref) => {
+    const { Icon, error, ...props } = params;
+
     return (
         // 'error'
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper', error && 'error')} ref={null}>
             {Icon && <Icon />}
-            <input className={cx('input')} {...props} />
-            {/* <p className={cx('error-text')}>Your account is missing.</p> */}
+            <input className={cx('input')} ref={ref} {...props} />
+            {error && <p className={cx('error-text')}>{error}</p>}
         </div>
     );
-};
+});
 
 export default InputField;
