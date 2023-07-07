@@ -105,7 +105,7 @@ const Header: React.FC = () => {
                                 )}
                             </div>
                         ))}
-                        <Link to={config.routes.home} className={cx('header-icon-link')}>
+                        <Link to={config.routes.profile} className={cx('header-icon-link')}>
                             <UserIcon />
                         </Link>
                         <Link to={config.routes.cart} className={cx('header-icon-link')}>

@@ -10,6 +10,8 @@ const routes = {
 
     cart: '/shopping-cart',
 
+    profile: '/profile',
+
     login: '/login',
     signup: '/signup',
     forgotPassword: '/forgot-password',
