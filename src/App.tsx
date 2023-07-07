@@ -5,36 +5,39 @@ import { privateRoutes, publicRoutes } from './routes/routes';
 import PrivateRoute from './components/layouts/PrivateRoute/PrivateRoute';
 import NotFoundPage from './pages/NotFound';
 import { ScrollToTop } from './utils';
+import ContextProviders from './contexts';
 
 function App() {
     return (
         <GlobalStyles>
-            <DefaultLayout>
-                <ScrollToTop />
-                <Routes>
-                    {publicRoutes.map((route, index) => (
-                        <Route key={index} path={route.path} Component={route.component} />
-                    ))}
+            <ContextProviders>
+                <DefaultLayout>
+                    <ScrollToTop />
+                    <Routes>
+                        {publicRoutes.map((route, index) => (
+                            <Route key={index} path={route.path} Component={route.component} />
+                        ))}
 
-                    {privateRoutes.map((route, index) => {
-                        const Component = route.component;
+                        {privateRoutes.map((route, index) => {
+                            const Component = route.component;
 
-                        return (
-                            <Route
-                                key={index}
-                                path={route.path}
-                                Component={() => (
-                                    <PrivateRoute>
-                                        <Component />
-                                    </PrivateRoute>
-                                )}
-                            />
-                        );
-                    })}
+                            return (
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    Component={() => (
+                                        <PrivateRoute>
+                                            <Component />
+                                        </PrivateRoute>
+                                    )}
+                                />
+                            );
+                        })}
 
-                    <Route path="*" Component={NotFoundPage} />
-                </Routes>
-            </DefaultLayout>
+                        <Route path="*" Component={NotFoundPage} />
+                    </Routes>
+                </DefaultLayout>
+            </ContextProviders>
         </GlobalStyles>
     );
 }
