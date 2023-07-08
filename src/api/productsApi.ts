@@ -27,6 +27,12 @@ const productsApi = {
 
         return this.useNewArrivals();
     },
+    useProductDetails(slug: string) {
+        return useSWR(`/products/details/${slug}`);
+    },
+    useRelatedProducts(slug: string) {
+        return useSWR(`/products/related?slug=${slug}`);
+    },
 };
 
 export default productsApi;

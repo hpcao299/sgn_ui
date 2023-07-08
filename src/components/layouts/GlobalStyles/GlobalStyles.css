@@ -25,7 +25,6 @@ html,
 body {
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     color: var(--text-color);
-    scroll-behavior: smooth;
 }
 
 .container {

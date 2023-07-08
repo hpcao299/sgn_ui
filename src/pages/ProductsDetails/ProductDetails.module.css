@@ -1,3 +1,7 @@
+.product-details.loading {
+    opacity: 0.45;
+}
+
 .product-main-content {
     padding-top: 56px;
     display: flex;
@@ -79,4 +83,14 @@
 
 .product-full-desc {
     line-height: 1.7;
+}
+
+.loader {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 5;
 }

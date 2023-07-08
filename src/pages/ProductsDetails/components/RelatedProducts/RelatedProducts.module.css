@@ -1,6 +1,13 @@
 .related {
+    position: relative;
     background: #f8f8f8;
     padding: 100px 0;
+}
+
+.related.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .related h5 {
