@@ -4,13 +4,13 @@ import { ReactComponent as MailIcon } from '@/assets/icons/mail.svg';
 import { InputField } from '@/components/custom-fields';
 import { Button, PageDetails } from '@/components/elements';
 import config from '@/config';
-import classNames from 'classnames/bind';
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import styles from './Signup.module.css';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import constants from '@/constants';
 import { useAuthContext } from '@/contexts/AuthContext';
+import classNames from 'classnames/bind';
+import React, { useEffect, useState } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
+import styles from './Signup.module.css';
 
 const cx = classNames.bind(styles);
 
@@ -33,7 +33,7 @@ const paths = [
 
 const SignupPage: React.FC = () => {
     const navigate = useNavigate();
-    const { signUp } = useAuthContext();
+    const { signUp, currentUser } = useAuthContext();
     const [isLoading, setIsLoading] = useState<boolean>();
     const [error, setError] = useState<string>();
     const {
@@ -42,6 +42,11 @@ const SignupPage: React.FC = () => {
         formState: { errors },
         watch,
     } = useForm<ISignUpForm>({ defaultValues });
+
+    useEffect(() => {
+        if (currentUser) navigate(config.routes.home);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [navigate]);
 
     const onSubmit: SubmitHandler<ISignUpForm> = async data => {
         const { email, password } = data;

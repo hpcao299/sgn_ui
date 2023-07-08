@@ -2,15 +2,15 @@ import config from '@/config';
 import classNames from 'classnames/bind';
 import React from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import styles from './Header.module.css';
+import styles from './SubHeader.module.css';
 
 const cx = classNames.bind(styles);
 
-interface SubHeaderProps {
+interface SubHeaderLinksProps {
     data: { title: string; slug: string }[];
 }
 
-const SubHeader: React.FC<SubHeaderProps> = ({ data }) => {
+const SubHeaderLinks: React.FC<SubHeaderLinksProps> = ({ data }) => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
@@ -36,4 +36,4 @@ const SubHeader: React.FC<SubHeaderProps> = ({ data }) => {
     );
 };
 
-export default SubHeader;
+export default SubHeaderLinks;

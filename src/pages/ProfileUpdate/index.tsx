@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactComponent as PhoneIcon } from '@/assets/icons/phone.svg';
 import { ReactComponent as UserIcon } from '@/assets/icons/user.svg';
 import { InputField } from '@/components/custom-fields';
@@ -8,6 +9,8 @@ import classNames from 'classnames/bind';
 import React, { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import styles from './ProfileUpdate.module.css';
+import usersApi from '@/api/usersApi';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -28,6 +31,7 @@ const defaultValues: IUpdateProfileForm = {
 };
 
 const ProfileUpdatePage: React.FC = () => {
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>();
     const [error, setError] = useState<string>();
     const {
@@ -37,7 +41,14 @@ const ProfileUpdatePage: React.FC = () => {
     } = useForm<IUpdateProfileForm>({ defaultValues });
 
     const onSubmit: SubmitHandler<IUpdateProfileForm> = async data => {
-        console.log('data: ', data);
+        setIsLoading(true);
+        try {
+            await usersApi.updateUserDetails(data);
+            navigate(config.routes.home);
+        } catch (error: any) {
+            setError(error.message);
+        }
+        setIsLoading(false);
     };
 
     return (

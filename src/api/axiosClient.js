@@ -1,29 +1,29 @@
 import axios from 'axios';
-// import { auth } from '~/config/firebase';
+import { auth } from '@/config/firebase';
 
-// const getFirebaseToken = async () => {
-//     const currentUser = auth.currentUser;
-//     if (currentUser) return currentUser.getIdToken();
+const getFirebaseToken = async () => {
+    const currentUser = auth.currentUser;
+    if (currentUser) return currentUser.getIdToken();
 
-//     // User hasn't logged in
-//     const { isSignedIn } = JSON.parse(localStorage.getItem('auth') || '');
-//     if (!isSignedIn) return null;
+    // User hasn't logged in
+    const { isSignedIn } = JSON.parse(localStorage.getItem('auth') || '');
+    if (!isSignedIn) return null;
 
-//     // User has logged in but application is loading
-//     return new Promise((resolve, reject) => {
-//         const waitTimer = setTimeout(() => reject(null), 1200);
+    // User has logged in but application is loading
+    return new Promise((resolve, reject) => {
+        const waitTimer = setTimeout(() => reject(null), 600);
 
-//         const unRegisterAuthObserver = auth.onAuthStateChanged(async user => {
-//             if (!user) reject(null);
+        const unRegisterAuthObserver = auth.onAuthStateChanged(async user => {
+            if (!user) reject(null);
 
-//             const token = await user?.getIdToken();
-//             resolve(token);
+            const token = await user?.getIdToken(true);
+            resolve(token);
 
-//             unRegisterAuthObserver();
-//             clearTimeout(waitTimer);
-//         });
-//     });
-// };
+            unRegisterAuthObserver();
+            clearTimeout(waitTimer);
+        });
+    });
+};
 
 const axiosClient = axios.create({
     baseURL: import.meta.env.VITE_APP_SERVER_BASE_URL,
@@ -35,8 +35,7 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(
     async function (config) {
         // Handle Token
-        // const token = await getFirebaseToken();
-        const token = null;
+        const token = await getFirebaseToken();
         if (token && config.headers !== undefined) {
             config.headers.Authorization = `Bearer ${token}`;
         }
@@ -60,5 +59,10 @@ axiosClient.interceptors.response.use(
         return Promise.reject(err);
     },
 );
+
+export const fetcher = url =>
+    axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}${url}`).then(data => data.data);
+
+export const fetcherWithToken = url => axiosClient.get(url);
 
 export default axiosClient;

@@ -15,7 +15,7 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ className }) => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-    const { data, isLoading } = categoriesApi.useCategories();
+    const { data } = categoriesApi.useCategories();
 
     const handleNavigateWithParams = (slug: string) => {
         const newSearchParams = new URLSearchParams(searchParams);
@@ -27,17 +27,16 @@ const Sidebar: React.FC<SidebarProps> = ({ className }) => {
     return (
         <div className={cx('sidebar', className)}>
             <ul className={cx('list')}>
-                {!isLoading &&
-                    data.data.map((category: Category) => (
-                        <li key={category.id} className={cx('list-item')}>
-                            <a
-                                style={{ cursor: 'pointer' }}
-                                onClick={() => handleNavigateWithParams(category.slug)}
-                            >
-                                {category.title}
-                            </a>
-                        </li>
-                    ))}
+                {data?.data.map((category: Category) => (
+                    <li key={category.id} className={cx('list-item')}>
+                        <a
+                            style={{ cursor: 'pointer' }}
+                            onClick={() => handleNavigateWithParams(category.slug)}
+                        >
+                            {category.title}
+                        </a>
+                    </li>
+                ))}
             </ul>
         </div>
     );

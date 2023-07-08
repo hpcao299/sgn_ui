@@ -7,7 +7,7 @@ import config from './config';
 import ContextProviders from './contexts';
 import NotFoundPage from './pages/NotFound';
 import { privateRoutes, publicRoutes } from './routes/routes';
-import { ScrollToTop } from './utils';
+import { ScrollToTop, AuthWatcher } from './utils';
 
 function App() {
     return (
@@ -16,6 +16,7 @@ function App() {
                 <SWRConfig value={config.swr.value}>
                     <DefaultLayout>
                         <ScrollToTop />
+                        <AuthWatcher />
                         <Routes>
                             {publicRoutes.map((route, index) => (
                                 <Route key={index} path={route.path} Component={route.component} />

@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-empty-function */
+import usersApi from '@/api/usersApi';
 import { auth } from '@/config/firebase';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { CurrentUser } from '@/types';
+import React, { createContext, useContext, useState } from 'react';
 
 interface AuthContextValues {
     currentUser: unknown;
     signUp: (email: string, password: string) => Promise<unknown>;
     login: (email: string, password: string) => Promise<unknown>;
+    getCurrentUser: () => Promise<CurrentUser | null>;
     signOut: () => Promise<unknown>;
 }
 
@@ -15,6 +18,7 @@ const defaultValues = {
     signUp: () => Promise.resolve(),
     login: () => Promise.resolve(),
     signOut: () => Promise.resolve(),
+    getCurrentUser: () => Promise.resolve(null),
 };
 
 export const AuthContext = createContext<AuthContextValues>(defaultValues);
@@ -26,13 +30,14 @@ interface AuthContextProviderProps {
 }
 
 const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState<unknown>(null);
+    const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
 
     const signUp = async (email: string, password: string) => {
         try {
             const userCredential = await auth.createUserWithEmailAndPassword(email, password);
             const user = userCredential.user;
-            setCurrentUser(user);
+            await usersApi.registerUser({ email: user?.email || '' });
+            setCurrentUser({ email: user?.email || '', id: user?.uid || '' });
             return Promise.resolve(user);
         } catch (error) {
             return Promise.reject(error);
@@ -43,7 +48,6 @@ const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) =
         try {
             const userCredential = await auth.signInWithEmailAndPassword(email, password);
             const user = userCredential.user;
-            setCurrentUser(user);
             return Promise.resolve(user);
         } catch (error: any) {
             return Promise.reject(error);
@@ -53,23 +57,24 @@ const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) =
     const signOut = async () => {
         try {
             await auth.signOut();
+            setCurrentUser(null);
             return Promise.resolve();
         } catch (error) {
             return Promise.reject(error);
         }
     };
 
-    useEffect(() => {
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                setCurrentUser(user);
-            }
-        });
-    }, []);
+    const getCurrentUser = async () => {
+        try {
+            const user = await usersApi.getCurrentUser();
+            setCurrentUser(user.data);
+            return user.data;
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-    console.log('currentUser: ', currentUser);
-
-    const values = { currentUser, signUp, login, signOut };
+    const values = { currentUser, signUp, login, signOut, getCurrentUser };
 
     return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

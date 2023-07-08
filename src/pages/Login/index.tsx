@@ -7,7 +7,7 @@ import config from '@/config';
 import constants from '@/constants';
 import { useAuthContext } from '@/contexts/AuthContext';
 import classNames from 'classnames/bind';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
@@ -30,7 +30,7 @@ const paths = [
 ];
 
 const LoginPage: React.FC = () => {
-    const { login } = useAuthContext();
+    const { login, currentUser } = useAuthContext();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>();
     const [error, setError] = useState<string>();
@@ -39,6 +39,10 @@ const LoginPage: React.FC = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<ILoginForm>({ defaultValues });
+
+    useEffect(() => {
+        if (currentUser) navigate(config.routes.home);
+    }, [currentUser, navigate]);
 
     const onSubmit: SubmitHandler<ILoginForm> = async data => {
         const { email, password } = data;
