@@ -1,30 +1,43 @@
-import React from 'react';
-import classNames from 'classnames/bind';
-import styles from './Sidebar.module.css';
+import categoriesApi from '@/api/categoriesApi';
 import config from '@/config';
-import { Link } from 'react-router-dom';
+import { Category } from '@/types';
+import classNames from 'classnames/bind';
+import React from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import styles from './Sidebar.module.css';
 
 const cx = classNames.bind(styles);
 
-const links = [
-    { title: 'Thùng Carton - Hộp Carton', to: config.routes.home },
-    { title: 'Bong Bóng Khí - Xốp Hơi', to: config.routes.home },
-    { title: 'Bóng Keo - PE', to: config.routes.home },
-    { title: 'Túi Giấy KRAFT', to: config.routes.home },
-    { title: 'Túi Niêm Phong', to: config.routes.home },
-    { title: 'Giấy Photocopy - Tập Học Sinh', to: config.routes.home },
-    { title: 'Giấy Gói Hàng', to: config.routes.home },
-];
+interface SidebarProps {
+    className?: string;
+}
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC<SidebarProps> = ({ className }) => {
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const { data, isLoading } = categoriesApi.useCategories();
+
+    const handleNavigateWithParams = (slug: string) => {
+        const newSearchParams = new URLSearchParams(searchParams);
+        newSearchParams.set('category', slug);
+
+        navigate({ search: `?${newSearchParams.toString()}`, pathname: config.routes.products });
+    };
+
     return (
-        <div className={cx('sidebar')}>
+        <div className={cx('sidebar', className)}>
             <ul className={cx('list')}>
-                {links.map((link, i) => (
-                    <li key={i} className={cx('list-item')}>
-                        <Link to={link.to}>{link.title}</Link>
-                    </li>
-                ))}
+                {!isLoading &&
+                    data.data.map((category: Category) => (
+                        <li key={category.id} className={cx('list-item')}>
+                            <a
+                                style={{ cursor: 'pointer' }}
+                                onClick={() => handleNavigateWithParams(category.slug)}
+                            >
+                                {category.title}
+                            </a>
+                        </li>
+                    ))}
             </ul>
         </div>
     );

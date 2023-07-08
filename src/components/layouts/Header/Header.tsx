@@ -7,39 +7,44 @@ import logo from '@/assets/images/sgn-logo.png';
 import whiteLogo from '@/assets/images/white-logo.png';
 import config from '@/config';
 import classNames from 'classnames/bind';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './Header.module.css';
 import Search from './Search';
+import categoriesApi from '@/api/categoriesApi';
+import { Category } from '@/types';
+import SubHeader from './SubHeader';
 
 const cx = classNames.bind(styles);
 
-const headerLinks = [
-    {
-        title: 'Trang chủ',
-        to: config.routes.home,
-    },
-    {
-        title: 'Sản phẩm',
-        to: config.routes.products,
-        subHeader: [
-            { title: 'Thùng Carton - Hộp Carton', to: config.routes.home },
-            { title: 'Bong Bóng Khí - Xốp Hơi', to: config.routes.home },
-            { title: 'Bóng Keo - PE', to: config.routes.home },
-            { title: 'Túi Giấy KRAFT', to: config.routes.home },
-            { title: 'Túi Niêm Phong', to: config.routes.home },
-            { title: 'Giấy Photocopy - Tập Học Sinh', to: config.routes.home },
-            { title: 'Giấy Gói Hàng', to: config.routes.home },
-        ],
-    },
-    { title: 'Giới thiệu', to: config.routes.info },
-    { title: 'dịch vụ', to: config.routes.service },
-    { title: 'tin tức', to: config.routes.new },
-    { title: 'liên hệ', to: config.routes.contact },
-];
-
 const Header: React.FC = () => {
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+
+    const { data } = categoriesApi.useCategories();
     const [changeLogo, setChangeLogo] = useState<boolean>(false);
+    const headerLinks = useMemo(
+        () => [
+            {
+                title: 'Trang chủ',
+                to: config.routes.home,
+            },
+            {
+                title: 'Sản phẩm',
+                to: config.routes.products,
+                keepParams: true,
+                subHeader: data?.data.map((category: Category) => ({
+                    title: category.title,
+                    slug: category.slug,
+                })),
+            },
+            { title: 'Giới thiệu', to: config.routes.info },
+            { title: 'dịch vụ', to: config.routes.service },
+            { title: 'tin tức', to: config.routes.new },
+            { title: 'liên hệ', to: config.routes.contact },
+        ],
+        [data],
+    );
 
     useEffect(() => {
         const handleScroll = () => {
@@ -55,6 +60,12 @@ const Header: React.FC = () => {
 
         return () => document.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const handleNavigate = (to: string, keepParams?: boolean) => {
+        const newSearchParams = new URLSearchParams(searchParams);
+
+        navigate({ search: keepParams ? `?${newSearchParams.toString()}` : '', pathname: to });
+    };
 
     return (
         <>
@@ -88,21 +99,14 @@ const Header: React.FC = () => {
                     <div className={cx('header-links')}>
                         {headerLinks.map((link, index) => (
                             <div key={index} className={cx('text-link-wrapper')}>
-                                <Link to={link.to} className={cx('header-text-link')}>
+                                <a
+                                    onClick={() => handleNavigate(link.to, link.keepParams)}
+                                    className={cx('header-text-link')}
+                                >
                                     {link.title}
                                     {link.subHeader && <ChevronDown />}
-                                </Link>
-                                {link.subHeader && (
-                                    <>
-                                        <div className={cx('header-sub-links')}>
-                                            {link.subHeader.map((link, index) => (
-                                                <Link key={index} to={link.to}>
-                                                    {link.title}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </>
-                                )}
+                                </a>
+                                {link.subHeader && <SubHeader data={link.subHeader} />}
                             </div>
                         ))}
                         <Link to={config.routes.profile} className={cx('header-icon-link')}>

@@ -1,14 +1,18 @@
-import Sidebar from '@/components/layouts/Sidebar';
-import React, { Suspense } from 'react';
-import Banner from './components/Banner';
+import productsApi from '@/api/productsApi';
 import { RenderOnView, SliderProductsList } from '@/components/elements';
+import Sidebar from '@/components/layouts/Sidebar';
 import classNames from 'classnames/bind';
+import React, { Suspense } from 'react';
 import styles from './Home.module.css';
+import Banner from './components/Banner';
 const cx = classNames.bind(styles);
 
 const News = React.lazy(() => import('./components/News'));
 
 const HomePage: React.FC = () => {
+    const { data: newArrivals } = productsApi.useNewArrivals();
+    const { data: bestSellings } = productsApi.useBestSelling();
+
     return (
         <>
             <div className="container">
@@ -18,11 +22,11 @@ const HomePage: React.FC = () => {
                 </div>
                 <div className={cx('section')}>
                     <h4 className={cx('section-title')}>sản phẩm mới</h4>
-                    <SliderProductsList />
+                    <SliderProductsList data={newArrivals?.data} />
                 </div>
                 <div className={cx('section')}>
                     <h4 className={cx('section-title')}>sản phẩm bán chạy</h4>
-                    <SliderProductsList />
+                    <SliderProductsList data={bestSellings?.data} />
                 </div>
             </div>
 

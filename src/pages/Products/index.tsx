@@ -1,66 +1,43 @@
-import { PageDetails, ProductItem } from '@/components/elements';
+import productsApi from '@/api/productsApi';
+import { Loader, ProductItem } from '@/components/elements';
 import Sidebar from '@/components/layouts/Sidebar';
-import config from '@/config';
+import { Product } from '@/types';
 import classNames from 'classnames/bind';
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import styles from './Products.module.css';
+import FilterSelect from './components/FilterSelect';
+import PageHeader from './components/PageHeader';
 import Pagination from './components/Pagination';
 
 const cx = classNames.bind(styles);
 
-const paths = [
-    {
-        title: 'Trang chủ',
-        to: config.routes.home,
-    },
-    { title: 'Sản phẩm', to: config.routes.products },
-];
-
-const filterOptions = ['Phổ biến', 'Bán chạy', 'Hàng mới', 'Giá thấp đến cao', 'Giá cao đến thấp'];
-
 const ProductsPage: React.FC = () => {
+    const [searchParams] = useSearchParams();
+    const categorySlug = searchParams.get('category') || undefined;
+    const filter = searchParams.get('filter') || undefined;
+    const { data: newArrivals, isLoading, error } = productsApi.useProducts(categorySlug, filter);
+
     return (
         <>
-            <PageDetails title="Sản phẩm" paths={paths} />
+            <PageHeader />
             <div className={cx('content')}>
                 <div className="container flex">
                     <div>
-                        <Sidebar />
+                        <Sidebar className={cx('sidebar')} />
                     </div>
                     <div className={cx('products-container')}>
-                        <div className={cx('filter-products-wrapper')}>
-                            <select
-                                name="filter-products"
-                                id="filter-products"
-                                defaultValue="Phổ biến"
-                                className={cx('filter-products')}
-                            >
-                                {filterOptions.map((option, i) => (
-                                    <option key={i} value={option}>
-                                        {option}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className={cx('products-list')}>
-                            <div className={cx('products-item')}>
-                                <ProductItem />
-                            </div>
-                            <div className={cx('products-item')}>
-                                <ProductItem />
-                            </div>
-                            <div className={cx('products-item')}>
-                                <ProductItem />
-                            </div>
-                            <div className={cx('products-item')}>
-                                <ProductItem />
-                            </div>
-                            <div className={cx('products-item')}>
-                                <ProductItem />
-                            </div>
-                            <div className={cx('products-item')}>
-                                <ProductItem />
-                            </div>
+                        <FilterSelect />
+                        {error && (
+                            <p style={{ textAlign: 'center', fontSize: '22px' }}>{error.message}</p>
+                        )}
+                        {isLoading && <Loader className={cx('loader')} />}
+                        <div className={cx('products-list', isLoading && 'loading')}>
+                            {newArrivals?.data.map((item: Product) => (
+                                <div key={item.id} className={cx('products-item')}>
+                                    <ProductItem data={item} />
+                                </div>
+                            ))}
                         </div>
                         <Pagination />
                     </div>

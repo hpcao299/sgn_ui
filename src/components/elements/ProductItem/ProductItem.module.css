@@ -5,6 +5,11 @@
     text-align: center;
 }
 
+.product-item a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
 .product-img {
     width: 100%;
 }
