@@ -6,8 +6,11 @@ import { ReactComponent as AddedBag } from '@/assets/icons/addedBag.svg';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Product } from '@/types';
 import { formattedNumber } from '@/utils';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import loadingImg from '@/assets/images/loading-img.png';
+import { useAuthContext } from '@/contexts/AuthContext';
+import cartApi from '@/api/cartApi';
+import config from '@/config';
 
 const cx = classNames.bind(styles);
 
@@ -16,6 +19,25 @@ interface ProductItemProps {
 }
 
 const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
+    const { currentUser } = useAuthContext();
+    const navigate = useNavigate();
+
+    const handleAddToCart = async () => {
+        if (!currentUser) {
+            // notify
+            navigate(config.routes.login);
+            return;
+        }
+
+        try {
+            await cartApi.addItemToCart(data.id, 1);
+            // notify
+        } catch (error) {
+            console.error(error);
+            // notify
+        }
+    };
+
     return (
         <div className={cx('product-item')}>
             <Link to={`/products/${data.slug}`}>
@@ -45,6 +67,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
                     color="primary"
                     Icon={AddedBag}
                     className={cx('add-to-cart-btn')}
+                    onClick={handleAddToCart}
                 />
             </div>
         </div>

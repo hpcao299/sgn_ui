@@ -1,0 +1,9 @@
+.product-actions {
+    margin-top: 40px;
+    display: flex;
+    gap: 12px;
+}
+
+.product-actions button {
+    max-width: 200px;
+}

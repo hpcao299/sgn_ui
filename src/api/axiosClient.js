@@ -16,7 +16,7 @@ const getFirebaseToken = async () => {
         const unRegisterAuthObserver = auth.onAuthStateChanged(async user => {
             if (!user) reject(null);
 
-            const token = await user?.getIdToken(true);
+            const token = await user?.getIdToken();
             resolve(token);
 
             unRegisterAuthObserver();

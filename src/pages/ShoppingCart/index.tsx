@@ -1,10 +1,13 @@
-import { Button, PageDetails } from '@/components/elements';
+import cartApi from '@/api/cartApi';
+import { Loader, PageDetails } from '@/components/elements';
 import config from '@/config';
+import { CartItem as CartItemType } from '@/types';
 import classNames from 'classnames/bind';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CartItem from './CartItem';
 import styles from './ShoppingCart.module.css';
+import CartActions from './components/CartActions';
+import CartItem from './components/CartItem';
 
 const cx = classNames.bind(styles);
 
@@ -20,11 +23,21 @@ const paths = [
 ];
 
 const ShoppingCartPage: React.FC = () => {
+    const { data, isLoading, isValidating } = cartApi.getCartItems();
+    const cartItems: CartItemType[] = data?.data;
+
     return (
         <>
             <PageDetails title="Giỏ hàng" paths={paths} />
             <div className={cx('content')}>
-                <div className="container">
+                {(isLoading || isValidating) && <Loader className={cx('loader')} />}
+                <div
+                    className={cx(
+                        'container',
+                        'cart-container',
+                        (isLoading || isValidating) && 'loading',
+                    )}
+                >
                     <div className={cx('grid-wrapper')}>
                         <div className={cx('grid', 'grid-header')}>
                             <div className={cx('grid-item')}>sản phẩm</div>
@@ -33,27 +46,18 @@ const ShoppingCartPage: React.FC = () => {
                             <div className={cx('grid-item')}>tạm tính</div>
                             <div className={cx('grid-item', 'small-grid-item')}>xoá</div>
                         </div>
-                        <CartItem />
-                        <CartItem />
-                    </div>
-                    <div className={cx('cart-actions')}>
-                        <div>
-                            <h6>Cộng giỏ hàng</h6>
-                            <div className={cx('cart-summary')}>
-                                <div className={cx('summary-item')}>Tổng Tiền Hàng</div>
-                                <div className={cx('summary-item')}>50,000VNĐ</div>
-                                <div className={cx('summary-item')}>Phí Vận Chuyển</div>
-                                <div className={cx('summary-item')}>10,000VNĐ</div>
-                                <div className={cx('summary-item')}>Tổng Tiền Thanh Toán</div>
-                                <div className={cx('summary-item', 'cart-item-price')}>
-                                    60,000VNĐ
-                                </div>
+                        {cartItems?.length === 0 ? (
+                            <div className={cx('empty-text')}>
+                                <p>Giỏ hàng trống</p>
+                                <Link to={config.routes.home}>Lựa chọn các sản phẩm khác</Link>
                             </div>
-                            <Link to={config.routes.payment}>
-                                <Button color="red">Tiến Hành Thanh Toán</Button>
-                            </Link>
-                        </div>
+                        ) : (
+                            cartItems?.map((item: CartItemType) => (
+                                <CartItem key={item.id} data={item} />
+                            ))
+                        )}
                     </div>
+                    {cartItems?.length > 0 && <CartActions data={cartItems} />}
                 </div>
             </div>
         </>

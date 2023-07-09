@@ -43,16 +43,6 @@
     color: var(--text-color);
 }
 
-.product-actions {
-    margin-top: 40px;
-    display: flex;
-    gap: 12px;
-}
-
-.product-actions button {
-    max-width: 200px;
-}
-
 .product-sub-content {
     margin-top: 60px;
 }

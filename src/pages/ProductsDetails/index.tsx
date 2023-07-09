@@ -1,12 +1,13 @@
 import productsApi from '@/api/productsApi';
 import loadingImg from '@/assets/images/loading-img.png';
-import { Button, Loader, PageDetails, QuantitySelector, RenderOnView } from '@/components/elements';
+import { Loader, PageDetails, RenderOnView } from '@/components/elements';
 import config from '@/config';
 import classNames from 'classnames/bind';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useParams } from 'react-router-dom';
 import styles from './ProductDetails.module.css';
+import ProductActions from './components/ProductActions';
 
 const RelatedProducts = React.lazy(() => import('./components/RelatedProducts'));
 
@@ -52,11 +53,7 @@ const ProductsDetailsPage: React.FC = () => {
                                 </div>
                                 <p className={cx('product-desc')}>{details?.short_desc}</p>
                             </div>
-                            <QuantitySelector />
-                            <div className={cx('product-actions')}>
-                                <Button>đặt ngay</Button>
-                                <Button variant="outlined">thêm vào giỏ hàng</Button>
-                            </div>
+                            <ProductActions productId={details?.id} />
                         </div>
                     </div>
                     <div className={cx('product-sub-content')}>
