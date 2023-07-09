@@ -3,7 +3,7 @@
 import usersApi from '@/api/usersApi';
 import { auth } from '@/config/firebase';
 import { CurrentUser } from '@/types';
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useCallback, useContext, useState } from 'react';
 
 interface AuthContextValues {
     currentUser: CurrentUser | null;
@@ -32,7 +32,7 @@ interface AuthContextProviderProps {
 const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) => {
     const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
 
-    const signUp = async (email: string, password: string) => {
+    const signUp = useCallback(async (email: string, password: string) => {
         try {
             const userCredential = await auth.createUserWithEmailAndPassword(email, password);
             const user = userCredential.user;
@@ -42,9 +42,9 @@ const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) =
         } catch (error) {
             return Promise.reject(error);
         }
-    };
+    }, []);
 
-    const login = async (email: string, password: string) => {
+    const login = useCallback(async (email: string, password: string) => {
         try {
             const userCredential = await auth.signInWithEmailAndPassword(email, password);
             const user = userCredential.user;
@@ -52,9 +52,9 @@ const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) =
         } catch (error: any) {
             return Promise.reject(error);
         }
-    };
+    }, []);
 
-    const signOut = async () => {
+    const signOut = useCallback(async () => {
         try {
             await auth.signOut();
             setCurrentUser(null);
@@ -62,9 +62,9 @@ const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) =
         } catch (error) {
             return Promise.reject(error);
         }
-    };
+    }, []);
 
-    const getCurrentUser = async () => {
+    const getCurrentUser = useCallback(async () => {
         try {
             const user = await usersApi.getCurrentUser();
             setCurrentUser(user.data);
@@ -72,7 +72,7 @@ const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) =
         } catch (error) {
             console.error(error);
         }
-    };
+    }, []);
 
     const values = { currentUser, signUp, login, signOut, getCurrentUser };
 

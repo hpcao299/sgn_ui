@@ -1,8 +1,8 @@
 import React from 'react';
-import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 
 const Notifications = React.lazy(() => import('@/components/elements/Notifications'));
+const Footer = React.lazy(() => import('../Footer/Footer'));
 
 interface DefaultLayoutProps {
     children: React.ReactNode;
