@@ -5,6 +5,10 @@
     --gray-color: #dadada;
     --red-color: #ff2544;
     --light-red-color: #ff3f5a;
+
+    --success-color: #22bb33;
+    --error-color: #ff2544;
+
     --text-color: #201f20;
     --white-color: #fff;
     --background-color: #fafafa;
@@ -13,6 +17,7 @@
     --sub-header-height: 60px;
     --page-details-height: 90px;
     --sidebar-width: 270px;
+    --position-right-notification: 32px;
 }
 
 * {
