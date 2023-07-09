@@ -10,3 +10,11 @@ export interface CartItem {
 
     created_at: Date;
 }
+
+export interface ConfirmOrderDto {
+    name: string;
+    phone: string;
+    email: string;
+    address: string;
+    message: string;
+}

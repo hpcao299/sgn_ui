@@ -30,9 +30,14 @@
     justify-content: space-between;
 }
 
+.item-info a {
+    text-decoration: none;
+}
+
 .item-title {
     font-size: 20px;
     font-weight: 600;
+    color: var(--text-color);
 }
 
 .item-quantity {

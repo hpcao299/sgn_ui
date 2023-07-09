@@ -6,7 +6,7 @@ import { CurrentUser } from '@/types';
 import React, { createContext, useContext, useState } from 'react';
 
 interface AuthContextValues {
-    currentUser: unknown;
+    currentUser: CurrentUser | null;
     signUp: (email: string, password: string) => Promise<unknown>;
     login: (email: string, password: string) => Promise<unknown>;
     getCurrentUser: () => Promise<CurrentUser | null>;
