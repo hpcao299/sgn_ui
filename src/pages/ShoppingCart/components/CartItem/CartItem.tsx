@@ -25,7 +25,6 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
         value: quantity,
         milliSeconds: 400,
     });
-    const total = data.original_price * quantity;
 
     const handleChangeQuantity = (value: number) => {
         setQuantity(value);
@@ -84,7 +83,9 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
             <div className={cx('grid-item')}>
                 <QuantitySelector handleChange={handleChangeQuantity} value={data.quantity} />
             </div>
-            <div className={cx('grid-item', 'cart-item-price')}>{total.toLocaleString()}VNĐ</div>
+            <div className={cx('grid-item', 'cart-item-price')}>
+                {data.total.toLocaleString()}VNĐ
+            </div>
             <div className={cx('grid-item', 'cart-garbage-icon', 'small-grid-item')}>
                 <button
                     className={cx('delete-btn')}
