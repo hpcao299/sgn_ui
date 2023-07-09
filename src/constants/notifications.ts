@@ -50,6 +50,12 @@ const notifications: { [key: string]: NotificationDetails } = {
         message: 'Đã có lỗi xảy ra.',
         type: 'error',
     },
+
+    SIGN_OUT_FAILED: {
+        title: 'Đăng xuất thất bại',
+        message: 'Đã có lỗi xảy ra.',
+        type: 'error',
+    },
 };
 
 export default notifications;

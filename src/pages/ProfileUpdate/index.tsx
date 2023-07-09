@@ -1,23 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import usersApi from '@/api/usersApi';
 import { ReactComponent as PhoneIcon } from '@/assets/icons/phone.svg';
 import { ReactComponent as UserIcon } from '@/assets/icons/user.svg';
 import { InputField } from '@/components/custom-fields';
 import { Button, PageDetails } from '@/components/elements';
 import config from '@/config';
 import constants from '@/constants';
+import { useAuthContext } from '@/contexts/AuthContext';
+import { useNotifyContext } from '@/contexts/NotifyContext';
 import classNames from 'classnames/bind';
 import React, { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import styles from './ProfileUpdate.module.css';
-import usersApi from '@/api/usersApi';
 import { useNavigate } from 'react-router-dom';
-import { useNotifyContext } from '@/contexts/NotifyContext';
+import styles from './ProfileUpdate.module.css';
 
 const cx = classNames.bind(styles);
 
 const paths = [
     { to: config.routes.home, title: 'Trang chủ' },
-    { to: config.routes.signup, title: 'Đăng ký' },
+    { title: 'Thông tin cá nhân', to: config.routes.profile },
     { to: config.routes.profileUpdate, title: 'Cập nhật thông tin' },
 ];
 
@@ -33,6 +34,7 @@ const defaultValues: IUpdateProfileForm = {
 
 const ProfileUpdatePage: React.FC = () => {
     const navigate = useNavigate();
+    const { getCurrentUser } = useAuthContext();
     const { addNewNotification } = useNotifyContext();
     const [isLoading, setIsLoading] = useState<boolean>();
     const [error, setError] = useState<string>();
@@ -47,7 +49,8 @@ const ProfileUpdatePage: React.FC = () => {
         try {
             await usersApi.updateUserDetails(data);
             addNewNotification(constants.notifications.UPDATE_PROFILE_SUCCESS);
-            navigate(config.routes.home);
+            getCurrentUser();
+            navigate(config.routes.profile);
         } catch (error: any) {
             setError(error.message);
             addNewNotification(constants.notifications.UPDATE_PROFILE_FAILED);
