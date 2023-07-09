@@ -14,6 +14,7 @@ import React, { memo, useEffect, useMemo, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
+import { useNotifyContext } from '@/contexts/NotifyContext';
 
 const cx = classNames.bind(styles);
 
@@ -27,6 +28,7 @@ interface IPaymentForm {
 
 const PaymentForm: React.FC = () => {
     const navigate = useNavigate();
+    const { addNewNotification } = useNotifyContext();
     const { currentUser } = useAuthContext();
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const defaultValues = useMemo(
@@ -56,11 +58,11 @@ const PaymentForm: React.FC = () => {
     const onSubmit: SubmitHandler<IPaymentForm> = async data => {
         setIsLoading(true);
         try {
-            // notify
             await orderApi.confirmOrder(data);
+            addNewNotification(constants.notifications.CONFIRM_ORDER_SUCCESS);
             navigate(config.routes.profile);
         } catch (error) {
-            // notify
+            addNewNotification(constants.notifications.CONFIRM_ORDER_FAILED);
             console.error(error);
         }
         setIsLoading(false);

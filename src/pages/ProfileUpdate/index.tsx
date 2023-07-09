@@ -11,6 +11,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import styles from './ProfileUpdate.module.css';
 import usersApi from '@/api/usersApi';
 import { useNavigate } from 'react-router-dom';
+import { useNotifyContext } from '@/contexts/NotifyContext';
 
 const cx = classNames.bind(styles);
 
@@ -32,6 +33,7 @@ const defaultValues: IUpdateProfileForm = {
 
 const ProfileUpdatePage: React.FC = () => {
     const navigate = useNavigate();
+    const { addNewNotification } = useNotifyContext();
     const [isLoading, setIsLoading] = useState<boolean>();
     const [error, setError] = useState<string>();
     const {
@@ -44,9 +46,11 @@ const ProfileUpdatePage: React.FC = () => {
         setIsLoading(true);
         try {
             await usersApi.updateUserDetails(data);
+            addNewNotification(constants.notifications.UPDATE_PROFILE_SUCCESS);
             navigate(config.routes.home);
         } catch (error: any) {
             setError(error.message);
+            addNewNotification(constants.notifications.UPDATE_PROFILE_FAILED);
         }
         setIsLoading(false);
     };

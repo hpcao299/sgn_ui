@@ -6,6 +6,7 @@ import { Button, PageDetails } from '@/components/elements';
 import config from '@/config';
 import constants from '@/constants';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { useNotifyContext } from '@/contexts/NotifyContext';
 import classNames from 'classnames/bind';
 import React, { useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
@@ -30,6 +31,7 @@ const paths = [
 ];
 
 const LoginPage: React.FC = () => {
+    const { addNewNotification } = useNotifyContext();
     const { login, currentUser } = useAuthContext();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>();
@@ -50,6 +52,7 @@ const LoginPage: React.FC = () => {
 
         try {
             await login(email, password);
+            addNewNotification(constants.notifications.LOGIN_SUCCESS);
             navigate(config.routes.home);
         } catch (error: any) {
             if (error.code === 'auth/user-not-found') {

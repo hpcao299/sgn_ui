@@ -31,6 +31,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({ data }) => {
             <div className={cx('notification-icon')}>
                 {data.type === 'success' && <CheckIcon />}
                 {data.type === 'error' && <ErrorIcon />}
+                {data.type === 'info' && <ErrorIcon />}
             </div>
             <div className={cx('notification-body')}>
                 <h1 className={cx('notification__title')}>{data.title}</h1>

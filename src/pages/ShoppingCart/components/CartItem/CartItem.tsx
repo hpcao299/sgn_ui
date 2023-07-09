@@ -39,10 +39,8 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
         const updateItemQuantity = async () => {
             try {
                 await cartApi.updateQuantity(data.id, debouncedQuantity as number);
-                // notify
                 mutate('/cart/items');
             } catch (error) {
-                // notify
                 console.error(error);
             }
         };
@@ -53,11 +51,10 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
     const handleDeleteItem = async () => {
         try {
             await cartApi.deleteItemFromCart(data.id);
-            //notify
+
             cache.delete('/cart/items');
             mutate('/cart/items');
         } catch (error) {
-            // notify
             console.error(error);
         }
     };

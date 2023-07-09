@@ -53,6 +53,14 @@
     color: var(--error-color);
 }
 
+.notification-item.info {
+    border-color: var(--primary-color);
+}
+
+.notification-item.info .notification-icon {
+    color: var(--primary-color);
+}
+
 .notification-icon {
     padding: 0 16px;
 }

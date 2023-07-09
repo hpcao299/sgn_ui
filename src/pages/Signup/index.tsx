@@ -11,6 +11,7 @@ import React, { useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Signup.module.css';
+import { useNotifyContext } from '@/contexts/NotifyContext';
 
 const cx = classNames.bind(styles);
 
@@ -33,6 +34,7 @@ const paths = [
 
 const SignupPage: React.FC = () => {
     const navigate = useNavigate();
+    const { addNewNotification } = useNotifyContext();
     const { signUp, currentUser } = useAuthContext();
     const [isLoading, setIsLoading] = useState<boolean>();
     const [error, setError] = useState<string>();
@@ -54,6 +56,7 @@ const SignupPage: React.FC = () => {
 
         try {
             await signUp(email, password);
+            addNewNotification(constants.notifications.SIGNUP_SUCCESS);
             navigate(config.routes.profileUpdate);
         } catch (error: any) {
             if (error.code === 'auth/email-already-in-use') {

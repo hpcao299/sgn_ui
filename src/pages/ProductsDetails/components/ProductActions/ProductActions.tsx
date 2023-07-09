@@ -6,6 +6,8 @@ import classNames from 'classnames/bind';
 import React, { memo, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './ProductActions.module.css';
+import { useNotifyContext } from '@/contexts/NotifyContext';
+import constants from '@/constants';
 
 const cx = classNames.bind(styles);
 
@@ -15,6 +17,7 @@ interface ProductActionsProps {
 
 const ProductActions: React.FC<ProductActionsProps> = ({ productId }) => {
     const navigate = useNavigate();
+    const { addNewNotification } = useNotifyContext();
     const { currentUser } = useAuthContext();
     const params = useParams();
     const [quantity, setQuantity] = useState<number>(1);
@@ -25,7 +28,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ productId }) => {
 
     const handleAddToCart = async () => {
         if (!currentUser) {
-            // notify
+            addNewNotification(constants.notifications.NEED_SIGNED_IN);
             navigate(config.routes.login);
             return;
         }
@@ -33,10 +36,10 @@ const ProductActions: React.FC<ProductActionsProps> = ({ productId }) => {
         if (productId) {
             try {
                 await cartApi.addItemToCart(productId, quantity);
-                // notify
+                addNewNotification(constants.notifications.ADD_TO_CART_SUCCESS);
             } catch (error) {
                 console.error(error);
-                // notify
+                addNewNotification(constants.notifications.ADD_TO_CART_FAILED);
             }
         }
     };

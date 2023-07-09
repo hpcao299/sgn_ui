@@ -1,16 +1,18 @@
-import classNames from 'classnames/bind';
-import React from 'react';
-import styles from './ProductItem.module.css';
-import { Button, IconButton } from '@/components/elements';
+import cartApi from '@/api/cartApi';
 import { ReactComponent as AddedBag } from '@/assets/icons/addedBag.svg';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import loadingImg from '@/assets/images/loading-img.png';
+import { Button, IconButton } from '@/components/elements';
+import config from '@/config';
+import constants from '@/constants';
+import { useAuthContext } from '@/contexts/AuthContext';
+import { useNotifyContext } from '@/contexts/NotifyContext';
 import { Product } from '@/types';
 import { formattedNumber } from '@/utils';
+import classNames from 'classnames/bind';
+import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link, useNavigate } from 'react-router-dom';
-import loadingImg from '@/assets/images/loading-img.png';
-import { useAuthContext } from '@/contexts/AuthContext';
-import cartApi from '@/api/cartApi';
-import config from '@/config';
+import styles from './ProductItem.module.css';
 
 const cx = classNames.bind(styles);
 
@@ -19,22 +21,23 @@ interface ProductItemProps {
 }
 
 const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
+    const { addNewNotification } = useNotifyContext();
     const { currentUser } = useAuthContext();
     const navigate = useNavigate();
 
     const handleAddToCart = async () => {
         if (!currentUser) {
-            // notify
+            addNewNotification(constants.notifications.NEED_SIGNED_IN);
             navigate(config.routes.login);
             return;
         }
 
         try {
             await cartApi.addItemToCart(data.id, 1);
-            // notify
+            addNewNotification(constants.notifications.ADD_TO_CART_SUCCESS);
         } catch (error) {
             console.error(error);
-            // notify
+            addNewNotification(constants.notifications.ADD_TO_CART_FAILED);
         }
     };
 
