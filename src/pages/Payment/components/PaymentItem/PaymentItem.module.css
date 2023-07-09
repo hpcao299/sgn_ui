@@ -1,0 +1,48 @@
+.item {
+    width: 100%;
+    display: flex;
+    padding-bottom: 38px;
+    border-bottom: 1px solid #ececec;
+    margin-bottom: 38px;
+}
+
+.item:not(:last-child) {
+    padding-bottom: 38px;
+    border-bottom: 1px solid #ececec;
+    margin-bottom: 38px;
+}
+
+.item-img {
+    width: 160px;
+    height: 160px;
+}
+
+.item-details {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 22px;
+    flex: 1;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.item-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.item-quantity {
+    margin-top: 8px;
+    font-size: 18px;
+}
+
+.item-total {
+    font-size: 18px;
+    color: var(--red-color);
+    font-weight: 600;
+    margin-top: auto;
+}

@@ -1,8 +1,10 @@
 import productsApi from '@/api/productsApi';
+import loadingImg from '@/assets/images/loading-img.png';
 import { Button, Loader, PageDetails, QuantitySelector, RenderOnView } from '@/components/elements';
 import config from '@/config';
 import classNames from 'classnames/bind';
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useParams } from 'react-router-dom';
 import styles from './ProductDetails.module.css';
 
@@ -33,7 +35,14 @@ const ProductsDetailsPage: React.FC = () => {
                 <div style={{ paddingBottom: '100px' }} className="container">
                     <div className={cx('product-main-content')}>
                         <div className={cx('product-image')}>
-                            <img src={details?.image_url} alt={details?.title} />
+                            <LazyLoadImage
+                                src={details?.image_url}
+                                alt={details?.title}
+                                effect="blur"
+                                height="100%"
+                                placeholderSrc={loadingImg}
+                                style={{ backgroundColor: '#dadada' }}
+                            />
                         </div>
                         <div className={cx('product-details')}>
                             <div className={cx('product-info')}>

@@ -2,6 +2,7 @@ import { Button, PageDetails } from '@/components/elements';
 import config from '@/config';
 import classNames from 'classnames/bind';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
 import styles from './ShoppingCart.module.css';
 
@@ -48,7 +49,9 @@ const ShoppingCartPage: React.FC = () => {
                                     60,000VNĐ
                                 </div>
                             </div>
-                            <Button color="red">Tiến Hành Thanh Toán</Button>
+                            <Link to={config.routes.payment}>
+                                <Button color="red">Tiến Hành Thanh Toán</Button>
+                            </Link>
                         </div>
                     </div>
                 </div>

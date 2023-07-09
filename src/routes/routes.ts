@@ -10,6 +10,7 @@ import LoginPage from '@/pages/Login';
 import SignupPage from '@/pages/Signup';
 import ProfilePage from '@/pages/Profile';
 import ProfileUpdatePage from '@/pages/ProfileUpdate';
+import PaymentPage from '@/pages/Payment';
 
 const publicRoutes: Route[] = [
     {
@@ -41,6 +42,7 @@ const privateRoutes: Route[] = [
     },
     { path: config.routes.profile, component: ProfilePage },
     { path: config.routes.profileUpdate, component: ProfileUpdatePage },
+    { path: config.routes.payment, component: PaymentPage },
 ];
 
 export { publicRoutes, privateRoutes };

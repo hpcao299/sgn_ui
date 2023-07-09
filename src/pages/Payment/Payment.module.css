@@ -1,0 +1,23 @@
+.content {
+    padding-top: 56px;
+    padding-bottom: 100px;
+    display: flex;
+}
+
+.products-list {
+    flex: 1;
+}
+
+.payment-form-wrapper {
+    width: 440px;
+    margin-left: 52px;
+}
+
+.total-price {
+    color: var(--red-color);
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
