@@ -56,12 +56,21 @@ axiosClient.interceptors.response.use(
         return response;
     },
     function (err) {
-        return Promise.reject(err);
+        return Promise.reject(err.response.data);
     },
 );
 
 export const fetcher = url =>
-    axios.get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}${url}`).then(data => data.data);
+    axios
+        .get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}${url}`)
+        .then(data => data.data)
+        .catch(res => {
+            if (res && res.data) {
+                return res.data;
+            }
+
+            return res;
+        });
 
 export const fetcherWithToken = url => axiosClient.get(url);
 

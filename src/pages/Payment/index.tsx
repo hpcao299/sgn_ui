@@ -1,7 +1,8 @@
 import cartApi from '@/api/cartApi';
 import { Loader, PageDetails } from '@/components/elements';
+import ErrorHandler from '@/components/layouts/ErrorHandler/ErrorHandler';
 import config from '@/config';
-import { CartItem as CartItemType } from '@/types';
+import { CartItem as CartItemType, ErrorResponse } from '@/types';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import styles from './Payment.module.css';
@@ -26,7 +27,7 @@ const paths = [
 ];
 
 const PaymentPage = () => {
-    const { data, isLoading } = cartApi.getCartItems();
+    const { data, isLoading, error } = cartApi.getCartItems();
     const cartItems: CartItemType[] = data?.data;
     const total = cartItems?.reduce((acc, item) => acc + item.total, 0) || 0;
 
@@ -34,6 +35,7 @@ const PaymentPage = () => {
         <>
             <PageDetails title="Thanh toán" paths={paths} />
             <div className="container">
+                {error && <ErrorHandler error={error as ErrorResponse} />}
                 {cartItems?.length === 0 || !cartItems ? (
                     <div className={cx('empty-text')}>
                         <p>Giỏ hàng trống không thể thanh toán</p>

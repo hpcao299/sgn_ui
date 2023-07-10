@@ -1,14 +1,15 @@
 import cartApi from '@/api/cartApi';
 import { Loader, PageDetails } from '@/components/elements';
+import ErrorHandler from '@/components/layouts/ErrorHandler/ErrorHandler';
 import config from '@/config';
-import { CartItem as CartItemType } from '@/types';
+import { useAuthContext } from '@/contexts/AuthContext';
+import { CartItem as CartItemType, ErrorResponse } from '@/types';
 import classNames from 'classnames/bind';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ShoppingCart.module.css';
 import CartActions from './components/CartActions';
 import CartItem from './components/CartItem';
-import { useAuthContext } from '@/contexts/AuthContext';
 
 const cx = classNames.bind(styles);
 
@@ -25,7 +26,7 @@ const paths = [
 
 const ShoppingCartPage: React.FC = () => {
     const { setNumItems } = useAuthContext();
-    const { data, isLoading, isValidating } = cartApi.getCartItems();
+    const { data, isLoading, isValidating, error } = cartApi.getCartItems();
     const cartItems: CartItemType[] = data?.data;
 
     useEffect(() => {
@@ -39,6 +40,7 @@ const ShoppingCartPage: React.FC = () => {
             <PageDetails title="Giỏ hàng" paths={paths} />
             <div className={cx('content')}>
                 {(isLoading || isValidating) && <Loader className={cx('loader')} />}
+
                 <div
                     className={cx(
                         'container',
@@ -65,6 +67,7 @@ const ShoppingCartPage: React.FC = () => {
                             ))
                         )}
                     </div>
+                    {error && <ErrorHandler error={error as ErrorResponse} />}
                     {cartItems?.length > 0 && <CartActions data={cartItems} />}
                 </div>
             </div>

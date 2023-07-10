@@ -1,6 +1,6 @@
 import { ReactComponent as ChevronLeft } from '@/assets/icons/chevronLeft.svg';
 import { ReactComponent as ChevronRight } from '@/assets/icons/chevronRight.svg';
-import { ProductItem } from '@/components/elements';
+import { Loader, ProductItem } from '@/components/elements';
 import classNames from 'classnames/bind';
 import Carousel from 'nuka-carousel';
 import React from 'react';
@@ -11,9 +11,10 @@ const cx = classNames.bind(styles);
 
 interface SliderProductsListProps {
     data?: Product[];
+    isLoading?: boolean;
 }
 
-const SliderProductsList: React.FC<SliderProductsListProps> = ({ data }) => {
+const SliderProductsList: React.FC<SliderProductsListProps> = ({ data, isLoading }) => {
     const settings = {
         dots: false,
         infinite: true,
@@ -52,6 +53,7 @@ const SliderProductsList: React.FC<SliderProductsListProps> = ({ data }) => {
                     </div>
                 ))}
             </Carousel>
+            {isLoading && <Loader className={cx('loader')} />}
         </div>
     );
 };

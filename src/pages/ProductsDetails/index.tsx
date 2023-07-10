@@ -15,7 +15,7 @@ const cx = classNames.bind(styles);
 
 const ProductsDetailsPage: React.FC = () => {
     const params = useParams();
-    const { data, isLoading } = productsApi.useProductDetails(params.slug || '');
+    const { data, isLoading, error } = productsApi.useProductDetails(params.slug || '');
     const details = data?.data;
 
     const paths = [
@@ -30,6 +30,7 @@ const ProductsDetailsPage: React.FC = () => {
     return (
         <>
             {isLoading && <Loader size="medium" className={cx('loader')} />}
+            {error && <p style={{ textAlign: 'center', fontSize: '22px' }}>{error.message}</p>}
 
             <div className={cx('product-details', isLoading && 'loading')}>
                 <PageDetails title={details?.title} paths={paths} />

@@ -8,3 +8,9 @@ export interface FirebaseError {
     code: string;
     message: string;
 }
+
+export interface ErrorResponse {
+    code: number;
+    message: string;
+    errorCode?: string;
+}

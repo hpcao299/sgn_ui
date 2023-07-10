@@ -10,8 +10,8 @@ const cx = classNames.bind(styles);
 const News = React.lazy(() => import('./components/News'));
 
 const HomePage: React.FC = () => {
-    const { data: newArrivals } = productsApi.useNewArrivals();
-    const { data: bestSellings } = productsApi.useBestSelling();
+    const { data: newArrivals, isLoading: loadingNewArrivals } = productsApi.useNewArrivals();
+    const { data: bestSellings, isLoading: loadingBestSelling } = productsApi.useBestSelling();
 
     return (
         <>
@@ -22,11 +22,11 @@ const HomePage: React.FC = () => {
                 </div>
                 <div className={cx('section')}>
                     <h4 className={cx('section-title')}>sản phẩm mới</h4>
-                    <SliderProductsList data={newArrivals?.data} />
+                    <SliderProductsList data={newArrivals?.data} isLoading={loadingNewArrivals} />
                 </div>
                 <div className={cx('section')}>
                     <h4 className={cx('section-title')}>sản phẩm bán chạy</h4>
-                    <SliderProductsList data={bestSellings?.data} />
+                    <SliderProductsList data={bestSellings?.data} isLoading={loadingBestSelling} />
                 </div>
             </div>
 
