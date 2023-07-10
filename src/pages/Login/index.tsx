@@ -12,6 +12,7 @@ import React, { useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
+import { Helmet } from 'react-helmet';
 
 const cx = classNames.bind(styles);
 
@@ -68,6 +69,10 @@ const LoginPage: React.FC = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Đăng nhập</title>
+            </Helmet>
+
             <PageDetails title="Đăng nhập" paths={paths} />
             <div className={cx('container')}>
                 <div className={cx('wrapper')}>
@@ -120,7 +125,16 @@ const LoginPage: React.FC = () => {
                                 <input id="save-password" type="checkbox" name="save-password" />
                                 <label htmlFor="save-password">Lưu mật khẩu</label>
                             </div>
-                            <Link to={config.routes.forgotPassword}>Quên mật khẩu?</Link>
+                            <a
+                                style={{ textDecoration: 'underline', cursor: 'pointer' }}
+                                onClick={() => {
+                                    addNewNotification(
+                                        constants.notifications.FEATURE_NOT_SUPPORTED,
+                                    );
+                                }}
+                            >
+                                Quên mật khẩu?
+                            </a>
                         </div>
                         <Button type="submit" color="primary" loading={isLoading}>
                             Đăng Nhập

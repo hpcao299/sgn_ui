@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import styles from './Payment.module.css';
 import PaymentForm from './components/PaymentForm';
 import PaymentItem from './components/PaymentItem';
+import { Helmet } from 'react-helmet';
 
 const cx = classNames.bind(styles);
 
@@ -33,6 +34,10 @@ const PaymentPage = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Thanh toán giỏ hàng</title>
+            </Helmet>
+
             <PageDetails title="Thanh toán" paths={paths} />
             <div className="container">
                 {error && <ErrorHandler error={error as ErrorResponse} />}

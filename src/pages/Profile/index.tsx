@@ -8,6 +8,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import OrdersList from './OrdersList';
 import styles from './Profile.module.css';
+import { Helmet } from 'react-helmet';
 
 const cx = classNames.bind(styles);
 
@@ -33,6 +34,10 @@ const ProfilePage: React.FC = () => {
 
     return (
         <>
+            <Helmet>
+                <title>{currentUser?.name}</title>
+            </Helmet>
+
             <PageDetails title="Thông tin cá nhân" paths={paths} />
             <div className={cx('content', 'container')}>
                 <div className={cx('user-details')}>

@@ -56,6 +56,12 @@ const notifications: { [key: string]: NotificationDetails } = {
         message: 'Đã có lỗi xảy ra.',
         type: 'error',
     },
+
+    FEATURE_NOT_SUPPORTED: {
+        title: 'Tính năng chưa được phát triển',
+        message: 'Hiện tại tính năng này vẫn chưa được khả thi.',
+        type: 'info',
+    },
 };
 
 export default notifications;

@@ -13,6 +13,7 @@ import React, { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProfileUpdate.module.css';
+import { Helmet } from 'react-helmet';
 
 const cx = classNames.bind(styles);
 
@@ -60,6 +61,10 @@ const ProfileUpdatePage: React.FC = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Cập nhật thông tin</title>
+            </Helmet>
+
             <PageDetails title="Cập nhật thông tin" paths={paths} />
             <div className={cx('container')}>
                 <div className={cx('wrapper')}>

@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import styles from './ShoppingCart.module.css';
 import CartActions from './components/CartActions';
 import CartItem from './components/CartItem';
+import { Helmet } from 'react-helmet';
 
 const cx = classNames.bind(styles);
 
@@ -37,6 +38,10 @@ const ShoppingCartPage: React.FC = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Giỏ hàng</title>
+            </Helmet>
+
             <PageDetails title="Giỏ hàng" paths={paths} />
             <div className={cx('content')}>
                 {(isLoading || isValidating) && <Loader className={cx('loader')} />}

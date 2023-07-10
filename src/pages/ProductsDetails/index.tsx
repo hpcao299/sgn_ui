@@ -8,6 +8,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useParams } from 'react-router-dom';
 import styles from './ProductDetails.module.css';
 import ProductActions from './components/ProductActions';
+import { Helmet } from 'react-helmet';
 
 const RelatedProducts = React.lazy(() => import('./components/RelatedProducts'));
 
@@ -29,6 +30,10 @@ const ProductsDetailsPage: React.FC = () => {
 
     return (
         <>
+            <Helmet>
+                <title>{details?.title}</title>
+            </Helmet>
+
             {isLoading && <Loader size="medium" className={cx('loader')} />}
             {error && <p style={{ textAlign: 'center', fontSize: '22px' }}>{error.message}</p>}
 

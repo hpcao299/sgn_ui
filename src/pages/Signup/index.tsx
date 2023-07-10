@@ -12,6 +12,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Signup.module.css';
 import { useNotifyContext } from '@/contexts/NotifyContext';
+import { Helmet } from 'react-helmet';
 
 const cx = classNames.bind(styles);
 
@@ -71,6 +72,9 @@ const SignupPage: React.FC = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Đăng ký</title>
+            </Helmet>
             <PageDetails title="Đăng ký tài khoản" paths={paths} />
             <div className={cx('container')}>
                 <div className={cx('wrapper')}>

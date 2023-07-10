@@ -5,6 +5,7 @@ import classNames from 'classnames/bind';
 import React, { Suspense } from 'react';
 import styles from './Home.module.css';
 import Banner from './components/Banner';
+import { Helmet } from 'react-helmet';
 const cx = classNames.bind(styles);
 
 const News = React.lazy(() => import('./components/News'));
@@ -15,6 +16,10 @@ const HomePage: React.FC = () => {
 
     return (
         <>
+            <Helmet>
+                <title>{import.meta.env.VITE_APP_SITE_TITLE}</title>
+            </Helmet>
+
             <div className="container">
                 <div className="flex" style={{ paddingBottom: '20px' }}>
                     <Sidebar />
