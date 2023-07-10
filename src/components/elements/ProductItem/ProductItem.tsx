@@ -22,7 +22,7 @@ interface ProductItemProps {
 
 const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
     const { addNewNotification } = useNotifyContext();
-    const { currentUser } = useAuthContext();
+    const { currentUser, getCurrentUser } = useAuthContext();
     const navigate = useNavigate();
 
     const handleAddToCart = async () => {
@@ -34,6 +34,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
 
         try {
             await cartApi.addItemToCart(data.id, 1);
+            getCurrentUser();
             addNewNotification(constants.notifications.ADD_TO_CART_SUCCESS);
         } catch (error) {
             console.error(error);

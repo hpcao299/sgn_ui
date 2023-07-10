@@ -111,6 +111,26 @@
     cursor: pointer;
 }
 
+.header-bag {
+    position: relative;
+}
+
+.header-bag-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateX(calc(50% + 2px)) translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: var(--white-color);
+    background-color: var(--red-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
 .bag-icon {
     width: 20px;
     height: 20px;

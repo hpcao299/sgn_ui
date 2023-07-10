@@ -16,6 +16,11 @@ const OrdersList: React.FC = () => {
 
     return (
         <>
+            {orderItems.length === 0 && (
+                <div style={{ textAlign: 'center', fontSize: '18px', marginTop: 10 }}>
+                    Bạn chưa đặt đơn hàng nào.
+                </div>
+            )}
             {isLoading && <Loader className={cx('loader')} />}
             <div className={cx('orders-list', isLoading && 'loading')}>
                 {orderItems.map(item => (

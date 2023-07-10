@@ -20,7 +20,14 @@ const SubHeaderActions: React.FC = () => {
                         <UserIcon />
                     </Link>
                     <Link to={config.routes.cart} className={cx('header-icon-link')}>
-                        <BagIcon className={cx('bag-icon')} />
+                        <div className={cx('header-bag')}>
+                            <BagIcon className={cx('bag-icon')} />
+                            {currentUser.num_items !== undefined && currentUser.num_items > 0 && (
+                                <span className={cx('header-bag-count')}>
+                                    {currentUser.num_items}
+                                </span>
+                            )}
+                        </div>
                     </Link>
                 </>
             ) : (

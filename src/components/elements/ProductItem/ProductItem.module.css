@@ -8,6 +8,7 @@
 .product-item a {
     color: var(--text-color);
     text-decoration: none;
+    user-select: none;
 }
 
 .product-img {

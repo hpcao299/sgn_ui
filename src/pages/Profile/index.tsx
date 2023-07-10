@@ -43,7 +43,7 @@ const ProfilePage: React.FC = () => {
                             <span>Email:</span> {currentUser?.email}
                         </p>
                         <p>
-                            <span>Phone number:</span> {currentUser?.phone}
+                            <span>Số điện thoại:</span> {currentUser?.phone}
                         </p>
                     </div>
                     <div className={cx('user-actions')}>
@@ -51,7 +51,7 @@ const ProfilePage: React.FC = () => {
                             <Button>Cập nhật thông tin</Button>
                         </Link>
                         <Button color="red" variant="outlined" onClick={handleSignOut}>
-                            Sign out
+                            Đăng xuất
                         </Button>
                     </div>
                 </div>

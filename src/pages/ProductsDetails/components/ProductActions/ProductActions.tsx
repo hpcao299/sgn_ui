@@ -18,7 +18,7 @@ interface ProductActionsProps {
 const ProductActions: React.FC<ProductActionsProps> = ({ productId }) => {
     const navigate = useNavigate();
     const { addNewNotification } = useNotifyContext();
-    const { currentUser } = useAuthContext();
+    const { currentUser, getCurrentUser } = useAuthContext();
     const params = useParams();
     const [quantity, setQuantity] = useState<number>(1);
 
@@ -36,6 +36,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ productId }) => {
         if (productId) {
             try {
                 await cartApi.addItemToCart(productId, quantity);
+                getCurrentUser();
                 addNewNotification(constants.notifications.ADD_TO_CART_SUCCESS);
             } catch (error) {
                 console.error(error);

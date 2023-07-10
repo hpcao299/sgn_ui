@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styles from './FilterSelect.module.css';
 
@@ -15,6 +15,7 @@ const filterOptions = [
 
 const FilterSelect: React.FC = () => {
     const [currentQueryParameters, setSearchParams] = useSearchParams();
+    const [value, setValue] = useState(currentQueryParameters.get('filter') || 'popular');
 
     const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setSearchParams(prevSearchParams => {
@@ -22,7 +23,14 @@ const FilterSelect: React.FC = () => {
             updatedSearchParams.set('filter', e.target.value);
             return updatedSearchParams.toString();
         });
+        setValue(e.target.value);
     };
+
+    useEffect(() => {
+        if (!currentQueryParameters.get('filter')) {
+            setValue('popular');
+        }
+    }, [currentQueryParameters]);
 
     return (
         <div className={cx('filter-products-wrapper')}>
@@ -31,7 +39,7 @@ const FilterSelect: React.FC = () => {
                 id="filter-products"
                 className={cx('filter-products')}
                 onChange={handleSelectChange}
-                defaultValue={currentQueryParameters.get('filter') || 'popular'}
+                value={value}
             >
                 {filterOptions.map((option, i) => (
                     <option key={i} value={option.value}>

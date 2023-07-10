@@ -10,6 +10,7 @@ interface AuthContextValues {
     signUp: (email: string, password: string) => Promise<unknown>;
     login: (email: string, password: string) => Promise<unknown>;
     getCurrentUser: () => Promise<CurrentUser | null>;
+    setNumItems: (count: number) => void;
     signOut: () => Promise<unknown>;
 }
 
@@ -18,6 +19,7 @@ const defaultValues = {
     signUp: () => Promise.resolve(),
     login: () => Promise.resolve(),
     signOut: () => Promise.resolve(),
+    setNumItems: () => {},
     getCurrentUser: () => Promise.resolve(null),
 };
 
@@ -74,7 +76,17 @@ const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) =
         }
     }, []);
 
-    const values = { currentUser, signUp, login, signOut, getCurrentUser };
+    const setNumItems = useCallback((count: number) => {
+        return setCurrentUser(prevInfo => {
+            if (prevInfo) {
+                return { ...prevInfo, num_items: count };
+            } else {
+                return null;
+            }
+        });
+    }, []);
+
+    const values = { currentUser, signUp, login, signOut, getCurrentUser, setNumItems };
 
     return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

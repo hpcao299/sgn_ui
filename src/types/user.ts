@@ -13,4 +13,5 @@ export interface CurrentUser {
     name?: string;
     phone?: string;
     is_verified?: number;
+    num_items?: number;
 }

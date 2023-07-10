@@ -4,24 +4,16 @@ import config from '@/config';
 import { Category } from '@/types';
 import classNames from 'classnames/bind';
 import React, { useMemo } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './SubHeader.module.css';
 import SubHeaderActions from './SubHeaderActions';
 import SubHeaderLinks from './SubHeaderLinks';
 import SubHeaderLogo from './SubHeaderLogo';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 const SubHeader: React.FC = () => {
-    const navigate = useNavigate();
-    const [searchParams] = useSearchParams();
     const { data } = categoriesApi.useCategories();
-
-    const handleNavigate = (to: string, keepParams?: boolean) => {
-        const newSearchParams = new URLSearchParams(searchParams);
-
-        navigate({ search: keepParams ? `?${newSearchParams.toString()}` : '', pathname: to });
-    };
 
     const headerLinks = useMemo(
         () => [
@@ -53,13 +45,10 @@ const SubHeader: React.FC = () => {
                 <div className={cx('header-links')}>
                     {headerLinks.map((link, index) => (
                         <div key={index} className={cx('text-link-wrapper')}>
-                            <a
-                                onClick={() => handleNavigate(link.to, link.keepParams)}
-                                className={cx('header-text-link')}
-                            >
+                            <Link to={link.to} className={cx('header-text-link')}>
                                 {link.title}
                                 {link.subHeader && <ChevronDown />}
-                            </a>
+                            </Link>
                             {link.subHeader && <SubHeaderLinks data={link.subHeader} />}
                         </div>
                     ))}

@@ -3,11 +3,12 @@ import { Loader, PageDetails } from '@/components/elements';
 import config from '@/config';
 import { CartItem as CartItemType } from '@/types';
 import classNames from 'classnames/bind';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ShoppingCart.module.css';
 import CartActions from './components/CartActions';
 import CartItem from './components/CartItem';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 const cx = classNames.bind(styles);
 
@@ -23,8 +24,15 @@ const paths = [
 ];
 
 const ShoppingCartPage: React.FC = () => {
+    const { setNumItems } = useAuthContext();
     const { data, isLoading, isValidating } = cartApi.getCartItems();
     const cartItems: CartItemType[] = data?.data;
+
+    useEffect(() => {
+        if (cartItems) {
+            setNumItems(cartItems.length);
+        }
+    }, [cartItems, setNumItems]);
 
     return (
         <>
