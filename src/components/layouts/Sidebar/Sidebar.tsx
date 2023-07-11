@@ -3,7 +3,7 @@ import config from '@/config';
 import { Category } from '@/types';
 import classNames from 'classnames/bind';
 import React from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import styles from './Sidebar.module.css';
 
 const cx = classNames.bind(styles);
