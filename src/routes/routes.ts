@@ -1,18 +1,16 @@
-import { Route } from '@/types';
 import config from '@/config';
-import { lazy } from 'react';
+import { Route } from '@/types';
 
 // Pages
 import HomePage from '@/pages/Home';
+import LoginPage from '@/pages/Login';
+import PaymentPage from '@/pages/Payment';
 import ProductsPage from '@/pages/Products';
 import ProductsDetailsPage from '@/pages/ProductsDetails';
 import ProfilePage from '@/pages/Profile';
-import PaymentPage from '@/pages/Payment';
-
-const ShoppingCartPage = lazy(() => import('@/pages/ShoppingCart'));
-const LoginPage = lazy(() => import('@/pages/Login'));
-const SignupPage = lazy(() => import('@/pages/Signup'));
-const ProfileUpdatePage = lazy(() => import('@/pages/ProfileUpdate'));
+import ProfileUpdatePage from '@/pages/ProfileUpdate';
+import ShoppingCartPage from '@/pages/ShoppingCart';
+import SignupPage from '@/pages/Signup';
 
 const publicRoutes: Route[] = [
     {
@@ -47,4 +45,4 @@ const privateRoutes: Route[] = [
     { path: config.routes.payment, component: PaymentPage },
 ];
 
-export { publicRoutes, privateRoutes };
+export { privateRoutes, publicRoutes };
