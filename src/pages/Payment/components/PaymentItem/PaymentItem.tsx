@@ -1,10 +1,11 @@
 import loadingImg from '@/assets/images/loading-img.png';
+import { CartItem } from '@/types';
+import { formattedPrice } from '@/utils';
 import classNames from 'classnames/bind';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import styles from './PaymentItem.module.css';
-import { CartItem } from '@/types';
 import { Link } from 'react-router-dom';
+import styles from './PaymentItem.module.css';
 
 const cx = classNames.bind(styles);
 
@@ -36,7 +37,7 @@ const PaymentItem: React.FC<PaymentItemProps> = ({ data }) => {
                     </div>
                     <p className={cx('item-total')}>Tổng tiền:</p>
                 </div>
-                <div className={cx('item-total')}>{data.total.toLocaleString()}VNĐ</div>
+                <div className={cx('item-total')}>{formattedPrice(data.total)}</div>
             </div>
         </div>
     );

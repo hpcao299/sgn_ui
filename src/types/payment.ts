@@ -26,6 +26,6 @@ export interface HasOrderProduct extends Omit<CartItem, 'original_price'> {
 
 export interface Order {
     order_id: number;
-    orderred_at: Date;
+    orderred_at: string;
     items: HasOrderProduct[];
 }

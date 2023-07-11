@@ -1,3 +1,4 @@
 export * from './ScrollToTop';
-export * from './formattedNumber';
+export * from './formattedDate';
 export * from './AuthWatcher';
+export * from './formattedPrice';

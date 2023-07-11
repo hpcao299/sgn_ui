@@ -1,5 +1,6 @@
 import loadingImg from '@/assets/images/loading-img.png';
 import { Order } from '@/types';
+import { formattedDate, formattedPrice } from '@/utils';
 import classNames from 'classnames/bind';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -21,10 +22,10 @@ const OrderItem: React.FC<OrderItemProps> = ({ data }) => {
                     <span>Mã đơn:</span> <span>#{data.order_id}</span>
                 </p>
                 <p className={cx('order-total')}>
-                    <span>Tổng cộng:</span> <span>{total.toLocaleString()}VNĐ</span>
+                    <span>Tổng cộng:</span> <span>{formattedPrice(total)}</span>
                 </p>
                 <p>
-                    <span>Đặt vào:</span> <span>...</span>
+                    <span>Đặt vào lúc:</span> <span>{formattedDate(data.orderred_at)}</span>
                 </p>
             </div>
             <div className={cx('order-products')}>
@@ -45,7 +46,7 @@ const OrderItem: React.FC<OrderItemProps> = ({ data }) => {
                                 Số lượng: <span>{item.quantity}</span>
                             </p>
                             <p>
-                                Tổng tiền: <span>{item.total.toLocaleString()}VNĐ</span>
+                                Tổng tiền: <span>{formattedPrice(item.total)}</span>
                             </p>
                         </div>
                     </div>

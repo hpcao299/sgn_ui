@@ -4,6 +4,7 @@ import loadingImg from '@/assets/images/loading-img.png';
 import { QuantitySelector } from '@/components/elements';
 import { useDebounce } from '@/hooks';
 import { CartItem as CartItemType } from '@/types';
+import { formattedPrice } from '@/utils';
 import classNames from 'classnames/bind';
 import React, { useEffect, useRef, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -75,14 +76,12 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                 </Link>
             </div>
             <div className={cx('grid-item', 'cart-item-price')}>
-                {data.original_price.toLocaleString()}VNĐ
+                {formattedPrice(data.original_price)}
             </div>
             <div className={cx('grid-item')}>
                 <QuantitySelector handleChange={handleChangeQuantity} value={data.quantity} />
             </div>
-            <div className={cx('grid-item', 'cart-item-price')}>
-                {data.total.toLocaleString()}VNĐ
-            </div>
+            <div className={cx('grid-item', 'cart-item-price')}>{formattedPrice(data.total)}</div>
             <div className={cx('grid-item', 'cart-garbage-icon', 'small-grid-item')}>
                 <button
                     className={cx('delete-btn')}

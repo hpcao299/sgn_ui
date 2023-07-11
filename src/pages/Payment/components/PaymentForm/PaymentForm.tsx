@@ -9,12 +9,12 @@ import { Button } from '@/components/elements';
 import config from '@/config';
 import constants from '@/constants';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { useNotifyContext } from '@/contexts/NotifyContext';
 import classNames from 'classnames/bind';
 import React, { memo, useEffect, useMemo, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
-import { useNotifyContext } from '@/contexts/NotifyContext';
 
 const cx = classNames.bind(styles);
 
@@ -29,7 +29,7 @@ interface IPaymentForm {
 const PaymentForm: React.FC = () => {
     const navigate = useNavigate();
     const { addNewNotification } = useNotifyContext();
-    const { currentUser } = useAuthContext();
+    const { currentUser, setNumItems } = useAuthContext();
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const defaultValues = useMemo(
         () => ({
@@ -60,6 +60,7 @@ const PaymentForm: React.FC = () => {
         try {
             await orderApi.confirmOrder(data);
             addNewNotification(constants.notifications.CONFIRM_ORDER_SUCCESS);
+            setNumItems(0);
             navigate(config.routes.profile);
         } catch (error) {
             addNewNotification(constants.notifications.CONFIRM_ORDER_FAILED);

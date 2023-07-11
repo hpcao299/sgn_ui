@@ -7,7 +7,7 @@ import constants from '@/constants';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { useNotifyContext } from '@/contexts/NotifyContext';
 import { Product } from '@/types';
-import { formattedNumber } from '@/utils';
+import { formattedPrice } from '@/utils';
 import classNames from 'classnames/bind';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -58,7 +58,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
             <Link to={`/products/${data.slug}`}>
                 <h2 className={cx('product-title')}>{data.title}</h2>
             </Link>
-            <p className={cx('product-price')}>{formattedNumber(data.price)} VNĐ</p>
+            <p className={cx('product-price')}>{formattedPrice(data.price)}</p>
             <div className={cx('product-actions')}>
                 <Link to={`/products/${data.slug}`}>
                     <Button size="small" color="primary">

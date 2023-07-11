@@ -2,13 +2,14 @@ import productsApi from '@/api/productsApi';
 import loadingImg from '@/assets/images/loading-img.png';
 import { Loader, PageDetails, RenderOnView } from '@/components/elements';
 import config from '@/config';
+import { formattedPrice } from '@/utils';
 import classNames from 'classnames/bind';
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useParams } from 'react-router-dom';
 import styles from './ProductDetails.module.css';
 import ProductActions from './components/ProductActions';
-import { Helmet } from 'react-helmet';
 
 const RelatedProducts = React.lazy(() => import('./components/RelatedProducts'));
 
@@ -55,7 +56,7 @@ const ProductsDetailsPage: React.FC = () => {
                             <div className={cx('product-info')}>
                                 <h1 className={cx('product-title')}>{details?.title}</h1>
                                 <div className={cx('product-price')}>
-                                    {details?.price.toLocaleString()}VNĐ
+                                    {formattedPrice(details?.price)}
                                 </div>
                                 <p className={cx('product-desc')}>{details?.short_desc}</p>
                             </div>

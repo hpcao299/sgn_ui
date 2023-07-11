@@ -3,12 +3,13 @@ import { Loader, PageDetails } from '@/components/elements';
 import ErrorHandler from '@/components/layouts/ErrorHandler/ErrorHandler';
 import config from '@/config';
 import { CartItem as CartItemType, ErrorResponse } from '@/types';
+import { formattedPrice } from '@/utils';
 import classNames from 'classnames/bind';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import styles from './Payment.module.css';
 import PaymentForm from './components/PaymentForm';
 import PaymentItem from './components/PaymentItem';
-import { Helmet } from 'react-helmet';
 
 const cx = classNames.bind(styles);
 
@@ -57,7 +58,7 @@ const PaymentPage = () => {
 
                                 <div className={cx('total-price')}>
                                     <div>Tổng cộng:</div>
-                                    <div>{total.toLocaleString()}VNĐ</div>
+                                    <div>{formattedPrice(total)}</div>
                                 </div>
                             </div>
                         </div>
