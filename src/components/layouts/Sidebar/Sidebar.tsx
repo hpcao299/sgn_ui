@@ -1,28 +1,36 @@
-import React from 'react';
-import classNames from 'classnames/bind';
-import styles from './Sidebar.module.css';
+import categoriesApi from '@/api/categoriesApi';
 import config from '@/config';
-import { Link } from 'react-router-dom';
+import { Category } from '@/types';
+import classNames from 'classnames/bind';
+import React from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import styles from './Sidebar.module.css';
 
 const cx = classNames.bind(styles);
 
-const links = [
-    { title: 'Thùng Carton - Hộp Carton', to: config.routes.home },
-    { title: 'Bong Bóng Khí - Xốp Hơi', to: config.routes.home },
-    { title: 'Bóng Keo - PE', to: config.routes.home },
-    { title: 'Túi Giấy KRAFT', to: config.routes.home },
-    { title: 'Túi Niêm Phong', to: config.routes.home },
-    { title: 'Giấy Photocopy - Tập Học Sinh', to: config.routes.home },
-    { title: 'Giấy Gói Hàng', to: config.routes.home },
-];
+interface SidebarProps {
+    className?: string;
+}
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC<SidebarProps> = ({ className }) => {
+    const [searchParams] = useSearchParams();
+    const { data } = categoriesApi.useCategories();
+
+    const handleToHref = (slug: string): string => {
+        const newSearchParams = new URLSearchParams(searchParams);
+        newSearchParams.set('category', slug);
+
+        return `${config.routes.products}?${newSearchParams.toString()}`;
+    };
+
     return (
-        <div className={cx('sidebar')}>
+        <div className={cx('sidebar', className)}>
             <ul className={cx('list')}>
-                {links.map((link, i) => (
-                    <li key={i} className={cx('list-item')}>
-                        <Link to={link.to}>{link.title}</Link>
+                {data?.data.map((category: Category) => (
+                    <li key={category.id} className={cx('list-item')}>
+                        <Link style={{ cursor: 'pointer' }} to={handleToHref(category.slug)}>
+                            {category.title}
+                        </Link>
                     </li>
                 ))}
             </ul>

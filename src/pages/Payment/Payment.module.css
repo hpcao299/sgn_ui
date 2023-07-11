@@ -1,0 +1,59 @@
+.content {
+    padding-top: 56px;
+    padding-bottom: 100px;
+    display: flex;
+}
+
+.products-content {
+    position: relative;
+    flex: 1;
+}
+
+.products-list {
+    position: relative;
+    flex: 1;
+}
+
+.products-list.loading {
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.loader {
+    position: absolute;
+    top: -52px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 5;
+}
+
+.payment-form-wrapper {
+    width: 440px;
+    margin-left: 52px;
+}
+
+.total-price {
+    color: var(--red-color);
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.empty-text {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.empty-text p {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.empty-text a {
+    font-size: 18px;
+    color: var(--primary-color);
+}

@@ -1,3 +1,7 @@
+.product-details.loading {
+    opacity: 0.45;
+}
+
 .product-main-content {
     padding-top: 56px;
     display: flex;
@@ -39,16 +43,6 @@
     color: var(--text-color);
 }
 
-.product-actions {
-    margin-top: 40px;
-    display: flex;
-    gap: 12px;
-}
-
-.product-actions button {
-    max-width: 200px;
-}
-
 .product-sub-content {
     margin-top: 60px;
 }
@@ -79,4 +73,14 @@
 
 .product-full-desc {
     line-height: 1.7;
+}
+
+.loader {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 5;
 }

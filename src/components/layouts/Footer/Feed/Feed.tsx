@@ -1,23 +1,32 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useInViewport } from 'react-in-viewport';
 
 // eslint-disable-next-line react-refresh/only-export-components
 const Feed: React.FC = () => {
+    const myRef = useRef<HTMLElement>(null);
+    const finishAddScript = useRef<boolean>(false);
+    const { inViewport } = useInViewport(myRef);
+
     React.useEffect(() => {
-        const script = document.createElement('script');
+        if (inViewport && !finishAddScript.current) {
+            const script = document.createElement('script');
 
-        script.src =
-            'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=your-app-id&autoLogAppEvents=1';
-        script.async = true;
+            script.src =
+                'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0&appId=your-app-id&autoLogAppEvents=1';
+            script.async = true;
 
-        document.body.appendChild(script);
+            document.body.appendChild(script);
 
-        return () => {
-            document.body.removeChild(script);
-        };
-    }, []);
+            finishAddScript.current = true;
+
+            return () => {
+                document.body.removeChild(script);
+            };
+        }
+    }, [inViewport]);
 
     return (
-        <React.Fragment>
+        <section ref={myRef}>
             <div id="fb-root"></div>
             <div
                 className="fb-page"
@@ -37,8 +46,9 @@ const Feed: React.FC = () => {
                     <a href="https://www.facebook.com/thungcartonsgn">Thùng Carton SGN</a>
                 </blockquote>
             </div>
-        </React.Fragment>
+        </section>
     );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export default React.memo(Feed);

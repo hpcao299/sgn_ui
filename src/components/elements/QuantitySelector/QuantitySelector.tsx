@@ -1,11 +1,11 @@
 import classNames from 'classnames/bind';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './QuantitySelector.module.css';
 
 const cx = classNames.bind(styles);
 
 interface QuantitySelectorProps {
-    defaultValue?: number;
+    value?: number;
 
     min?: number;
     max?: number;
@@ -13,32 +13,40 @@ interface QuantitySelectorProps {
 }
 
 const QuantitySelector: React.FC<QuantitySelectorProps> = props => {
-    const { min = 1, max = 10, defaultValue = 1, handleChange } = props;
-    const [value, setValue] = useState<number>(defaultValue);
+    const { min = 1, max, value: valueParam = 1, handleChange } = props;
+    const [value, setValue] = useState<number>(valueParam);
+
+    useEffect(() => {
+        setValue(valueParam);
+    }, [valueParam]);
 
     const handleDecrement = () => {
-        if (value !== min) {
+        if (value > min) {
             const newValue = value - 1;
 
             setValue(newValue);
-            typeof handleChange === 'function' && handleChange(newValue);
+            handleChange?.(newValue);
         }
     };
 
     const handleIncrement = () => {
-        if (value !== max) {
+        if (!max || value < max) {
             const newValue = value + 1;
 
             setValue(newValue);
-            typeof handleChange === 'function' && handleChange(newValue);
+            handleChange?.(newValue);
         }
     };
 
     return (
         <div className={cx('flex', 'wrapper')}>
-            <button onClick={handleDecrement}>-</button>
-            <input type="number" readOnly value={value} min={min} max={max} />
-            <button onClick={handleIncrement}>+</button>
+            <button onClick={handleDecrement} aria-label="Giảm số lượng">
+                -
+            </button>
+            <input type="number" readOnly value={value} min={min} max={max ? max : undefined} />
+            <button onClick={handleIncrement} aria-label="Tăng số lượng">
+                +
+            </button>
         </div>
     );
 };

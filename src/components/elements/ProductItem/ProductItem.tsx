@@ -1,33 +1,77 @@
+import cartApi from '@/api/cartApi';
+import { ReactComponent as AddedBag } from '@/assets/icons/addedBag.svg';
+import loadingImg from '@/assets/images/loading-img.png';
+import { Button, IconButton } from '@/components/elements';
+import config from '@/config';
+import constants from '@/constants';
+import { useAuthContext } from '@/contexts/AuthContext';
+import { useNotifyContext } from '@/contexts/NotifyContext';
+import { Product } from '@/types';
+import { formattedPrice } from '@/utils';
 import classNames from 'classnames/bind';
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './ProductItem.module.css';
-import { Button, IconButton } from '@/components/elements';
-import { ReactComponent as AddedBag } from '@/assets/icons/addedBag.svg';
 
 const cx = classNames.bind(styles);
 
-// interface ProductItemProps {}
+interface ProductItemProps {
+    data: Product;
+}
 
-const ProductItem: React.FC = () => {
+const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
+    const { addNewNotification } = useNotifyContext();
+    const { currentUser, getCurrentUser } = useAuthContext();
+    const navigate = useNavigate();
+
+    const handleAddToCart = async () => {
+        if (!currentUser) {
+            addNewNotification(constants.notifications.NEED_SIGNED_IN);
+            navigate(config.routes.login);
+            return;
+        }
+
+        try {
+            await cartApi.addItemToCart(data.id, 1);
+            getCurrentUser();
+            addNewNotification(constants.notifications.ADD_TO_CART_SUCCESS);
+        } catch (error) {
+            console.error(error);
+            addNewNotification(constants.notifications.ADD_TO_CART_FAILED);
+        }
+    };
+
     return (
         <div className={cx('product-item')}>
-            <img
-                src="http://trangvangtructuyen.vn/files/products/cong_ty_tnhh_dau_tu_thuong_mai_sai_gon_nguyen_604odh2k.jpg"
-                alt=""
-                className={cx('product-img')}
-            />
-            <h2 className={cx('product-title')}>Giấy Photocopy A4 80GSM</h2>
-            <p className={cx('product-price')}>25,000VNĐ</p>
+            <Link to={`/products/${data.slug}`}>
+                <LazyLoadImage
+                    src={data.image_url}
+                    alt={data.title}
+                    className={cx('product-img')}
+                    effect="blur"
+                    height="100%"
+                    placeholderSrc={loadingImg}
+                    style={{ backgroundColor: '#dadada' }}
+                />
+            </Link>
+            <Link to={`/products/${data.slug}`}>
+                <h2 className={cx('product-title')}>{data.title}</h2>
+            </Link>
+            <p className={cx('product-price')}>{formattedPrice(data.price)}</p>
             <div className={cx('product-actions')}>
-                <Button size="small" color="primary">
-                    Đặt ngay
-                </Button>
+                <Link to={`/products/${data.slug}`}>
+                    <Button size="small" color="primary">
+                        Đặt ngay
+                    </Button>
+                </Link>
                 <IconButton
                     size="small"
                     variant="outlined"
                     color="primary"
                     Icon={AddedBag}
                     className={cx('add-to-cart-btn')}
+                    onClick={handleAddToCart}
                 />
             </div>
         </div>

@@ -1,0 +1,64 @@
+.content {
+    padding-top: 56px;
+    display: flex;
+}
+
+.user-details {
+    width: 520px;
+    padding-right: 42px;
+}
+
+.user-details p {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
+
+.user-name {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.user-info {
+    margin-top: 16px;
+}
+
+.user-info p {
+    text-align: left;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.user-info span {
+    font-weight: 600;
+}
+
+.user-actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 16px;
+}
+
+.products-list {
+    flex: 1;
+    position: relative;
+}
+
+.products-list h5 {
+    text-align: center;
+    font-size: 24px;
+}
+
+.loader {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+}
+
+.orders-list.loading {
+    opacity: 0.45;
+}

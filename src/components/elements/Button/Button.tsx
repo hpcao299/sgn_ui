@@ -8,6 +8,7 @@ interface ButtonProps {
     size?: 'large' | 'medium' | 'small';
     color?: 'primary' | 'red';
     variant?: 'contained' | 'outlined';
+    loading?: boolean;
     className?: string;
     children?: React.ReactNode;
 
@@ -21,11 +22,15 @@ const Button: React.FC<ButtonProps> = props => {
         size = 'medium',
         color = 'primary',
         variant = 'contained',
+        loading = false,
         ...attrs
     } = props;
     return (
-        <button className={cx('button', size, color, variant, className)} {...attrs}>
-            {children}
+        <button
+            className={cx('button', size, color, variant, loading && 'loading', className)}
+            {...attrs}
+        >
+            {loading ? 'Đang tải...' : children}
         </button>
     );
 };

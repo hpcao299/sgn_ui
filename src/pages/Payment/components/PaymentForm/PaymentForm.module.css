@@ -1,0 +1,27 @@
+.payment-form {
+    box-shadow: 0px 0px 24px #0000001a;
+    background-color: var(--white-color);
+    padding: 30px 50px;
+    position: sticky;
+    position: -webkit-sticky;
+    top: calc(var(--sub-header-height) + 56px);
+}
+
+.payment-form h4 {
+    font-weight: 500;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.form {
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.submit-btn {
+    margin-top: 28px;
+}

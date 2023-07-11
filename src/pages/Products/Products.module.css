@@ -3,32 +3,38 @@
     padding-bottom: 100px;
 }
 
+.sidebar {
+    position: sticky;
+    position: -webkit-sticky;
+    top: calc(var(--sub-header-height) + 30px);
+}
+
 .products-container {
     padding-left: 30px;
     flex: 1;
+    position: relative;
 }
 
-.filter-products-wrapper {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.filter-products {
-    height: 32px;
-    background-color: transparent;
-    border: 1px solid #dadada;
-    border-radius: 4px;
-    padding-left: 10px;
-    padding-right: 6px;
+.loader {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    z-index: 5;
 }
 
 .products-list {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     margin-top: 32px;
     column-gap: 30px;
     row-gap: 40px;
     margin-bottom: 80px;
+}
+
+.products-list.loading {
+    opacity: 0.45;
 }
 
 .products-item {

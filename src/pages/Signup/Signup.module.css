@@ -19,8 +19,13 @@
     font-size: 24px;
 }
 
+.error-text {
+    color: var(--red-color);
+    text-align: center;
+    margin-top: 12px;
+}
+
 .form {
-    margin-top: 8px;
     width: 100%;
     margin-bottom: 24px;
 }

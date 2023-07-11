@@ -1,16 +1,20 @@
 import { ReactComponent as ChevronLeft } from '@/assets/icons/chevronLeft.svg';
 import { ReactComponent as ChevronRight } from '@/assets/icons/chevronRight.svg';
-import { ProductItem } from '@/components/elements';
+import { Loader, ProductItem } from '@/components/elements';
 import classNames from 'classnames/bind';
 import Carousel from 'nuka-carousel';
 import React from 'react';
 import styles from './SliderProductsList.module.css';
+import { Product } from '@/types';
 
 const cx = classNames.bind(styles);
 
-// interface SliderProductsListProps {}
+interface SliderProductsListProps {
+    data?: Product[];
+    isLoading?: boolean;
+}
 
-const SliderProductsList: React.FC = () => {
+const SliderProductsList: React.FC<SliderProductsListProps> = ({ data, isLoading }) => {
     const settings = {
         dots: false,
         infinite: true,
@@ -43,35 +47,13 @@ const SliderProductsList: React.FC = () => {
                     </button>
                 )}
             >
-                {/* className={cx('item')} */}
-                <div>
-                    <ProductItem />
-                </div>
-                <div>
-                    <ProductItem />
-                </div>
-                <div>
-                    <ProductItem />
-                </div>
-                <div>
-                    <ProductItem />
-                </div>
-                <div>
-                    <ProductItem />
-                </div>
-                <div>
-                    <ProductItem />
-                </div>
-                <div>
-                    <ProductItem />
-                </div>
-                <div>
-                    <ProductItem />
-                </div>
-                <div>
-                    <ProductItem />
-                </div>
+                {data?.map(item => (
+                    <div key={item.id}>
+                        <ProductItem data={item} />
+                    </div>
+                ))}
             </Carousel>
+            {isLoading && <Loader className={cx('loader')} />}
         </div>
     );
 };

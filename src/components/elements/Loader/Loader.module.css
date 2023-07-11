@@ -1,0 +1,28 @@
+.loader {
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #f3f3f3;
+    border-top-color: #3498db;
+    animation: loader-spin 1s linear infinite;
+}
+
+.loader.small {
+    border-width: 4px;
+    width: 40px;
+    height: 40px;
+}
+
+.loader.medium {
+    width: 100px;
+    height: 100px;
+    border-width: 10px;
+}
+
+@keyframes loader-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

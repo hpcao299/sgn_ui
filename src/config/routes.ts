@@ -9,6 +9,10 @@ const routes = {
     productsDetails: '/products/:slug',
 
     cart: '/shopping-cart',
+    payment: '/shopping-cart/payment',
+
+    profile: '/account/profile',
+    profileUpdate: '/account/update-profile',
 
     login: '/login',
     signup: '/signup',

@@ -11,6 +11,22 @@
     font-weight: 500;
 }
 
+.button.loading {
+    cursor: not-allowed;
+    opacity: 0.75;
+    user-select: none;
+    pointer-events: none;
+}
+
+@keyframes loader-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 /* Color styles */
 .button.primary.contained {
     background-color: var(--primary-color);
@@ -39,6 +55,17 @@
 
 .button.red.contained:hover {
     background-color: var(--light-red-color);
+}
+
+.button.red.outlined {
+    background-color: var(--white-color);
+    border-color: var(--red-color);
+    color: var(--red-color);
+}
+
+.button.red.outlined:hover {
+    border-color: var(--light-red-color);
+    color: var(--light-red-color);
 }
 
 /* Size styles */
