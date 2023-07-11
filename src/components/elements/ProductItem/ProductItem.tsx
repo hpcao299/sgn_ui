@@ -1,6 +1,5 @@
 import cartApi from '@/api/cartApi';
 import { ReactComponent as AddedBag } from '@/assets/icons/addedBag.svg';
-import loadingImg from '@/assets/images/loading-img.png';
 import { Button, IconButton } from '@/components/elements';
 import config from '@/config';
 import constants from '@/constants';
@@ -10,7 +9,6 @@ import { Product } from '@/types';
 import { formattedPrice } from '@/utils';
 import classNames from 'classnames/bind';
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './ProductItem.module.css';
 
@@ -45,13 +43,11 @@ const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
     return (
         <div className={cx('product-item')}>
             <Link to={`/products/${data.slug}`}>
-                <LazyLoadImage
+                <img
                     src={data.image_url}
                     alt={data.title}
                     className={cx('product-img')}
-                    effect="blur"
                     height="100%"
-                    placeholderSrc={loadingImg}
                     style={{ backgroundColor: '#dadada' }}
                 />
             </Link>
