@@ -1,0 +1,31 @@
+.product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.product-item a {
+    color: var(--text-color);
+    text-decoration: none;
+    user-select: none;
+}
+
+.product-img {
+    width: 100%;
+}
+
+.product-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 16px 0 8px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.product-has-sold {
+    font-weight: 400;
+}
