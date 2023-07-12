@@ -1,10 +1,10 @@
-import React from 'react';
-import styles from './Home.module.css';
-import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
-import config from '@/config';
 import { Button } from '@/components/elements';
+import config from '@/config';
+import classNames from 'classnames/bind';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import ProductItem from '../components/ProductItem';
+import styles from './Home.module.css';
 
 const cx = classNames.bind(styles);
 
