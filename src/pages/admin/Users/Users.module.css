@@ -1,0 +1,18 @@
+.user-item {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1.5fr 2fr 2fr;
+    padding: 20px 12px;
+    border-radius: 4px;
+}
+
+.user-item:not(:last-child) {
+    border-bottom: 1px solid #ececec;
+}
+
+.user-header {
+    padding: 12px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    border: none;
+    background-color: #e5e7ea;
+}

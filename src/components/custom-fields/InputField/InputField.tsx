@@ -18,7 +18,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>((params, 
         // 'error'
         <div className={cx('wrapper', error && 'error')} ref={null}>
             {Icon && <Icon />}
-            <input className={cx('input')} ref={ref} {...props} />
+            <input className={cx('input', !Icon && 'no-icon')} ref={ref} {...props} />
             {error && <p className={cx('error-text')}>{error}</p>}
         </div>
     );

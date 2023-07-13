@@ -1,0 +1,60 @@
+.order-info {
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.order-info span {
+    font-weight: 400;
+}
+
+.items-list {
+    padding-bottom: 36px;
+    border-bottom: 1px solid #ececec;
+    margin-bottom: 24px;
+}
+
+.order-item {
+    display: flex;
+    margin-bottom: 24px;
+}
+
+.item-img {
+    width: 224px;
+}
+
+.item-details {
+    flex: 1;
+    padding-left: 32px;
+}
+
+.item-title {
+    font-size: 22px;
+    margin-bottom: 16px;
+}
+
+.item-details p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.item-details span {
+    font-weight: 600;
+}
+
+.item-price {
+    color: var(--red-color);
+    font-weight: 600;
+}
+
+.order-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--red-color);
+}

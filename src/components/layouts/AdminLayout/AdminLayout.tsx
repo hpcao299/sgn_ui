@@ -14,7 +14,7 @@ interface AdminLayoutProps {
 const links = [
     { title: 'Thống kê', to: config.routes.admin },
     { title: 'Sản phẩm', to: config.routes.adminProducts },
-    { title: 'Đơn hàng', to: config.routes.adminProductDetails },
+    { title: 'Đơn hàng', to: config.routes.adminOrders },
     { title: 'Khách hàng', to: config.routes.adminUsers },
 ];
 
@@ -43,7 +43,9 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                     <Link to={config.routes.home}>Quay về trang mua sắm</Link>
                 </div>
             </nav>
-            <main style={{ flex: 1 }}>{children}</main>
+            <main className="admin-content" style={{ flex: 1 }}>
+                {children}
+            </main>
         </div>
     );
 };

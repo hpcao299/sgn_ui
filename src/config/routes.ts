@@ -20,8 +20,10 @@ const routes = {
 
     admin: '/admin',
     adminProducts: '/admin/products',
+    adminAddProduct: '/admin/products/new',
     adminProductDetails: '/admin/products/:id',
     adminOrders: '/admin/orders',
+    adminOrderDetails: '/admin/orders/:id',
     adminUsers: '/admin/users',
 };
 

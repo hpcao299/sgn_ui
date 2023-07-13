@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 const HomePage: React.FC = () => {
     return (
-        <div className={cx('container')}>
+        <div>
             <div className={cx('statistics')}>
                 <div className={cx('statistic-item')}>
                     <h6>Doanh thu bán hàng</h6>
@@ -29,7 +29,7 @@ const HomePage: React.FC = () => {
                 </div>
             </div>
             <div className={cx('orders-list')}>
-                <h5 className={cx('heading')}>Đơn hàng gần đây</h5>
+                <h5 className={cx('section-heading')}>Đơn hàng gần đây</h5>
                 <div>
                     <div className={cx('order-item', 'order-header')}>
                         <div>ID</div>
@@ -62,7 +62,7 @@ const HomePage: React.FC = () => {
                 </div>
             </div>
             <div className={cx('products-wrapper')}>
-                <h5 className={cx('heading')}>Sản phẩm bán chạy của web</h5>
+                <h5 className={cx('section-heading')}>Sản phẩm bán chạy của web</h5>
                 <div className={cx('products-list')}>
                     <div className={cx('product-item')}>
                         <ProductItem />

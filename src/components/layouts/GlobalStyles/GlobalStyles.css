@@ -55,3 +55,13 @@ input[type='number']::-webkit-outer-spin-button {
     width: 100vw;
     height: 100vh;
 }
+
+.section-heading {
+    font-size: 24px;
+    margin-bottom: 18px;
+}
+
+.admin-content {
+    padding: 28px 38px;
+    padding-bottom: 52px;
+}

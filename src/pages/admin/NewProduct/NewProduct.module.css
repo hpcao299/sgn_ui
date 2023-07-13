@@ -1,0 +1,50 @@
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.form {
+    width: 100%;
+}
+
+.price-input {
+    position: relative;
+}
+
+.price-currency {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.textarea-input {
+    margin-top: 16px;
+    width: 100%;
+    outline: none;
+    border: 1px solid #dadada;
+    padding: 18px;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    font-size: 16px;
+    resize: none;
+}
+
+.textarea-input::placeholder {
+    color: rgba(32, 31, 32, 0.3);
+}
+
+.upload-image {
+    margin-top: 16px;
+    width: fit-content;
+}
+
+.submit-btn {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+}
