@@ -32,7 +32,8 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onChange }) => {
         if (file) {
             uploadImage(file);
         }
-    }, [file, onChange]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [file]);
 
     const handleImageChange: ChangeEventHandler<HTMLInputElement> = e => {
         if (!e.currentTarget.files) {

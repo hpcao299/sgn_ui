@@ -9,7 +9,7 @@ interface AdminRouteProps {
     children: React.ReactNode;
 }
 
-const MILLISECONDS_IN_5_SECONDS = 5 * 1000;
+const MILLISECONDS_IN_2_SECONDS = 2 * 1000;
 
 const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
     const { currentUser } = useAuthContext();
@@ -28,7 +28,7 @@ const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
                 }
             >
                 <SWRConfig
-                    value={{ dedupingInterval: MILLISECONDS_IN_5_SECONDS, fetcher: adminFetcher }}
+                    value={{ dedupingInterval: MILLISECONDS_IN_2_SECONDS, fetcher: adminFetcher }}
                 >
                     {currentUser?.is_admin ? (
                         children

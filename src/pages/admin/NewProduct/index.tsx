@@ -1,11 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { fetcher } from '@/api/axiosClient';
 import { InputField } from '@/components/custom-fields';
 import { Button } from '@/components/elements';
+import config from '@/config';
+import constants from '@/constants';
+import { useNotifyContext } from '@/contexts/NotifyContext';
 import { Category } from '@/types';
 import classNames from 'classnames/bind';
-import React, { ChangeEventHandler } from 'react';
+import React, { ChangeEventHandler, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import useSWR from 'swr';
+import productApi from '../api/productApi';
 import ImageUploader from './ImageUploader';
 import styles from './NewProduct.module.css';
 
@@ -30,6 +36,9 @@ const defaultValues: INewProductForm = {
 };
 
 const NewProductPage: React.FC = () => {
+    const { addNewNotification } = useNotifyContext();
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState<boolean>();
     const { data } = useSWR('/topics/for-you', fetcher);
     const categoriesList = data?.data;
     const {
@@ -41,7 +50,15 @@ const NewProductPage: React.FC = () => {
     } = useForm<INewProductForm>({ defaultValues });
 
     const onSubmit: SubmitHandler<INewProductForm> = async data => {
-        console.log(data);
+        setIsLoading(true);
+        try {
+            await productApi.addNewProduct(data);
+            navigate(config.routes.adminProducts);
+            addNewNotification(constants.notifications.ADD_PRODUCT_SUCCESS);
+        } catch (error: any) {
+            addNewNotification(constants.notifications.ADD_PRODUCT_FAILED);
+        }
+        setIsLoading(false);
     };
 
     const handleImageChange = (url: string) => {
@@ -98,6 +115,10 @@ const NewProductPage: React.FC = () => {
                     control={control}
                     rules={{
                         required: 'Nhập miêu tả ngắn cho sản phẩm.',
+                        minLength: {
+                            value: 10,
+                            message: 'Miêu tả sản phẩm phải có ít nhất 10 chữ.',
+                        },
                     }}
                     render={({ field }) => (
                         <textarea
@@ -117,6 +138,10 @@ const NewProductPage: React.FC = () => {
                     control={control}
                     rules={{
                         required: 'Mô tả sản phẩm.',
+                        minLength: {
+                            value: 10,
+                            message: 'Miêu tả sản phẩm phải có ít nhất 10 chữ.',
+                        },
                     }}
                     render={({ field }) => (
                         <textarea
@@ -157,7 +182,7 @@ const NewProductPage: React.FC = () => {
                     <p className={cx('error-text')}>{errors.image_url?.message}</p>
                 )}
                 <div className={cx('submit-btn')}>
-                    <Button>Xác nhận</Button>
+                    <Button loading={isLoading}>Xác nhận</Button>
                 </div>
             </form>
         </div>

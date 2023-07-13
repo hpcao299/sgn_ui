@@ -51,6 +51,28 @@ const notifications: { [key: string]: NotificationDetails } = {
         type: 'error',
     },
 
+    ADD_PRODUCT_SUCCESS: {
+        title: 'Thêm sản phẩm mới thành công',
+        message: 'Sản phẩm mới đã được thêm vào website.',
+        type: 'success',
+    },
+    ADD_PRODUCT_FAILED: {
+        title: 'Không thể thêm sản phẩm mới',
+        message: 'Đã có lỗi xảy ra.',
+        type: 'error',
+    },
+
+    DELETE_PRODUCT_SUCCESS: {
+        title: 'Đã xoá sản phẩm',
+        message: 'Sản phẩm được xoá khỏi website.',
+        type: 'success',
+    },
+    DELETE_PRODUCT_FAILED: {
+        title: 'Không thể đã xoá sản phẩm',
+        message: 'Đã có lỗi xảy ra.',
+        type: 'error',
+    },
+
     SIGN_OUT_FAILED: {
         title: 'Đăng xuất thất bại',
         message: 'Đã có lỗi xảy ra.',

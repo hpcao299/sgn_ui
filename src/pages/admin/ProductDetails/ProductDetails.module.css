@@ -68,7 +68,10 @@
     color: var(--text-color);
 }
 
-.edit-btn {
-    width: fit-content;
-    margin-top: 28px;
+.product-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+    gap: 30px;
 }
