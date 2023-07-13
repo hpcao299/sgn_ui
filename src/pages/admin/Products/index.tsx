@@ -1,14 +1,19 @@
-import classNames from 'classnames/bind';
-import styles from './Products.module.css';
-import React from 'react';
-import ProductItem from '../components/ProductItem';
-import { Button } from '@/components/elements';
-import { Link } from 'react-router-dom';
+import { Button, Loader } from '@/components/elements';
 import config from '@/config';
+import { ProductStatistic } from '@/types';
+import classNames from 'classnames/bind';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import productApi from '../api/productApi';
+import ProductItem from '../components/ProductItem';
+import styles from './Products.module.css';
 
 const cx = classNames.bind(styles);
 
 const ProductsPage: React.FC = () => {
+    const { data, isLoading } = productApi.useProductsList();
+    const productsList: ProductStatistic[] = data?.data;
+
     return (
         <div>
             <div className={cx('search-wrapper')}>
@@ -23,29 +28,19 @@ const ProductsPage: React.FC = () => {
                 </Link>
             </div>
             <h5 className="section-heading">Sản phẩm hiện có trên trang web</h5>
-            <div className={cx('products-list')}>
-                <div className={cx('product-item')}>
-                    <ProductItem />
+            {isLoading ? (
+                <div className="flex-center">
+                    <Loader />
                 </div>
-                <div className={cx('product-item')}>
-                    <ProductItem />
+            ) : (
+                <div className={cx('products-list')}>
+                    {productsList.map(item => (
+                        <div key={item.id} className={cx('product-item')}>
+                            <ProductItem data={item} />
+                        </div>
+                    ))}
                 </div>
-                <div className={cx('product-item')}>
-                    <ProductItem />
-                </div>
-                <div className={cx('product-item')}>
-                    <ProductItem />
-                </div>
-                <div className={cx('product-item')}>
-                    <ProductItem />
-                </div>
-                <div className={cx('product-item')}>
-                    <ProductItem />
-                </div>
-                <div className={cx('product-item')}>
-                    <ProductItem />
-                </div>
-            </div>
+            )}
         </div>
     );
 };

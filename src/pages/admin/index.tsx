@@ -35,11 +35,11 @@ const adminPages = () => {
                         path={route.path}
                         Component={() => (
                             <PrivateRoute>
-                                <AdminRoute>
-                                    <AdminLayout>
+                                <AdminLayout>
+                                    <AdminRoute>
                                         <Page />
-                                    </AdminLayout>
-                                </AdminRoute>
+                                    </AdminRoute>
+                                </AdminLayout>
                             </PrivateRoute>
                         )}
                     />

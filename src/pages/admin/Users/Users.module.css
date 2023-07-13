@@ -1,8 +1,15 @@
 .user-item {
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1.5fr 2fr 2fr;
+    grid-template-columns: 1.5fr 1.5fr 2.5fr 1.5fr 2fr;
     padding: 20px 12px;
     border-radius: 4px;
+}
+
+.user-item div {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
 }
 
 .user-item:not(:last-child) {

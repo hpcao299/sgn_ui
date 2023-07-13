@@ -7,7 +7,7 @@ const usersApi = {
         return axiosClient.post(url, details);
     },
     getCurrentUser() {
-        const url = '/users/current-user';
+        const url = '/api/users/current-user';
         return axiosClient.get(url);
     },
     updateUserDetails(details: UserDetailsDto) {

@@ -1,76 +1,63 @@
-import React from 'react';
-import styles from './OrderDetails.module.css';
+import { Loader } from '@/components/elements';
+import { formattedDate } from '@/utils';
 import classNames from 'classnames/bind';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import orderApi from '../api/orderApi';
+import styles from './OrderDetails.module.css';
+import OrderItems from './OrderItems';
 
 const cx = classNames.bind(styles);
 
+interface OrderDetail {
+    id: number;
+    name: string;
+    phone: string;
+    address: string;
+    email: string;
+    message: string;
+    orderred_at: string;
+}
+
 const OrderDetailsPage: React.FC = () => {
+    const params = useParams();
+    const { data, isLoading } = orderApi.useOrderDetails(Number(params.id));
+    const details: OrderDetail = data?.data;
+
     return (
         <>
-            <div style={{ marginBottom: '32px' }}>
-                <h5 className="section-heading">Thông tin đơn hàng</h5>
-                <p className={cx('order-info')}>
-                    Tên người đặt: <span>Phuc cao</span>
-                </p>
-                <p className={cx('order-info')}>
-                    Email: <span>caohoangphuc@gmail.com</span>
-                </p>
-                <p className={cx('order-info')}>
-                    Số điện thoại: <span>0901457769</span>
-                </p>
-                <p className={cx('order-info')}>
-                    Địa chỉ: <span>409 nguyen oanh</span>
-                </p>
-                <p className={cx('order-info')}>
-                    Lời nhắn: <span>shippdi toi cho t</span>
-                </p>
-            </div>
-            <div>
-                <h5 className="section-heading">Mặt hàng trong đơn</h5>
-                <div className={cx('items-list')}>
-                    <div className={cx('order-item')}>
-                        <LazyLoadImage
-                            src="http://trangvangtructuyen.vn/files/products/cong_ty_tnhh_dau_tu_thuong_mai_sai_gon_nguyen_830499nS.jpg"
-                            alt="Title"
-                            className={cx('item-img')}
-                            height="100%"
-                            style={{ backgroundColor: '#dadada' }}
-                        />
-                        <div className={cx('item-details')}>
-                            <h4 className={cx('item-title')}>title</h4>
-                            <p>
-                                <span>Số lượng:</span> 1
-                            </p>
-                            <p className={cx('item-price')}>
-                                <span>Tổng tiền:</span> 1,000,000 VNĐ
-                            </p>
-                        </div>
-                    </div>
-                    <div className={cx('order-item')}>
-                        <LazyLoadImage
-                            src="http://trangvangtructuyen.vn/files/products/cong_ty_tnhh_dau_tu_thuong_mai_sai_gon_nguyen_830499nS.jpg"
-                            alt="Title"
-                            className={cx('item-img')}
-                            height="100%"
-                            style={{ backgroundColor: '#dadada' }}
-                        />
-                        <div className={cx('item-details')}>
-                            <h4 className={cx('item-title')}>title</h4>
-                            <p>
-                                <span>Số lượng:</span> 1
-                            </p>
-                            <p className={cx('item-price')}>
-                                <span>Tổng tiền:</span> 1,000,000 VNĐ
-                            </p>
-                        </div>
-                    </div>
+            <h5 className="section-heading">Thông tin đơn hàng</h5>
+            {isLoading ? (
+                <div className="flex-center">
+                    <Loader />
                 </div>
-                <div className={cx('order-total')}>
-                    <p>Tổng cộng:</p>
-                    <p>1,000,000 VNĐ</p>
-                </div>
-            </div>
+            ) : (
+                <>
+                    <div style={{ marginBottom: '32px' }}>
+                        <p className={cx('order-info')}>
+                            Tên người đặt: <span>{details.name}</span>
+                        </p>
+                        <p className={cx('order-info')}>
+                            Email: <span>{details.email}</span>
+                        </p>
+                        <p className={cx('order-info')}>
+                            Số điện thoại: <span>{details.phone}</span>
+                        </p>
+                        <p className={cx('order-info')}>
+                            Địa chỉ: <span>{details.address}</span>
+                        </p>
+                        {details.message && (
+                            <p className={cx('order-info')}>
+                                Lời nhắn: <span>{details.message}</span>
+                            </p>
+                        )}
+                        <p className={cx('order-info')}>
+                            Đặt vào: <span>{formattedDate(details.orderred_at)}</span>
+                        </p>
+                    </div>
+                    <OrderItems />
+                </>
+            )}
         </>
     );
 };

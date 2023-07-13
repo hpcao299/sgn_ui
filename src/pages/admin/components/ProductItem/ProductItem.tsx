@@ -1,27 +1,32 @@
-import React from 'react';
-import styles from './ProductItem.module.css';
+import { ProductStatistic } from '@/types';
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Link } from 'react-router-dom';
+import styles from './ProductItem.module.css';
 
 const cx = classNames.bind(styles);
 
-const ProductItem: React.FC = () => {
+interface ProductItemProps {
+    data: ProductStatistic;
+}
+
+const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
     return (
         <div className={cx('product-item')}>
-            <Link to="/">
+            <Link to={`/admin/products/${data.id}`}>
                 <LazyLoadImage
-                    src="http://trangvangtructuyen.vn/files/products/cong_ty_tnhh_dau_tu_thuong_mai_sai_gon_nguyen_830499nS.jpg"
-                    alt="Title"
+                    src={data.image_url}
+                    alt={data.title}
                     className={cx('product-img')}
                     height="100%"
                     style={{ backgroundColor: '#dadada' }}
                 />
             </Link>
-            <Link to={`/products/`}>
-                <h2 className={cx('product-title')}>title</h2>
+            <Link to={`/admin/products/${data.id}`}>
+                <h2 className={cx('product-title')}>{data.title}</h2>
             </Link>
-            <div className={cx('product-has-sold')}>Đã bán: 2</div>
+            <div className={cx('product-has-sold')}>Đã bán: {data.has_sold}</div>
         </div>
     );
 };
