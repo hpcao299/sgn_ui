@@ -1,5 +1,6 @@
 import cartApi from '@/api/cartApi';
 import { ReactComponent as AddedBag } from '@/assets/icons/addedBag.svg';
+import loadingImg from '@/assets/images/loading-img.png';
 import { Button, IconButton } from '@/components/elements';
 import config from '@/config';
 import constants from '@/constants';
@@ -49,6 +50,8 @@ const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
                     alt={data.title}
                     className={cx('product-img')}
                     height="100%"
+                    placeholderSrc={loadingImg}
+                    effect="blur"
                     style={{ backgroundColor: '#dadada' }}
                 />
             </Link>

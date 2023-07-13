@@ -4,6 +4,7 @@ import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
 import styles from './ProductItem.module.css';
+import loadingImg from '@/assets/images/loading-img.png';
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +19,8 @@ const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
                 <LazyLoadImage
                     src={data.image_url}
                     alt={data.title}
+                    placeholderSrc={loadingImg}
+                    effect="blur"
                     className={cx('product-img')}
                     height="100%"
                     style={{ backgroundColor: '#dadada' }}

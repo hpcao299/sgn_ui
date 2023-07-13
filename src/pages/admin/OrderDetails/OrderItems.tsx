@@ -1,3 +1,4 @@
+import loadingImg from '@/assets/images/loading-img.png';
 import { Loader } from '@/components/elements';
 import { formattedPrice } from '@/utils';
 import classNames from 'classnames/bind';
@@ -46,6 +47,8 @@ const OrderItems: React.FC = () => {
                                     src={item.image_url}
                                     alt={item.title}
                                     className={cx('item-img')}
+                                    placeholderSrc={loadingImg}
+                                    effect="blur"
                                     height="100%"
                                     style={{ backgroundColor: '#dadada' }}
                                 />
