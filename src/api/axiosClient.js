@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { auth } from '@/config/firebase';
 
-const getFirebaseToken = async () => {
+export const getFirebaseToken = async () => {
     const currentUser = auth.currentUser;
     if (currentUser) return currentUser.getIdToken();
 

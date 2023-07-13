@@ -34,17 +34,34 @@
     resize: none;
 }
 
+.textarea-input.error {
+    border-color: var(--red-color);
+    background-color: #fff2f4;
+}
+
 .textarea-input::placeholder {
     color: rgba(32, 31, 32, 0.3);
 }
 
 .upload-image {
     margin-top: 16px;
-    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.uploaded-image {
+    margin-top: 24px;
+    width: 40%;
 }
 
 .submit-btn {
     margin-top: 24px;
     display: flex;
     justify-content: flex-end;
+}
+
+.error-text {
+    text-align: left;
+    margin: 8px 0;
+    color: var(--red-color);
 }
