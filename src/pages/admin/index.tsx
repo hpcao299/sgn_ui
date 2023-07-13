@@ -1,4 +1,6 @@
 import AdminLayout from '@/components/layouts/AdminLayout';
+import AdminRoute from '@/components/layouts/AdminRoute';
+import PrivateRoute from '@/components/layouts/PrivateRoute';
 import config from '@/config';
 import React from 'react';
 import { Route } from 'react-router-dom';
@@ -32,9 +34,13 @@ const adminPages = () => {
                         key={i}
                         path={route.path}
                         Component={() => (
-                            <AdminLayout>
-                                <Page />
-                            </AdminLayout>
+                            <PrivateRoute>
+                                <AdminRoute>
+                                    <AdminLayout>
+                                        <Page />
+                                    </AdminLayout>
+                                </AdminRoute>
+                            </PrivateRoute>
                         )}
                     />
                 );
