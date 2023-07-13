@@ -43,6 +43,14 @@
     color: rgba(32, 31, 32, 0.3);
 }
 
+.category-select {
+    width: 100%;
+    margin: 12px 0;
+    height: 30px;
+    font-size: 16px;
+    padding-left: 12px;
+}
+
 .upload-image {
     margin-top: 16px;
     display: flex;

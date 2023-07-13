@@ -1,8 +1,11 @@
+import { fetcher } from '@/api/axiosClient';
 import { InputField } from '@/components/custom-fields';
 import { Button } from '@/components/elements';
+import { Category } from '@/types';
 import classNames from 'classnames/bind';
-import React from 'react';
+import React, { ChangeEventHandler } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import useSWR from 'swr';
 import ImageUploader from './ImageUploader';
 import styles from './NewProduct.module.css';
 
@@ -14,6 +17,7 @@ interface INewProductForm {
     short_desc: string;
     full_desc: string;
     image_url: string;
+    topic_id: number;
 }
 
 const defaultValues: INewProductForm = {
@@ -22,9 +26,12 @@ const defaultValues: INewProductForm = {
     short_desc: '',
     full_desc: '',
     image_url: '',
+    topic_id: 1,
 };
 
 const NewProductPage: React.FC = () => {
+    const { data } = useSWR('/topics/for-you', fetcher);
+    const categoriesList = data?.data;
     const {
         control,
         handleSubmit,
@@ -39,6 +46,10 @@ const NewProductPage: React.FC = () => {
 
     const handleImageChange = (url: string) => {
         setValue('image_url', url);
+    };
+
+    const handleCategoryChange: ChangeEventHandler<HTMLSelectElement> = e => {
+        setValue('topic_id', Number(e.target.value));
     };
 
     return (
@@ -120,6 +131,19 @@ const NewProductPage: React.FC = () => {
                 {errors.full_desc?.message && (
                     <p className={cx('error-text')}>{errors.full_desc?.message}</p>
                 )}
+                <select
+                    className={cx('category-select')}
+                    name="topic_id"
+                    id="topic_id"
+                    defaultValue={1}
+                    onChange={handleCategoryChange}
+                >
+                    {categoriesList?.map((category: Category) => (
+                        <option key={category.id} value={category.id}>
+                            {category.title}
+                        </option>
+                    ))}
+                </select>
                 <input
                     type="text"
                     {...register('image_url', {
