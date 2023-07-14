@@ -5,7 +5,7 @@ import useSWR from 'swr';
 
 const orderApi = {
     confirmOrder(values: ConfirmOrderDto) {
-        const url = '/orders/confirm';
+        const url = '/api/orders/confirm';
         return axiosClient.post(url, values);
     },
     getOrdersList() {

@@ -10,15 +10,15 @@ const cartApi = {
         });
     },
     addItemToCart(productId: number, quantity: number) {
-        const url = `/cart/items/new-item/${productId}?quantity=${quantity}`;
+        const url = `/api/cart/items/new-item/${productId}?quantity=${quantity}`;
         return axiosClient.post(url);
     },
     updateQuantity(productId: number, quantity: number) {
-        const url = `/cart/items/quantity/${productId}`;
+        const url = `/api/cart/items/quantity/${productId}`;
         return axiosClient.patch(url, { quantity });
     },
     deleteItemFromCart(productId: number) {
-        const url = `/cart/items/delete-item/${productId}`;
+        const url = `/api/cart/items/delete-item/${productId}`;
         return axiosClient.delete(url);
     },
 };

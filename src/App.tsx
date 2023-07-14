@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { SWRConfig } from 'swr';
 import { Loader } from './components/elements';
@@ -11,6 +11,8 @@ import NotFoundPage from './pages/NotFound';
 import adminPages from './pages/admin';
 import { privateRoutes, publicRoutes } from './routes/routes';
 import { AuthWatcher, ScrollToTop } from './utils';
+
+const Notifications = lazy(() => import('@/components/elements/Notifications'));
 
 function App() {
     return (
@@ -64,6 +66,7 @@ function App() {
                             <Route path="*" Component={NotFoundPage} />
                         </Routes>
                     </Suspense>
+                    <Notifications />
                 </SWRConfig>
             </ContextProviders>
         </GlobalStyles>
