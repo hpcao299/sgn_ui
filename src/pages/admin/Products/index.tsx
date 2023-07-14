@@ -2,7 +2,7 @@ import { Button, Loader } from '@/components/elements';
 import config from '@/config';
 import { ProductStatistic } from '@/types';
 import classNames from 'classnames/bind';
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import productApi from '../api/productApi';
 import ProductItem from '../components/ProductItem';
@@ -11,8 +11,25 @@ import styles from './Products.module.css';
 const cx = classNames.bind(styles);
 
 const ProductsPage: React.FC = () => {
+    const [searchQuery, setSearchQuery] = useState<string>('');
     const { data, isLoading } = productApi.useProductsList();
     const productsList: ProductStatistic[] = data?.data;
+    const filteredProducts: ProductStatistic[] = useMemo(
+        () =>
+            productsList?.filter(item =>
+                item.title
+                    .toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .includes(
+                        searchQuery
+                            .toLowerCase()
+                            .normalize('NFD')
+                            .replace(/[\u0300-\u036f]/g, ''),
+                    ),
+            ),
+        [searchQuery, productsList],
+    );
 
     return (
         <div>
@@ -22,6 +39,8 @@ const ProductsPage: React.FC = () => {
                     name="search"
                     className={cx('search')}
                     placeholder="Tìm sản phẩm..."
+                    onChange={e => setSearchQuery(e.target.value)}
+                    value={searchQuery}
                 />
                 <Link to={config.routes.adminAddProduct}>
                     <Button className={cx('add-btn')}>Thêm sản phẩm</Button>
@@ -34,7 +53,7 @@ const ProductsPage: React.FC = () => {
                 </div>
             ) : (
                 <div className={cx('products-list')}>
-                    {productsList.map(item => (
+                    {filteredProducts?.map(item => (
                         <div key={item.id} className={cx('product-item')}>
                             <ProductItem data={item} />
                         </div>
