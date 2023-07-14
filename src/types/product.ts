@@ -11,7 +11,7 @@ export interface Product {
     topic_id: number;
 }
 
-export interface NewProductDto {
+export interface ProductDetailsDto {
     topic_id: number;
     title: string;
     image_url: string;

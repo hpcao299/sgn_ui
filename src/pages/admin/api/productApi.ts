@@ -1,5 +1,5 @@
 import axiosClient from '@/api/axiosClient';
-import { NewProductDto } from '@/types';
+import { ProductDetailsDto } from '@/types';
 import useSWR from 'swr';
 
 const productApi = {
@@ -9,9 +9,13 @@ const productApi = {
     useProductDetails(id: number) {
         return useSWR(`/products/details/${id}`);
     },
-    addNewProduct(details: NewProductDto) {
+    addNewProduct(details: ProductDetailsDto) {
         const url = '/admin/products/new';
         return axiosClient.post(url, details);
+    },
+    editProduct(id: number, details: ProductDetailsDto) {
+        const url = `/admin/products/${id}`;
+        return axiosClient.put(url, details);
     },
     deleteProduct(id: number) {
         const url = `/admin/products/${id}`;

@@ -7,7 +7,7 @@ import { formattedPrice } from '@/utils';
 import classNames from 'classnames/bind';
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import productApi from '../api/productApi';
 import styles from './ProductDetails.module.css';
 import ProductHasSold from './ProductHasSold';
@@ -30,6 +30,13 @@ const ProductDetailsPage: React.FC = () => {
             addNewNotification(constants.notifications.DELETE_PRODUCT_FAILED);
         }
     };
+
+    if (!details)
+        return (
+            <div className="flex-center" style={{ fontSize: '22px', fontWeight: 600 }}>
+                Sản phẩm không được tìm thấy
+            </div>
+        );
 
     return isLoading ? (
         <div className="flex-center">
@@ -54,7 +61,12 @@ const ProductDetailsPage: React.FC = () => {
                     <p className={cx('product-price')}>Giá bán: {formattedPrice(details.price)}</p>
                     <div className={cx('product-short-desc')}>{details.short_desc}</div>
                     <div className={cx('product-actions')}>
-                        <Button>Chỉnh sửa thông tin</Button>
+                        <Link
+                            style={{ display: 'block' }}
+                            to={`/admin/products/edit/${details.id}`}
+                        >
+                            <Button>Chỉnh sửa thông tin</Button>
+                        </Link>
                         <Button variant="outlined" color="red" onClick={handleDeleteProduct}>
                             Xoá sản phẩm
                         </Button>

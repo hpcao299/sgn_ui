@@ -24,6 +24,13 @@ const OrderDetailsPage: React.FC = () => {
     const { data, isLoading } = orderApi.useOrderDetails(Number(params.id));
     const details: OrderDetail = data?.data;
 
+    if (!details)
+        return (
+            <div className="flex-center" style={{ fontSize: '22px', fontWeight: 600 }}>
+                Đơn hàng không được tìm thấy
+            </div>
+        );
+
     return (
         <>
             <h5 className="section-heading">Thông tin đơn hàng</h5>

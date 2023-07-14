@@ -10,14 +10,14 @@ import classNames from 'classnames/bind';
 import React, { ChangeEventHandler, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import useSWR from 'swr';
+import useSWRImmutable from 'swr/immutable';
 import productApi from '../api/productApi';
 import ImageUploader from './ImageUploader';
-import styles from './NewProduct.module.css';
+import styles from './ProductDetails.module.css';
 
 const cx = classNames.bind(styles);
 
-interface INewProductForm {
+interface IProductDetailsForm {
     title: string;
     price: number;
     short_desc: string;
@@ -26,7 +26,7 @@ interface INewProductForm {
     topic_id: number;
 }
 
-const defaultValues: INewProductForm = {
+const defaultValues: IProductDetailsForm = {
     title: '',
     price: 1000,
     short_desc: '',
@@ -35,11 +35,16 @@ const defaultValues: INewProductForm = {
     topic_id: 1,
 };
 
-const NewProductPage: React.FC = () => {
+interface FormProps {
+    productId?: number;
+    productDetails?: IProductDetailsForm;
+}
+
+const Form: React.FC<FormProps> = ({ productDetails, productId }) => {
     const { addNewNotification } = useNotifyContext();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState<boolean>();
-    const { data } = useSWR('/topics/for-you', fetcher);
+    const { data } = useSWRImmutable('/topics/for-you', fetcher);
     const categoriesList = data?.data;
     const {
         control,
@@ -47,16 +52,35 @@ const NewProductPage: React.FC = () => {
         formState: { errors },
         register,
         setValue,
-    } = useForm<INewProductForm>({ defaultValues });
+        getValues,
+    } = useForm<IProductDetailsForm>({ defaultValues: productDetails || defaultValues });
 
-    const onSubmit: SubmitHandler<INewProductForm> = async data => {
-        setIsLoading(true);
+    const addNewProduct = async (data: IProductDetailsForm) => {
         try {
             await productApi.addNewProduct(data);
             navigate(config.routes.adminProducts);
             addNewNotification(constants.notifications.ADD_PRODUCT_SUCCESS);
         } catch (error: any) {
             addNewNotification(constants.notifications.ADD_PRODUCT_FAILED);
+        }
+    };
+
+    const editProduct = async (productId: number, data: IProductDetailsForm) => {
+        try {
+            await productApi.editProduct(productId, data);
+            navigate(`/admin/products/${productId}`);
+            addNewNotification(constants.notifications.EDIT_PRODUCT_SUCCESS);
+        } catch (error) {
+            addNewNotification(constants.notifications.EDIT_PRODUCT_FAILED);
+        }
+    };
+
+    const onSubmit: SubmitHandler<IProductDetailsForm> = async data => {
+        setIsLoading(true);
+        if (productId) {
+            await editProduct(productId, data);
+        } else {
+            await addNewProduct(data);
         }
         setIsLoading(false);
     };
@@ -71,7 +95,9 @@ const NewProductPage: React.FC = () => {
 
     return (
         <div className={cx('content')}>
-            <h5 className="section-heading">Thêm sản phẩm mới</h5>
+            <h5 className="section-heading">
+                {productDetails ? 'Chỉnh sửa sản phẩm' : 'Thêm sản phẩm mới'}
+            </h5>
             <form onSubmit={handleSubmit(onSubmit)} className={cx('form')}>
                 <Controller
                     name="title"
@@ -160,7 +186,7 @@ const NewProductPage: React.FC = () => {
                     className={cx('category-select')}
                     name="topic_id"
                     id="topic_id"
-                    defaultValue={1}
+                    value={getValues('topic_id')}
                     onChange={handleCategoryChange}
                 >
                     {categoriesList?.map((category: Category) => (
@@ -177,7 +203,10 @@ const NewProductPage: React.FC = () => {
                     hidden
                     style={{ display: 'none' }}
                 />
-                <ImageUploader onChange={handleImageChange} />
+                <ImageUploader
+                    previewImage={productDetails?.image_url}
+                    onChange={handleImageChange}
+                />
                 {errors.image_url?.message && (
                     <p className={cx('error-text')}>{errors.image_url?.message}</p>
                 )}
@@ -189,4 +218,4 @@ const NewProductPage: React.FC = () => {
     );
 };
 
-export default NewProductPage;
+export default Form;

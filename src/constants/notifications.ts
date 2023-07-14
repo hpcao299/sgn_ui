@@ -62,6 +62,17 @@ const notifications: { [key: string]: NotificationDetails } = {
         type: 'error',
     },
 
+    EDIT_PRODUCT_SUCCESS: {
+        title: 'Chỉnh sửa sản phẩm thành công',
+        message: 'Sản phẩm đã được chỉnh sửa.',
+        type: 'success',
+    },
+    EDIT_PRODUCT_FAILED: {
+        title: 'Không thể sửa sản phẩm',
+        message: 'Đã có lỗi xảy ra.',
+        type: 'error',
+    },
+
     DELETE_PRODUCT_SUCCESS: {
         title: 'Đã xoá sản phẩm',
         message: 'Sản phẩm được xoá khỏi website.',

@@ -10,7 +10,7 @@ const OrdersPage = React.lazy(() => import('./Orders'));
 const OrderDetailsPage = React.lazy(() => import('./OrderDetails'));
 const ProductsPage = React.lazy(() => import('./Products'));
 const ProductDetailsPage = React.lazy(() => import('./ProductDetails'));
-const NewProductPage = React.lazy(() => import('./NewProduct'));
+const ProductDetailsForm = React.lazy(() => import('./ProductDetailsForm'));
 const UsersPage = React.lazy(() => import('./Users'));
 
 const routes = [
@@ -19,7 +19,8 @@ const routes = [
     { path: config.routes.adminOrderDetails, component: OrderDetailsPage },
     { path: config.routes.adminProducts, component: ProductsPage },
     { path: config.routes.adminProductDetails, component: ProductDetailsPage },
-    { path: config.routes.adminAddProduct, component: NewProductPage },
+    { path: config.routes.adminAddProduct, component: ProductDetailsForm },
+    { path: config.routes.adminEditProduct, component: ProductDetailsForm },
     { path: config.routes.adminUsers, component: UsersPage },
 ];
 

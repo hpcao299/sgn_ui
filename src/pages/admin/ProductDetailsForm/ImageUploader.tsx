@@ -1,18 +1,24 @@
 import { Button, Loader } from '@/components/elements';
 import classNames from 'classnames/bind';
 import React, { ChangeEventHandler, memo, useEffect, useState } from 'react';
-import styles from './NewProduct.module.css';
 import uploaderApi from '../api/uploaderApi';
+import styles from './ProductDetails.module.css';
 
 const cx = classNames.bind(styles);
 
 interface ImageUploaderProps {
     onChange: (url: string) => void;
+    previewImage?: string;
 }
 
-const ImageUploader: React.FC<ImageUploaderProps> = ({ onChange }) => {
+const ImageUploader: React.FC<ImageUploaderProps> = ({
+    onChange,
+    previewImage: previewImageProp,
+}) => {
     const [file, setFile] = useState<File>();
-    const [previewImage, setPreviewImage] = useState<string | ArrayBuffer | null>('');
+    const [previewImage, setPreviewImage] = useState<string | ArrayBuffer | null>(
+        previewImageProp || '',
+    );
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
 
