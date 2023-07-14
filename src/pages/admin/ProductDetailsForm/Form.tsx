@@ -7,7 +7,7 @@ import constants from '@/constants';
 import { useNotifyContext } from '@/contexts/NotifyContext';
 import { Category } from '@/types';
 import classNames from 'classnames/bind';
-import React, { ChangeEventHandler, useState } from 'react';
+import React, { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useSWRImmutable from 'swr/immutable';
@@ -52,7 +52,6 @@ const Form: React.FC<FormProps> = ({ productDetails, productId }) => {
         formState: { errors },
         register,
         setValue,
-        getValues,
     } = useForm<IProductDetailsForm>({ defaultValues: productDetails || defaultValues });
 
     const addNewProduct = async (data: IProductDetailsForm) => {
@@ -87,10 +86,6 @@ const Form: React.FC<FormProps> = ({ productDetails, productId }) => {
 
     const handleImageChange = (url: string) => {
         setValue('image_url', url);
-    };
-
-    const handleCategoryChange: ChangeEventHandler<HTMLSelectElement> = e => {
-        setValue('topic_id', Number(e.target.value));
     };
 
     return (
@@ -182,13 +177,7 @@ const Form: React.FC<FormProps> = ({ productDetails, productId }) => {
                 {errors.full_desc?.message && (
                     <p className={cx('error-text')}>{errors.full_desc?.message}</p>
                 )}
-                <select
-                    className={cx('category-select')}
-                    name="topic_id"
-                    id="topic_id"
-                    value={getValues('topic_id')}
-                    onChange={handleCategoryChange}
-                >
+                <select className={cx('category-select')} id="topic_id" {...register('topic_id')}>
                     {categoriesList?.map((category: Category) => (
                         <option key={category.id} value={category.id}>
                             {category.title}
