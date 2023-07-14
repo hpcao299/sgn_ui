@@ -15,7 +15,7 @@ const PageDetails: React.FC<PageDetailsProps> = ({ paths, title }) => {
         <div className={cx('wrapper')}>
             <div className={cx('container', 'content')}>
                 <h2>{title}</h2>
-                <div style={{ maxWidth: '40%' }}>
+                <div style={{ maxWidth: '40%', textAlign: 'right' }}>
                     {paths &&
                         paths.map((path, index) => (
                             <div className={cx('link-wrapper')} key={index}>

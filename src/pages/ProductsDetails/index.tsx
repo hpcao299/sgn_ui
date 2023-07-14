@@ -60,14 +60,18 @@ const ProductsDetailsPage: React.FC = () => {
                                 </div>
                                 <p className={cx('product-desc')}>{details?.short_desc}</p>
                             </div>
-                            <ProductActions productId={details?.id} />
+                            {data && <ProductActions productId={details?.id} />}
                         </div>
                     </div>
                     <div className={cx('product-sub-content')}>
-                        <div className={cx('product-content-header')}>
-                            <p>Mô tả</p>
-                        </div>
-                        <p className={cx('product-full-desc')}>{details?.full_desc}</p>
+                        {data && (
+                            <>
+                                <div className={cx('product-content-header')}>
+                                    <p>Mô tả</p>
+                                </div>
+                                <p className={cx('product-full-desc')}>{details?.full_desc}</p>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
