@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { auth } from '@/config/firebase';
 
-const getFirebaseToken = async () => {
+export const getFirebaseToken = async () => {
     const currentUser = auth.currentUser;
     if (currentUser) return currentUser.getIdToken();
 
@@ -62,7 +62,7 @@ axiosClient.interceptors.response.use(
 
 export const fetcher = url =>
     axios
-        .get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}${url}`)
+        .get(`${import.meta.env.VITE_APP_SERVER_BASE_URL}/api${url}`)
         .then(data => data.data)
         .catch(res => {
             if (res && res.data) {
@@ -72,6 +72,8 @@ export const fetcher = url =>
             return res;
         });
 
-export const fetcherWithToken = url => axiosClient.get(url);
+export const fetcherWithToken = url => axiosClient.get(`/api${url}`);
+
+export const adminFetcher = url => axiosClient.get(`/admin${url}`);
 
 export default axiosClient;

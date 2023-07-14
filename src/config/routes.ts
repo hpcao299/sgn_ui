@@ -17,6 +17,18 @@ const routes = {
     login: '/login',
     signup: '/signup',
     forgotPassword: '/forgot-password',
+
+    admin: '/admin',
+
+    adminProducts: '/admin/products',
+    adminAddProduct: '/admin/products/new',
+    adminProductDetails: '/admin/products/:id',
+    adminEditProduct: '/admin/products/edit/:id',
+
+    adminOrders: '/admin/orders',
+    adminOrderDetails: '/admin/orders/:id',
+
+    adminUsers: '/admin/users',
 };
 
 export default routes;

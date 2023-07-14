@@ -32,6 +32,10 @@
     font-size: 15px;
 }
 
+.input.no-icon {
+    padding-left: 18px;
+}
+
 .input::placeholder {
     color: #bdbdbd;
 }

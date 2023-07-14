@@ -13,5 +13,15 @@ export interface CurrentUser {
     name?: string;
     phone?: string;
     is_verified?: number;
+    is_admin?: number;
     num_items?: number;
+}
+
+export interface PotentialUser {
+    id: string;
+    email: string;
+    name: string;
+    phone: string;
+    total_bought: number;
+    total_orders: number;
 }
