@@ -75,12 +75,20 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 @media (min-width: 740px) and (max-width: 1023px) {
+    :root {
+        --sidebar-width: 240px;
+    }
+
     .container {
         padding: 0 16px;
     }
 }
 
 @media (min-width: 0) and (max-width: 739px) {
+    :root {
+        --sub-header-height: 48px;
+    }
+
     .container {
         padding: 0 8px;
     }

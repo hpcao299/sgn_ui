@@ -31,7 +31,6 @@ const SubHeader: React.FC = () => {
                 })),
             },
             { title: 'Giới thiệu', to: config.routes.info },
-            { title: 'dịch vụ', to: config.routes.service },
             { title: 'tin tức', to: config.routes.new },
             { title: 'liên hệ', to: config.routes.contact },
         ],

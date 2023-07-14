@@ -34,3 +34,20 @@
 .list-item a:hover {
     text-decoration: underline;
 }
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .list-item a {
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+
+    .list-item a::before {
+        left: 8px;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .sidebar {
+        display: none;
+    }
+}
