@@ -1,6 +1,6 @@
 .wrapper {
     background-color: var(--background-color);
-    height: var(--page-details-height);
+    min-height: var(--page-details-height);
     padding: 30px 0;
 }
 
@@ -41,4 +41,37 @@
 
 .content a:hover {
     text-decoration: underline;
+}
+
+.links {
+    max-width: 40%;
+    text-align: right;
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .content h2 {
+        font-size: 22px;
+    }
+
+    .links {
+        max-width: 60%;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .content h2 {
+        font-size: 20px;
+        width: 100%;
+        margin-bottom: 12px;
+    }
+
+    .links {
+        max-width: 100%;
+        text-align: center;
+    }
 }
