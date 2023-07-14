@@ -159,16 +159,22 @@
 
     .header-text-link {
         font-size: 14px;
-        margin: 0 2px;
+        margin: 0 4px;
     }
 
     .header-icon-link {
         margin: 0 4px;
+        padding: 0 6px;
     }
 
     .header-icon-link svg {
         width: 18px;
         height: 18px;
+    }
+
+    .white-logo {
+        height: 38px;
+        width: auto;
     }
 }
 

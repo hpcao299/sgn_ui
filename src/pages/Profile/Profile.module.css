@@ -106,4 +106,8 @@
     .user-info p {
         text-align: center;
     }
+
+    .user-actions {
+        flex-direction: column;
+    }
 }
