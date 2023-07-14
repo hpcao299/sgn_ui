@@ -38,7 +38,7 @@ const ProductsDetailsPage: React.FC = () => {
             {isLoading && <Loader size="medium" className={cx('loader')} />}
             {error && <p style={{ textAlign: 'center', fontSize: '22px' }}>{error.message}</p>}
 
-            <div className={cx('product-details', isLoading && 'loading')}>
+            <div className={cx('product-details-wrapper', isLoading && 'loading')}>
                 <PageDetails title={details?.title} paths={paths} />
                 <div style={{ paddingBottom: '100px' }} className="container">
                     <div className={cx('product-main-content')}>

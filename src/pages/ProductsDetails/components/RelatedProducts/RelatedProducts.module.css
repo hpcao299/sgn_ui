@@ -19,9 +19,38 @@
 
 .list {
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
 }
 
 .list-item {
     width: calc((100% - 120px) / 5);
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .list {
+        gap: 16px;
+    }
+
+    .list-item {
+        width: calc((100% - 32px) / 3);
+    }
+
+    .related h5 {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .list {
+        gap: 8px;
+    }
+
+    .list-item {
+        width: calc((100% - 8px) / 2);
+    }
+
+    .related h5 {
+        font-size: 20px;
+    }
 }
