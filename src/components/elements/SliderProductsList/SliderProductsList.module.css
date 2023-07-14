@@ -23,6 +23,8 @@
     height: 50px;
     width: 24px;
     cursor: pointer;
+    background-color: var(--white-color);
+    z-index: 1;
 }
 
 .control-btn svg {
@@ -51,4 +53,14 @@
     right: 0;
     margin-left: auto;
     margin-right: auto;
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .prev-btn {
+        left: -14px;
+    }
+
+    .next-btn {
+        right: -14px;
+    }
 }

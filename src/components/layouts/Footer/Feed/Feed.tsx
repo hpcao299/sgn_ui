@@ -26,7 +26,7 @@ const Feed: React.FC = () => {
     }, [inViewport]);
 
     return (
-        <section ref={myRef}>
+        <section ref={myRef} style={{ overflow: 'hidden' }}>
             <div id="fb-root"></div>
             <div
                 className="fb-page"
