@@ -18,7 +18,9 @@
     --page-details-height: 90px;
     --sidebar-width: 270px;
     --position-right-notification: 32px;
+
     --admin-sidebar-width: 328px;
+    --admin-mobile-sidebar-height: 48px;
 }
 
 * {

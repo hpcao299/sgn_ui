@@ -43,7 +43,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                     <Link to={config.routes.home}>Quay về trang mua sắm</Link>
                 </div>
             </nav>
-            <main className="admin-content" style={{ flex: 1 }}>
+            <main className={cx('admin-content')} style={{ flex: 1 }}>
                 {children}
             </main>
         </div>
