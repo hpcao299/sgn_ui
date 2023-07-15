@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Header from '../Header/Header';
 
 const Footer = React.lazy(() => import('../Footer/Footer'));
@@ -12,7 +12,9 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
         <>
             <Header />
             <main style={{ position: 'relative', minHeight: '100vh' }}>{children}</main>
-            <Footer />
+            <Suspense fallback={<div>Loading footer...</div>}>
+                <Footer />
+            </Suspense>
         </>
     );
 };

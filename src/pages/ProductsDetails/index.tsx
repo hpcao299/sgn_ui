@@ -4,7 +4,7 @@ import { Loader, PageDetails, RenderOnView } from '@/components/elements';
 import config from '@/config';
 import { formattedPrice } from '@/utils';
 import classNames from 'classnames/bind';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Helmet } from 'react-helmet';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useParams } from 'react-router-dom';
@@ -79,9 +79,17 @@ const ProductsDetailsPage: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    <RenderOnView>
-                        <RelatedProducts />
-                    </RenderOnView>
+                    <Suspense
+                        fallback={
+                            <div className="flex-center" style={{ margin: '18px 0' }}>
+                                <Loader size="small" />
+                            </div>
+                        }
+                    >
+                        <RenderOnView>
+                            <RelatedProducts />
+                        </RenderOnView>
+                    </Suspense>
                 </>
             ) : (
                 <div className="flex-center" style={{ marginTop: '24px', fontSize: '20px' }}>
