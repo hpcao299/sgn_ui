@@ -23,3 +23,25 @@
     border: none;
     background-color: #e5e7ea;
 }
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .user-header {
+        margin-bottom: 14px;
+    }
+
+    .user-item {
+        grid-template-columns: 1.5fr 1.25fr 2.25fr 0fr 2fr;
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .user-header {
+        margin-bottom: 12px;
+    }
+
+    .user-item {
+        grid-template-columns: 1.5fr 1.25fr 0fr 0fr 1.5fr;
+        font-size: 12px;
+    }
+}
