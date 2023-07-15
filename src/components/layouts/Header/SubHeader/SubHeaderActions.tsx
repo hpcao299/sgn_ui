@@ -6,7 +6,6 @@ import classNames from 'classnames/bind';
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './SubHeader.module.css';
-import { Button } from '@/components/elements';
 
 const cx = classNames.bind(styles);
 
