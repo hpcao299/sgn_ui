@@ -18,7 +18,7 @@ const CartActions: React.FC<CartActionsProps> = ({ data }) => {
 
     return (
         <div className={cx('cart-actions')}>
-            <div>
+            <div className={cx('cart-actions-wrapper')}>
                 <h6>Cộng giỏ hàng</h6>
                 <div className={cx('cart-summary')}>
                     <div className={cx('summary-item')}>Tổng Tiền Hàng</div>

@@ -37,3 +37,31 @@
     font-weight: 600;
     color: var(--red-color);
 }
+
+@media (max-width: 1023px) {
+    .cart-actions h6 {
+        font-size: 20px;
+    }
+
+    .summary-item {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .cart-actions {
+        align-items: flex-start;
+    }
+
+    .cart-actions-wrapper {
+        width: 100%;
+    }
+
+    .cart-summary {
+        grid-template-columns: 1.5fr 1fr;
+    }
+
+    .summary-item {
+        padding: 16px 0 16px 16px;
+    }
+}
