@@ -1,5 +1,4 @@
 import { ReactComponent as AlignLeftIcon } from '@/assets/icons/alignLeft.svg';
-import { ReactComponent as MenuIcon } from '@/assets/icons/menu.svg';
 import whiteLogo from '@/assets/images/white-logo.png';
 import classNames from 'classnames/bind';
 import { memo, useEffect, useState } from 'react';
@@ -27,9 +26,6 @@ const SubHeaderLogo = () => {
 
     return (
         <>
-            <div className={cx('mobile-menu-icon')}>
-                <MenuIcon />
-            </div>
             {changeLogo ? (
                 <a href="#">
                     <img src={whiteLogo} alt="SGN Logo" className={cx('white-logo')} />

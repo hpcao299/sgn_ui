@@ -14,21 +14,6 @@
     height: 100%;
 }
 
-.mobile-menu-icon {
-    display: none;
-    color: var(--white-color);
-    height: 100%;
-    padding: 0 8px;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.mobile-menu-icon svg {
-    width: 20px;
-    height: 20px;
-}
-
 .white-logo {
     width: 120px;
 }
@@ -185,10 +170,6 @@
 
     .white-logo {
         display: none;
-    }
-
-    .mobile-menu-icon {
-        display: flex;
     }
 
     .header-icon-link {

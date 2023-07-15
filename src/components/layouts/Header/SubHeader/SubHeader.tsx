@@ -4,11 +4,13 @@ import config from '@/config';
 import { Category } from '@/types';
 import classNames from 'classnames/bind';
 import React, { useMemo } from 'react';
+import MediaQuery from 'react-responsive';
+import { Link } from 'react-router-dom';
+import MobileMenu from '../MobileMenu';
 import styles from './SubHeader.module.css';
 import SubHeaderActions from './SubHeaderActions';
 import SubHeaderLinks from './SubHeaderLinks';
 import SubHeaderLogo from './SubHeaderLogo';
-import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -40,6 +42,9 @@ const SubHeader: React.FC = () => {
     return (
         <div className={cx('sub-header')}>
             <div className={cx('container', 'sub-header-content')}>
+                <MediaQuery maxWidth={739}>
+                    <MobileMenu links={headerLinks} />
+                </MediaQuery>
                 <SubHeaderLogo />
                 <div className={cx('header-links')}>
                     {headerLinks.map((link, index) => (
