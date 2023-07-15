@@ -42,7 +42,7 @@ const ProductsDetailsPage: React.FC = () => {
                 <>
                     <div className={cx('product-details-wrapper', isLoading && 'loading')}>
                         <PageDetails title={details?.title} paths={paths} />
-                        <div style={{ paddingBottom: '100px' }} className="container">
+                        <div style={{ paddingBottom: '72px' }} className="container">
                             <div className={cx('product-main-content')}>
                                 <div className={cx('product-image')}>
                                     <LazyLoadImage
