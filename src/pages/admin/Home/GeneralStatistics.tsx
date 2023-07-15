@@ -1,5 +1,5 @@
 import { Loader } from '@/components/elements';
-import { GeneralStatistic } from '@/types';
+import { GeneralStatistic as GeneralStatisticType } from '@/types';
 import { formattedPrice } from '@/utils';
 import classNames from 'classnames/bind';
 import React from 'react';
@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 const GeneralStatistic: React.FC = () => {
     const { data, isLoading } = statisticApi.useGeneralStatistics();
-    const statistics: GeneralStatistic = data?.data;
+    const statistics: GeneralStatisticType = data?.data;
 
     return isLoading ? (
         <div className="flex-center">

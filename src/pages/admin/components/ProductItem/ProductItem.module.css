@@ -29,3 +29,17 @@
 .product-has-sold {
     font-weight: 400;
 }
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .product-title,
+    .product-has-sold {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .product-title,
+    .product-has-sold {
+        font-size: 12px;
+    }
+}
