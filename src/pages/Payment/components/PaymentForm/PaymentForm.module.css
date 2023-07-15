@@ -25,3 +25,24 @@
 .submit-btn {
     margin-top: 28px;
 }
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .payment-form {
+        padding: 28px 32px;
+        margin-left: 40px;
+    }
+
+    .payment-form h4 {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .payment-form {
+        padding: 24px 16px;
+    }
+
+    .payment-form h4 {
+        font-size: 20px;
+    }
+}

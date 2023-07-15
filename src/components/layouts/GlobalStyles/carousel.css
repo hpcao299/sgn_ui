@@ -29,3 +29,9 @@ body .slider-container {
 .banners-carousel .slider-control-bottomcenter button {
     margin: 0 4px;
 }
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .products-carousel .slide {
+        padding: 0 8px !important;
+    }
+}

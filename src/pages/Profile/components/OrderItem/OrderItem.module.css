@@ -39,7 +39,7 @@
 
 .item-img {
     width: 160px;
-    height: 160px;
+    height: auto;
 }
 
 .item-info {
@@ -67,4 +67,38 @@
     font-weight: 600;
     color: var(--text-color);
     margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+
+@media (max-width: 1023px) {
+    .order-info {
+        font-size: 18px;
+    }
+
+    .item-title {
+        font-size: 18px;
+    }
+
+    .item-info p {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .item-img {
+        width: 120px;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .item-img {
+        width: 80px;
+    }
+
+    .item-title {
+        font-size: 16px;
+    }
 }

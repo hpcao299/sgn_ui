@@ -31,7 +31,7 @@ const SubHeaderActions: React.FC = () => {
                     </Link>
                 </>
             ) : (
-                <Link to={config.routes.login} className={cx('header-text-link')}>
+                <Link to={config.routes.login} className={cx('header-text-link', 'header-login')}>
                     Đăng nhập
                 </Link>
             )}

@@ -6,6 +6,7 @@ import Carousel from 'nuka-carousel';
 import React from 'react';
 import styles from './SliderProductsList.module.css';
 import { Product } from '@/types';
+import MediaQuery from 'react-responsive';
 
 const cx = classNames.bind(styles);
 
@@ -28,31 +29,70 @@ const SliderProductsList: React.FC<SliderProductsListProps> = ({ data, isLoading
 
     return (
         <div className={cx('container', 'products-carousel')}>
-            <Carousel
-                {...settings}
-                renderCenterLeftControls={({ previousSlide, previousDisabled }) => (
-                    <button
-                        className={cx('control-btn', 'prev-btn', previousDisabled && 'disabled')}
-                        onClick={previousSlide}
-                    >
-                        <ChevronLeft />
-                    </button>
-                )}
-                renderCenterRightControls={({ nextSlide, nextDisabled }) => (
-                    <button
-                        className={cx('control-btn', 'next-btn', nextDisabled && 'disabled')}
-                        onClick={nextSlide}
-                    >
-                        <ChevronRight />
-                    </button>
-                )}
-            >
-                {data?.map(item => (
-                    <div key={item.id}>
-                        <ProductItem data={item} />
-                    </div>
-                ))}
-            </Carousel>
+            <MediaQuery minWidth={1024}>
+                <Carousel
+                    {...settings}
+                    renderCenterLeftControls={({ previousSlide, previousDisabled }) => (
+                        <button
+                            className={cx(
+                                'control-btn',
+                                'prev-btn',
+                                previousDisabled && 'disabled',
+                            )}
+                            onClick={previousSlide}
+                        >
+                            <ChevronLeft />
+                        </button>
+                    )}
+                    renderCenterRightControls={({ nextSlide, nextDisabled }) => (
+                        <button
+                            className={cx('control-btn', 'next-btn', nextDisabled && 'disabled')}
+                            onClick={nextSlide}
+                        >
+                            <ChevronRight />
+                        </button>
+                    )}
+                >
+                    {data?.map(item => (
+                        <div key={item.id}>
+                            <ProductItem data={item} />
+                        </div>
+                    ))}
+                </Carousel>
+            </MediaQuery>
+            <MediaQuery maxWidth={1023}>
+                <Carousel
+                    {...settings}
+                    slidesToShow={4}
+                    slidesToScroll={2}
+                    renderCenterLeftControls={({ previousSlide, previousDisabled }) => (
+                        <button
+                            className={cx(
+                                'control-btn',
+                                'prev-btn',
+                                previousDisabled && 'disabled',
+                            )}
+                            onClick={previousSlide}
+                        >
+                            <ChevronLeft />
+                        </button>
+                    )}
+                    renderCenterRightControls={({ nextSlide, nextDisabled }) => (
+                        <button
+                            className={cx('control-btn', 'next-btn', nextDisabled && 'disabled')}
+                            onClick={nextSlide}
+                        >
+                            <ChevronRight />
+                        </button>
+                    )}
+                >
+                    {data?.map(item => (
+                        <div key={item.id}>
+                            <ProductItem data={item} />
+                        </div>
+                    ))}
+                </Carousel>
+            </MediaQuery>
             {isLoading && <Loader className={cx('loader')} />}
         </div>
     );

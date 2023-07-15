@@ -6,11 +6,13 @@ import { useAuthContext } from '@/contexts/AuthContext';
 import { CartItem as CartItemType, ErrorResponse } from '@/types';
 import classNames from 'classnames/bind';
 import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
+import MediaQuery from 'react-responsive';
 import { Link } from 'react-router-dom';
 import styles from './ShoppingCart.module.css';
 import CartActions from './components/CartActions';
 import CartItem from './components/CartItem';
-import { Helmet } from 'react-helmet';
+import MobileCartItem from './components/MobileCartItem';
 
 const cx = classNames.bind(styles);
 
@@ -53,14 +55,7 @@ const ShoppingCartPage: React.FC = () => {
                         (isLoading || isValidating) && 'loading',
                     )}
                 >
-                    <div className={cx('grid-wrapper')}>
-                        <div className={cx('grid', 'grid-header')}>
-                            <div className={cx('grid-item')}>sản phẩm</div>
-                            <div className={cx('grid-item')}>giá</div>
-                            <div className={cx('grid-item')}>số lượng</div>
-                            <div className={cx('grid-item')}>tạm tính</div>
-                            <div className={cx('grid-item', 'small-grid-item')}>xoá</div>
-                        </div>
+                    <MediaQuery maxWidth={739}>
                         {cartItems?.length === 0 ? (
                             <div className={cx('empty-text')}>
                                 <p>Giỏ hàng trống</p>
@@ -68,10 +63,32 @@ const ShoppingCartPage: React.FC = () => {
                             </div>
                         ) : (
                             cartItems?.map((item: CartItemType) => (
-                                <CartItem key={item.id} data={item} />
+                                <MobileCartItem key={item.id} data={item} />
                             ))
                         )}
-                    </div>
+                    </MediaQuery>
+
+                    <MediaQuery minWidth={740}>
+                        <div className={cx('grid-wrapper')}>
+                            <div className={cx('grid', 'grid-header')}>
+                                <div className={cx('grid-item')}>sản phẩm</div>
+                                <div className={cx('grid-item')}>giá</div>
+                                <div className={cx('grid-item')}>số lượng</div>
+                                <div className={cx('grid-item')}>tạm tính</div>
+                                <div className={cx('grid-item', 'small-grid-item')}>xoá</div>
+                            </div>
+                            {cartItems?.length === 0 ? (
+                                <div className={cx('empty-text')}>
+                                    <p>Giỏ hàng trống</p>
+                                    <Link to={config.routes.home}>Lựa chọn các sản phẩm khác</Link>
+                                </div>
+                            ) : (
+                                cartItems?.map((item: CartItemType) => (
+                                    <CartItem key={item.id} data={item} />
+                                ))
+                            )}
+                        </div>
+                    </MediaQuery>
                     {error && <ErrorHandler error={error as ErrorResponse} />}
                     {cartItems?.length > 0 && <CartActions data={cartItems} />}
                 </div>

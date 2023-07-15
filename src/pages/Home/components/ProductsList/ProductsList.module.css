@@ -1,0 +1,9 @@
+.products-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.product-item {
+    width: calc((100% - 12px) / 2);
+}

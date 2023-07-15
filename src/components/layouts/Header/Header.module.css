@@ -2,7 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 0;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
     gap: 280px;
 }
 
@@ -39,4 +40,49 @@
 
 .phone span {
     margin-left: 6px;
+}
+
+@media (max-width: 1023px) {
+    .top-header {
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+    }
+
+    .phone {
+        font-size: 14px;
+    }
+
+    .phone svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .top-header {
+        gap: 88px;
+    }
+
+    .logo img {
+        height: 48px;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .logo img {
+        height: 32px;
+    }
+
+    .top-header {
+        gap: 28px;
+    }
+
+    .phone {
+        height: 46px;
+        width: 45px;
+    }
+
+    .phone span {
+        display: none;
+    }
 }

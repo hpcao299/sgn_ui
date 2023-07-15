@@ -3,7 +3,7 @@ import axiosClient from './axiosClient';
 
 const usersApi = {
     registerUser(details: RegisterUserDto) {
-        const url = '/users/register';
+        const url = '/api/users/register';
         return axiosClient.post(url, details);
     },
     getCurrentUser() {
@@ -11,7 +11,7 @@ const usersApi = {
         return axiosClient.get(url);
     },
     updateUserDetails(details: UserDetailsDto) {
-        const url = '/users/details';
+        const url = '/api/users/details';
         return axiosClient.put(url, details);
     },
 };

@@ -113,6 +113,7 @@
 
 .header-bag {
     position: relative;
+    height: 20px;
 }
 
 .header-bag-count {
@@ -134,4 +135,59 @@
 .bag-icon {
     width: 20px;
     height: 20px;
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .product-categories {
+        font-size: 14px;
+    }
+
+    .header-text-link {
+        font-size: 14px;
+        margin: 0 4px;
+    }
+
+    .header-icon-link {
+        margin: 0 4px;
+        padding: 0 6px;
+    }
+
+    .header-icon-link svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .white-logo {
+        height: 38px;
+        width: auto;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .product-categories {
+        display: none;
+    }
+
+    .white-logo {
+        display: none;
+    }
+
+    .header-icon-link {
+        margin: 0 8px;
+    }
+
+    .header-text-link {
+        display: none;
+    }
+
+    .header-login {
+        display: flex;
+        height: 100%;
+    }
+
+    .header-bag-count {
+        font-size: 12px;
+        width: 18px;
+        height: 18px;
+    }
 }

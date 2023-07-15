@@ -4,7 +4,7 @@ import { Loader, PageDetails, RenderOnView } from '@/components/elements';
 import config from '@/config';
 import { formattedPrice } from '@/utils';
 import classNames from 'classnames/bind';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Helmet } from 'react-helmet';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useParams } from 'react-router-dom';
@@ -38,46 +38,64 @@ const ProductsDetailsPage: React.FC = () => {
             {isLoading && <Loader size="medium" className={cx('loader')} />}
             {error && <p style={{ textAlign: 'center', fontSize: '22px' }}>{error.message}</p>}
 
-            <div className={cx('product-details', isLoading && 'loading')}>
-                <PageDetails title={details?.title} paths={paths} />
-                <div style={{ paddingBottom: '100px' }} className="container">
-                    <div className={cx('product-main-content')}>
-                        <div className={cx('product-image')}>
-                            <LazyLoadImage
-                                src={details?.image_url}
-                                alt={details?.title}
-                                effect="blur"
-                                height="100%"
-                                placeholderSrc={loadingImg}
-                                style={{ backgroundColor: '#dadada' }}
-                            />
-                        </div>
-                        <div className={cx('product-details')}>
-                            <div className={cx('product-info')}>
-                                <h1 className={cx('product-title')}>{details?.title}</h1>
-                                <div className={cx('product-price')}>
-                                    {formattedPrice(details?.price)}
+            {details ? (
+                <>
+                    <div className={cx('product-details-wrapper', isLoading && 'loading')}>
+                        <PageDetails title={details?.title} paths={paths} />
+                        <div style={{ paddingBottom: '72px' }} className="container">
+                            <div className={cx('product-main-content')}>
+                                <div className={cx('product-image')}>
+                                    <LazyLoadImage
+                                        src={details?.image_url}
+                                        alt={details?.title}
+                                        effect="blur"
+                                        height="100%"
+                                        placeholderSrc={loadingImg}
+                                        style={{ backgroundColor: '#dadada' }}
+                                    />
                                 </div>
-                                <p className={cx('product-desc')}>{details?.short_desc}</p>
+                                <div className={cx('product-details')}>
+                                    <div className={cx('product-info')}>
+                                        <h1 className={cx('product-title')}>{details?.title}</h1>
+                                        <div className={cx('product-price')}>
+                                            {formattedPrice(details?.price)}
+                                        </div>
+                                        <p className={cx('product-desc')}>{details?.short_desc}</p>
+                                    </div>
+                                    {data && <ProductActions productId={details?.id} />}
+                                </div>
                             </div>
-                            {data && <ProductActions productId={details?.id} />}
+                            <div className={cx('product-sub-content')}>
+                                {data && (
+                                    <>
+                                        <div className={cx('product-content-header')}>
+                                            <p>Mô tả</p>
+                                        </div>
+                                        <p className={cx('product-full-desc')}>
+                                            {details?.full_desc}
+                                        </p>
+                                    </>
+                                )}
+                            </div>
                         </div>
                     </div>
-                    <div className={cx('product-sub-content')}>
-                        {data && (
-                            <>
-                                <div className={cx('product-content-header')}>
-                                    <p>Mô tả</p>
-                                </div>
-                                <p className={cx('product-full-desc')}>{details?.full_desc}</p>
-                            </>
-                        )}
-                    </div>
+                    <Suspense
+                        fallback={
+                            <div className="flex-center" style={{ margin: '18px 0' }}>
+                                <Loader size="small" />
+                            </div>
+                        }
+                    >
+                        <RenderOnView>
+                            <RelatedProducts />
+                        </RenderOnView>
+                    </Suspense>
+                </>
+            ) : (
+                <div className="flex-center" style={{ marginTop: '24px', fontSize: '20px' }}>
+                    Sản phẩm không tìm thấy
                 </div>
-            </div>
-            <RenderOnView>
-                <RelatedProducts />
-            </RenderOnView>
+            )}
         </>
     );
 };

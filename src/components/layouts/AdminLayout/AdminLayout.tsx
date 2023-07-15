@@ -7,8 +7,6 @@ import styles from './AdminLayout.module.css';
 
 const cx = classNames.bind(styles);
 
-const Notifications = React.lazy(() => import('@/components/elements/Notifications'));
-
 interface AdminLayoutProps {
     children: React.ReactNode;
 }
@@ -45,10 +43,9 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                     <Link to={config.routes.home}>Quay về trang mua sắm</Link>
                 </div>
             </nav>
-            <main className="admin-content" style={{ flex: 1 }}>
+            <main className={cx('admin-content')} style={{ flex: 1 }}>
                 {children}
             </main>
-            <Notifications />
         </div>
     );
 };

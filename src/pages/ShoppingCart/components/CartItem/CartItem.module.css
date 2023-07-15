@@ -36,6 +36,10 @@
     font-size: 16px;
     margin-left: 16px;
     font-weight: 500;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
 }
 
 .cart-item-price {
@@ -56,4 +60,20 @@
     outline: none;
     border: none;
     cursor: pointer;
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .grid-item {
+        padding: 16px 0 16px 8px;
+        font-size: 14px;
+    }
+
+    .grid-item:not(:first-child) {
+        padding-left: 0;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
 }

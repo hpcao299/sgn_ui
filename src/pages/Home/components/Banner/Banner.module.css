@@ -36,3 +36,18 @@
     grid-column: 3;
     grid-row: 2;
 }
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .wrapper {
+        padding-top: 8px;
+        padding-left: 8px;
+        grid-gap: 6px;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .wrapper {
+        padding-left: 0;
+        grid-gap: 8px;
+    }
+}

@@ -35,3 +35,38 @@
     height: 40px;
     margin-left: 16px;
 }
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .products-list {
+        gap: 12px;
+    }
+
+    .product-item {
+        width: calc((100% - 36px) / 4);
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .search-wrapper {
+        flex-direction: column;
+    }
+
+    .search,
+    .search-wrapper a {
+        width: 100%;
+    }
+
+    .add-btn {
+        margin-left: 0;
+        margin-top: 12px;
+    }
+
+    .products-list {
+        gap: 8px;
+        row-gap: 16px;
+    }
+
+    .product-item {
+        width: calc((100% - 8px) / 2);
+    }
+}

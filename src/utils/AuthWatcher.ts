@@ -17,6 +17,8 @@ export function AuthWatcher() {
                 // If user has logged in but user isn't been verified yet
                 if (currentUser && !currentUser.is_verified) {
                     navigate(config.routes.profileUpdate);
+                } else if (currentUser?.is_admin) {
+                    navigate(config.routes.admin);
                 }
 
                 localStorage.setItem('auth', JSON.stringify({ isSignedIn: true }));

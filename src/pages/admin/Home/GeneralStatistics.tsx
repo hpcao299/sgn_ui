@@ -1,5 +1,5 @@
 import { Loader } from '@/components/elements';
-import { GeneralStatistic } from '@/types';
+import { GeneralStatistic as GeneralStatisticType } from '@/types';
 import { formattedPrice } from '@/utils';
 import classNames from 'classnames/bind';
 import React from 'react';
@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 const GeneralStatistic: React.FC = () => {
     const { data, isLoading } = statisticApi.useGeneralStatistics();
-    const statistics: GeneralStatistic = data?.data;
+    const statistics: GeneralStatisticType = data?.data;
 
     return isLoading ? (
         <div className="flex-center">
@@ -21,18 +21,18 @@ const GeneralStatistic: React.FC = () => {
             <div className={cx('statistic-item')}>
                 <h6>Doanh thu bán hàng</h6>
                 <div className={cx('statistic-value')}>
-                    {formattedPrice(statistics.total_revenue)}
+                    {formattedPrice(statistics.total_revenue) || 0}
                 </div>
                 <div>Tháng này</div>
             </div>
             <div className={cx('statistic-item')}>
                 <h6>Tổng đơn hàng</h6>
-                <div className={cx('statistic-value')}>{statistics.total_orders}</div>
+                <div className={cx('statistic-value')}>{statistics.total_orders || 0}</div>
                 <div>Tháng này</div>
             </div>
             <div className={cx('statistic-item')}>
                 <h6>Tổng sản phẩm đã bán</h6>
-                <div className={cx('statistic-value')}>{statistics.total_sold_products}</div>
+                <div className={cx('statistic-value')}>{statistics.total_sold_products || 0}</div>
                 <div>Tháng này</div>
             </div>
         </div>

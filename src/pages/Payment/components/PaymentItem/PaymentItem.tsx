@@ -16,17 +16,18 @@ interface PaymentItemProps {
 const PaymentItem: React.FC<PaymentItemProps> = ({ data }) => {
     return (
         <div className={cx('item')}>
-            <Link to={`/products/${data.slug}`}>
-                <LazyLoadImage
-                    src={data.image_url}
-                    alt={data.title}
-                    className={cx('item-img')}
-                    effect="blur"
-                    height="100%"
-                    placeholderSrc={loadingImg}
-                    style={{ backgroundColor: '#dadada' }}
-                />
-            </Link>
+            <div className={cx('item-img')}>
+                <Link to={`/products/${data.slug}`}>
+                    <LazyLoadImage
+                        src={data.image_url}
+                        alt={data.title}
+                        effect="blur"
+                        height="100%"
+                        placeholderSrc={loadingImg}
+                        style={{ backgroundColor: '#dadada' }}
+                    />
+                </Link>
+            </div>
             <div className={cx('item-details')}>
                 <div className={cx('item-info')}>
                     <div>
@@ -35,9 +36,10 @@ const PaymentItem: React.FC<PaymentItemProps> = ({ data }) => {
                         </Link>
                         <p className={cx('item-quantity')}>Số lượng: {data.quantity}</p>
                     </div>
-                    <p className={cx('item-total')}>Tổng tiền:</p>
+                    <p className={cx('item-total')}>
+                        Tổng tiền: <span>{formattedPrice(data.total)}</span>
+                    </p>
                 </div>
-                <div className={cx('item-total')}>{formattedPrice(data.total)}</div>
             </div>
         </div>
     );

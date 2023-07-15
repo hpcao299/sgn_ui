@@ -7,3 +7,9 @@
 .product-actions button {
     max-width: 200px;
 }
+
+@media (min-width: 0) and (max-width: 739px) {
+    .product-actions {
+        flex-direction: column;
+    }
+}

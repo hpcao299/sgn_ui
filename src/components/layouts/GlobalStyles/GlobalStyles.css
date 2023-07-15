@@ -18,7 +18,11 @@
     --page-details-height: 90px;
     --sidebar-width: 270px;
     --position-right-notification: 32px;
+
+    --mobile-menu-width: 70vw;
+
     --admin-sidebar-width: 328px;
+    --admin-mobile-sidebar-height: 48px;
 }
 
 * {
@@ -36,6 +40,7 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 16px;
 }
 
 .flex {
@@ -71,4 +76,32 @@ input[type='number']::-webkit-outer-spin-button {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    :root {
+        --sidebar-width: 240px;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .section-heading {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    :root {
+        --sub-header-height: 48px;
+    }
+
+    .container {
+        padding: 0 8px;
+    }
+
+    .section-heading {
+        font-size: 18px;
+    }
 }

@@ -15,8 +15,6 @@ const OrdersList: React.FC = () => {
     const itemsList: HasOrderProduct[] = data?.data;
     const orderItems: Order[] = useMemo(() => transformedData(itemsList || []), [itemsList]);
 
-    console.log(error);
-
     return (
         <>
             {!error && orderItems.length === 0 && (

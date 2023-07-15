@@ -41,3 +41,23 @@
 .signup-btn {
     margin-top: 32px;
 }
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .wrapper {
+        padding: 44px 58px;
+    }
+
+    .wrapper h2 {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .wrapper {
+        padding: 32px 16px;
+    }
+
+    .wrapper h2 {
+        font-size: 22px;
+    }
+}

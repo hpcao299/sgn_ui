@@ -47,21 +47,23 @@ const ProductDetailsPage: React.FC = () => {
             <h5 className="section-heading">{details.title}</h5>
             <ProductHasSold />
             <div className={cx('product-details')}>
-                <LazyLoadImage
-                    src={details.image_url}
-                    alt={details.title}
-                    className={cx('product-img')}
-                    placeholderSrc={loadingImg}
-                    effect="blur"
-                    height="100%"
-                    style={{ backgroundColor: '#dadada' }}
-                />
+                <div className={cx('product-img')}>
+                    <LazyLoadImage
+                        src={details.image_url}
+                        alt={details.title}
+                        placeholderSrc={loadingImg}
+                        effect="blur"
+                        height="100%"
+                        style={{ backgroundColor: '#dadada' }}
+                    />
+                </div>
                 <div className={cx('product-info')}>
                     <h3 className={cx('product-title')}>{details.title}</h3>
                     <p className={cx('product-price')}>Giá bán: {formattedPrice(details.price)}</p>
                     <div className={cx('product-short-desc')}>{details.short_desc}</div>
                     <div className={cx('product-actions')}>
                         <Link
+                            className={cx('edit-btn')}
                             style={{ display: 'block' }}
                             to={`/admin/products/edit/${details.id}`}
                         >
