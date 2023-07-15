@@ -58,6 +58,16 @@
         margin: 0 auto;
     }
 
+    .footer-content h1,
+    .footer-content h2,
+    .footer-content h3,
+    .footer-content h4,
+    .footer-content h5,
+    .footer-content h6,
+    .footer-content p {
+        font-size: 14px;
+    }
+
     .footer-content div {
         width: 100%;
         text-align: center;
