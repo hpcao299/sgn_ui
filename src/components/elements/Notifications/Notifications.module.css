@@ -105,3 +105,75 @@
     font-weight: 500;
     color: #888;
 }
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .notifications {
+        right: 16px;
+        bottom: 16px;
+    }
+
+    .notification-item {
+        margin-bottom: 16px;
+        padding: 6px 8px;
+        width: 360px;
+        min-width: 360px;
+    }
+
+    .notification-icon {
+        padding: 0 8px;
+    }
+
+    .notification-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .notification__title {
+        font-size: 14px;
+    }
+
+    .notification__msg {
+        font-size: 12px;
+    }
+
+    .notification-close {
+        font-size: 18px;
+        padding: 8px 6px;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .notifications {
+        right: 8px;
+        bottom: 8px;
+    }
+
+    .notification-item {
+        margin-bottom: 8px;
+        padding: 6px;
+        width: calc(100vw - 16px);
+        min-width: calc(100vw - 16px);
+    }
+
+    .notification-icon {
+        padding: 0 6px 0 2px;
+    }
+
+    .notification-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .notification__title {
+        font-size: 12px;
+    }
+
+    .notification__msg {
+        font-size: 10px;
+    }
+
+    .notification-close {
+        font-size: 12px;
+        padding: 8px 6px;
+    }
+}
