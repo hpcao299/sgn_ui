@@ -8,9 +8,7 @@ interface ErrorHandlerProps {
 }
 
 const ErrorHandler: React.FC<ErrorHandlerProps> = ({ error }) => {
-    const { code, message, errorCode } = error;
-
-    console.log({ code, message, errorCode });
+    const { message, errorCode } = error;
 
     return (
         <div>
