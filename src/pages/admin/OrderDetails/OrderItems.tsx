@@ -43,15 +43,16 @@ const OrderItems: React.FC = () => {
                     <div className={cx('items-list')}>
                         {itemsList.map(item => (
                             <div key={item.id} className={cx('order-item')}>
-                                <LazyLoadImage
-                                    src={item.image_url}
-                                    alt={item.title}
-                                    className={cx('item-img')}
-                                    placeholderSrc={loadingImg}
-                                    effect="blur"
-                                    height="100%"
-                                    style={{ backgroundColor: '#dadada' }}
-                                />
+                                <div className={cx('item-img')}>
+                                    <LazyLoadImage
+                                        src={item.image_url}
+                                        alt={item.title}
+                                        placeholderSrc={loadingImg}
+                                        effect="blur"
+                                        height="100%"
+                                        style={{ backgroundColor: '#dadada' }}
+                                    />
+                                </div>
                                 <div className={cx('item-details')}>
                                     <h4 className={cx('item-title')}>{item.title}</h4>
                                     <p>
