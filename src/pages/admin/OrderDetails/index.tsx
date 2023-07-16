@@ -24,7 +24,7 @@ const OrderDetailsPage: React.FC = () => {
     const { data, isLoading } = orderApi.useOrderDetails(Number(params.id));
     const details: OrderDetail = data?.data;
 
-    if (!details)
+    if (!details && !isLoading)
         return (
             <div className="flex-center" style={{ fontSize: '22px', fontWeight: 600 }}>
                 Đơn hàng không được tìm thấy

@@ -17,7 +17,7 @@ const OrdersList: React.FC = () => {
 
     return (
         <>
-            {!error && orderItems.length === 0 && (
+            {!error && orderItems.length === 0 && !isLoading && (
                 <div style={{ textAlign: 'center', fontSize: '18px', marginTop: 10 }}>
                     Bạn chưa đặt đơn hàng nào.
                 </div>

@@ -38,7 +38,11 @@ const ProductsDetailsPage: React.FC = () => {
             {isLoading && <Loader size="medium" className={cx('loader')} />}
             {error && <p style={{ textAlign: 'center', fontSize: '22px' }}>{error.message}</p>}
 
-            {details ? (
+            {!details && !isLoading ? (
+                <div className="flex-center" style={{ marginTop: '24px', fontSize: '20px' }}>
+                    Sản phẩm không tìm thấy
+                </div>
+            ) : (
                 <>
                     <div className={cx('product-details-wrapper', isLoading && 'loading')}>
                         <PageDetails title={details?.title} paths={paths} />
@@ -91,10 +95,6 @@ const ProductsDetailsPage: React.FC = () => {
                         </RenderOnView>
                     </Suspense>
                 </>
-            ) : (
-                <div className="flex-center" style={{ marginTop: '24px', fontSize: '20px' }}>
-                    Sản phẩm không tìm thấy
-                </div>
             )}
         </>
     );
