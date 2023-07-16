@@ -77,7 +77,7 @@ const ShoppingCartPage: React.FC = () => {
                                 <div className={cx('grid-item')}>tạm tính</div>
                                 <div className={cx('grid-item', 'small-grid-item')}>xoá</div>
                             </div>
-                            {cartItems?.length === 0 ? (
+                            {cartItems?.length === 0 && !isLoading ? (
                                 <div className={cx('empty-text')}>
                                     <p>Giỏ hàng trống</p>
                                     <Link to={config.routes.home}>Lựa chọn các sản phẩm khác</Link>

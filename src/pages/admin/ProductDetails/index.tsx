@@ -31,7 +31,7 @@ const ProductDetailsPage: React.FC = () => {
         }
     };
 
-    if (!details)
+    if (!details && !isLoading)
         return (
             <div className="flex-center" style={{ fontSize: '22px', fontWeight: 600 }}>
                 Sản phẩm không được tìm thấy
