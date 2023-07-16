@@ -26,7 +26,7 @@ const UsersPage: React.FC = () => {
                         <div>Số điện thoại</div>
                         <div>Email</div>
                         <div>Tổng đơn hàng</div>
-                        <div>Tổng tiền</div>
+                        <div>Tổng tiền đã mua</div>
                     </div>
                     {usersList.map(user => (
                         <div key={user.id} className={cx('user-item')}>
