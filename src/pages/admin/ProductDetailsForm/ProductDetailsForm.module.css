@@ -60,6 +60,7 @@
 .uploaded-image {
     margin-top: 24px;
     width: 40%;
+    height: auto;
 }
 
 .submit-btn {
