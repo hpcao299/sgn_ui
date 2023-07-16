@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import useSWRImmutable from 'swr/immutable';
 import productApi from '../api/productApi';
 import ImageUploader from './ImageUploader';
-import styles from './ProductDetails.module.css';
+import styles from './ProductDetailsForm.module.css';
 
 const cx = classNames.bind(styles);
 

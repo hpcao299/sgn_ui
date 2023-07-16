@@ -2,7 +2,7 @@ import { Button, Loader } from '@/components/elements';
 import classNames from 'classnames/bind';
 import React, { ChangeEventHandler, memo, useEffect, useState } from 'react';
 import uploaderApi from '../api/uploaderApi';
-import styles from './ProductDetails.module.css';
+import styles from './ProductDetailsForm.module.css';
 import useSWRImmutable from 'swr/immutable';
 
 const cx = classNames.bind(styles);
