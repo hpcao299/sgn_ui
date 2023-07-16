@@ -180,6 +180,10 @@
         display: none;
     }
 
+    .header-text-link.admin-link {
+        display: flex;
+    }
+
     .header-login {
         display: flex;
         height: 100%;

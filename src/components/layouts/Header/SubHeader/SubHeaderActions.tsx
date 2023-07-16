@@ -16,9 +16,17 @@ const SubHeaderActions: React.FC = () => {
         <>
             {currentUser ? (
                 currentUser.is_admin ? (
-                    <Link to={config.routes.admin} className={cx('header-text-link')}>
-                        Trang Admin
-                    </Link>
+                    <>
+                        <Link
+                            to={config.routes.admin}
+                            className={cx('header-text-link', 'admin-link')}
+                        >
+                            Trang Admin
+                        </Link>
+                        <Link to={config.routes.profile} className={cx('header-icon-link')}>
+                            <UserIcon />
+                        </Link>
+                    </>
                 ) : (
                     <>
                         <Link to={config.routes.profile} className={cx('header-icon-link')}>
