@@ -14,6 +14,11 @@ const uploaderApi = {
             .then(data => data.data)
             .catch(err => err.response.data);
     },
+
+    getHelloString() {
+        const url = `${import.meta.env.VITE_APP_UPLOADER_BASE_URL}`;
+        return axios.get(url);
+    },
 };
 
 export default uploaderApi;
