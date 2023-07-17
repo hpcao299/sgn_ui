@@ -3,7 +3,6 @@ import classNames from 'classnames/bind';
 import React, { ChangeEventHandler, memo, useEffect, useState } from 'react';
 import uploaderApi from '../api/uploaderApi';
 import styles from './ProductDetailsForm.module.css';
-import useSWRImmutable from 'swr/immutable';
 
 const cx = classNames.bind(styles);
 
@@ -16,13 +15,16 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
     onChange,
     previewImage: previewImageProp,
 }) => {
-    useSWRImmutable(import.meta.env.VITE_APP_UPLOADER_BASE_URL, { shouldRetryOnError: false });
     const [file, setFile] = useState<File>();
     const [previewImage, setPreviewImage] = useState<string | ArrayBuffer | null>(
         previewImageProp || '',
     );
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
+
+    useEffect(() => {
+        uploaderApi.getHelloString();
+    }, []);
 
     useEffect(() => {
         const uploadImage = async (file: File) => {
