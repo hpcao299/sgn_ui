@@ -1,5 +1,6 @@
 import { adminFetcher } from '@/api/axiosClient';
 import { Loader } from '@/components/elements';
+import meta from '@/constants/meta';
 import { useAuthContext } from '@/contexts/AuthContext';
 import React, { Suspense } from 'react';
 import { Helmet } from 'react-helmet';
@@ -18,6 +19,13 @@ const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
         <>
             <Helmet>
                 <title>Admin của SGN</title>
+                <title>{meta.title.admin}</title>
+                <meta property="og:title" content={meta.title.admin} />
+                <meta name="description" content={meta.desc.admin} />
+                <meta property="og:description" content={meta.desc.admin} />
+                <link rel="canonical" href={window.location.href} />
+                <meta property="og:url" content={window.location.href} />
+                <meta name="robots" content="nofollow, noindex" />
             </Helmet>
 
             <Suspense

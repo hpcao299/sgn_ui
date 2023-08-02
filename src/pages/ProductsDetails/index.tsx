@@ -10,6 +10,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useParams } from 'react-router-dom';
 import styles from './ProductDetails.module.css';
 import ProductActions from './components/ProductActions';
+import meta from '@/constants/meta';
 
 const RelatedProducts = React.lazy(() => import('./components/RelatedProducts'));
 
@@ -33,6 +34,15 @@ const ProductsDetailsPage: React.FC = () => {
         <>
             <Helmet>
                 <title>{details?.title}</title>
+                <meta property="og:title" content={details?.title} />
+                <meta name="description" content={meta.desc.productDetails} />
+                <meta property="og:description" content={meta.desc.productDetails} />
+                <link rel="canonical" href={`/products/${details?.slug}`} />
+                <meta
+                    property="og:url"
+                    content={window.location.origin + `/products/${details?.slug}`}
+                />
+                <meta name="robots" content="index, follow" />
             </Helmet>
 
             {isLoading && <Loader size="medium" className={cx('loader')} />}
@@ -60,7 +70,7 @@ const ProductsDetailsPage: React.FC = () => {
                                 </div>
                                 <div className={cx('product-details')}>
                                     <div className={cx('product-info')}>
-                                        <h1 className={cx('product-title')}>{details?.title}</h1>
+                                        <h2 className={cx('product-title')}>{details?.title}</h2>
                                         <div className={cx('product-price')}>
                                             {formattedPrice(details?.price)}
                                         </div>

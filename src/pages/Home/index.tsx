@@ -8,6 +8,7 @@ import MediaQuery from 'react-responsive';
 import styles from './Home.module.css';
 import Banner from './components/Banner';
 import ProductsList from './components/ProductsList/ProductsList';
+import meta from '@/constants/meta';
 const cx = classNames.bind(styles);
 
 const News = React.lazy(() => import('./components/News'));
@@ -20,6 +21,12 @@ const HomePage: React.FC = () => {
         <>
             <Helmet>
                 <title>{import.meta.env.VITE_APP_SITE_TITLE}</title>
+                <meta property="og:title" content={import.meta.env.VITE_APP_SITE_TITLE} />
+                <meta name="description" content={meta.desc.home} />
+                <meta property="og:description" content={meta.desc.home} />
+                <link rel="canonical" href="/" />
+                <meta property="og:url" content={window.location.origin} />
+                <meta name="robots" content="index, follow" />
             </Helmet>
 
             <div className="container">
@@ -28,7 +35,7 @@ const HomePage: React.FC = () => {
                     <Banner />
                 </div>
                 <div className={cx('section')}>
-                    <h4 className={cx('section-title')}>sản phẩm mới</h4>
+                    <h3 className={cx('section-title')}>sản phẩm mới</h3>
                     <MediaQuery minWidth={740}>
                         <SliderProductsList
                             data={newArrivals?.data}
@@ -40,7 +47,7 @@ const HomePage: React.FC = () => {
                     </MediaQuery>
                 </div>
                 <div className={cx('section')}>
-                    <h4 className={cx('section-title')}>sản phẩm bán chạy</h4>
+                    <h3 className={cx('section-title')}>sản phẩm bán chạy</h3>
                     <MediaQuery minWidth={740}>
                         <SliderProductsList
                             data={bestSellings?.data}

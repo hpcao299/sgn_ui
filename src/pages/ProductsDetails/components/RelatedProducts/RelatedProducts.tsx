@@ -18,7 +18,7 @@ const RelatedProducts: React.FC = () => {
                 <Loader className={cx('loader')} />
             ) : (
                 <div className="container">
-                    <h5>Sản phẩm liên quan</h5>
+                    <h3>Sản phẩm liên quan</h3>
                     <div className={cx('list')}>
                         {data.data.map((item: Product) => (
                             <div key={item.id} className={cx('list-item')}>

@@ -32,9 +32,9 @@ const SubHeader: React.FC = () => {
                     slug: category.slug,
                 })),
             },
-            { title: 'Giới thiệu', to: config.routes.info },
-            { title: 'tin tức', to: config.routes.new },
-            { title: 'liên hệ', to: config.routes.contact },
+            { title: 'Giới thiệu', to: config.routes.info, nofollow: true },
+            { title: 'tin tức', to: config.routes.new, nofollow: true },
+            { title: 'liên hệ', to: config.routes.contact, nofollow: true },
         ],
         [data],
     );
@@ -49,7 +49,11 @@ const SubHeader: React.FC = () => {
                 <div className={cx('header-links')}>
                     {headerLinks.map((link, index) => (
                         <div key={index} className={cx('text-link-wrapper')}>
-                            <Link to={link.to} className={cx('header-text-link')}>
+                            <Link
+                                to={link.to}
+                                className={cx('header-text-link')}
+                                rel={link.nofollow ? 'nofollow' : ''}
+                            >
                                 {link.title}
                                 {link.subHeader && <ChevronDown />}
                             </Link>

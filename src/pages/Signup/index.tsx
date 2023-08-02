@@ -5,14 +5,15 @@ import { InputField } from '@/components/custom-fields';
 import { Button, PageDetails } from '@/components/elements';
 import config from '@/config';
 import constants from '@/constants';
+import meta from '@/constants/meta';
 import { useAuthContext } from '@/contexts/AuthContext';
+import { useNotifyContext } from '@/contexts/NotifyContext';
 import classNames from 'classnames/bind';
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Signup.module.css';
-import { useNotifyContext } from '@/contexts/NotifyContext';
-import { Helmet } from 'react-helmet';
 
 const cx = classNames.bind(styles);
 
@@ -73,7 +74,13 @@ const SignupPage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>Đăng ký</title>
+                <title>{meta.title.signup}</title>
+                <meta property="og:title" content={meta.title.signup} />
+                <meta name="description" content={meta.desc.signup} />
+                <meta property="og:description" content={meta.desc.signup} />
+                <link rel="canonical" href={config.routes.signup} />
+                <meta property="og:url" content={window.location.origin + config.routes.signup} />
+                <meta name="robots" content="index, follow" />
             </Helmet>
             <PageDetails title="Đăng ký tài khoản" paths={paths} />
             <div className={cx('container')}>

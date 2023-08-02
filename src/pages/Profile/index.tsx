@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import OrdersList from './OrdersList';
 import styles from './Profile.module.css';
 import { Helmet } from 'react-helmet';
+import meta from '@/constants/meta';
 
 const cx = classNames.bind(styles);
 
@@ -35,7 +36,13 @@ const ProfilePage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>{currentUser?.name}</title>
+                <title>{meta.title.profile}</title>
+                <meta property="og:title" content={meta.title.profile} />
+                <meta name="description" content={meta.desc.profile} />
+                <meta property="og:description" content={meta.desc.profile} />
+                <link rel="canonical" href={config.routes.profile} />
+                <meta property="og:url" content={window.location.origin + config.routes.profile} />
+                <meta name="robots" content="index, follow" />
             </Helmet>
 
             <PageDetails title="Thông tin cá nhân" paths={paths} />
@@ -61,7 +68,7 @@ const ProfilePage: React.FC = () => {
                     </div>
                 </div>
                 <div className={cx('products-list')}>
-                    <h5>Đơn hàng đã đặt</h5>
+                    <h3>Đơn hàng đã đặt</h3>
                     <OrdersList />
                 </div>
             </div>
