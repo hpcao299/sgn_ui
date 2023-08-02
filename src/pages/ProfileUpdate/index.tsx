@@ -14,6 +14,7 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProfileUpdate.module.css';
 import { Helmet } from 'react-helmet';
+import meta from '@/constants/meta';
 
 const cx = classNames.bind(styles);
 
@@ -62,7 +63,16 @@ const ProfileUpdatePage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>Cập nhật thông tin</title>
+                <title>{meta.title.profileUpdate}</title>
+                <meta property="og:title" content={meta.title.profileUpdate} />
+                <meta name="description" content={meta.desc.profileUpdate} />
+                <meta property="og:description" content={meta.desc.profileUpdate} />
+                <link rel="canonical" href={config.routes.profileUpdate} />
+                <meta
+                    property="og:url"
+                    content={window.location.origin + config.routes.profileUpdate}
+                />
+                <meta name="robots" content="nofollow, noindex" />
             </Helmet>
 
             <PageDetails title="Cập nhật thông tin" paths={paths} />

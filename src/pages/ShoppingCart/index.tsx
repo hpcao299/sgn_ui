@@ -13,6 +13,7 @@ import styles from './ShoppingCart.module.css';
 import CartActions from './components/CartActions';
 import CartItem from './components/CartItem';
 import MobileCartItem from './components/MobileCartItem';
+import meta from '@/constants/meta';
 
 const cx = classNames.bind(styles);
 
@@ -41,7 +42,13 @@ const ShoppingCartPage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>Giỏ hàng</title>
+                <title>{meta.title.cart}</title>
+                <meta property="og:title" content={meta.title.cart} />
+                <meta name="description" content={meta.desc.cart} />
+                <meta property="og:description" content={meta.desc.cart} />
+                <link rel="canonical" href={config.routes.cart} />
+                <meta property="og:url" content={window.location.origin + config.routes.cart} />
+                <meta name="robots" content="index, follow" />
             </Helmet>
 
             <PageDetails title="Giỏ hàng" paths={paths} />

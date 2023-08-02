@@ -7,7 +7,7 @@
     top: calc(var(--sub-header-height) + 56px);
 }
 
-.payment-form h4 {
+.payment-form h3 {
     font-weight: 500;
     font-size: 22px;
     display: flex;

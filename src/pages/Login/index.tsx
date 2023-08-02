@@ -5,14 +5,15 @@ import { InputField } from '@/components/custom-fields';
 import { Button, PageDetails } from '@/components/elements';
 import config from '@/config';
 import constants from '@/constants';
+import meta from '@/constants/meta';
 import { useAuthContext } from '@/contexts/AuthContext';
 import { useNotifyContext } from '@/contexts/NotifyContext';
 import classNames from 'classnames/bind';
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
-import { Helmet } from 'react-helmet';
 
 const cx = classNames.bind(styles);
 
@@ -70,7 +71,13 @@ const LoginPage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>Đăng nhập</title>
+                <title>{meta.title.login}</title>
+                <meta property="og:title" content={meta.title.login} />
+                <meta name="description" content={meta.desc.login} />
+                <meta property="og:description" content={meta.desc.login} />
+                <link rel="canonical" href={config.routes.login} />
+                <meta property="og:url" content={window.location.origin + config.routes.login} />
+                <meta name="robots" content="index, follow" />
             </Helmet>
 
             <PageDetails title="Đăng nhập" paths={paths} />

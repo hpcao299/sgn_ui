@@ -71,7 +71,7 @@ const PaymentForm: React.FC = () => {
 
     return (
         <div className={cx('payment-form')}>
-            <h4>Thông tin thanh toán</h4>
+            <h3>Thông tin thanh toán</h3>
             <form onSubmit={handleSubmit(onSubmit)} className={cx('form')}>
                 <Controller
                     name="name"

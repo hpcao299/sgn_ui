@@ -21,7 +21,7 @@ const Header: React.FC = () => {
                 </div>
                 <div className={cx('actions')}>
                     <Search />
-                    <a href="tel:+84901338974" className={cx('phone')}>
+                    <a href="tel:+84901338974" rel="nofollow" className={cx('phone')}>
                         <PhoneIcon />
                         <span>090 1338974</span>
                     </a>

@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import styles from './Payment.module.css';
 import PaymentForm from './components/PaymentForm';
 import PaymentItem from './components/PaymentItem';
+import meta from '@/constants/meta';
 
 const cx = classNames.bind(styles);
 
@@ -36,7 +37,13 @@ const PaymentPage = () => {
     return (
         <>
             <Helmet>
-                <title>Thanh toán giỏ hàng</title>
+                <title>{meta.title.payment}</title>
+                <meta property="og:title" content={meta.title.payment} />
+                <meta name="description" content={meta.desc.payment} />
+                <meta property="og:description" content={meta.desc.payment} />
+                <link rel="canonical" href={config.routes.payment} />
+                <meta property="og:url" content={window.location.origin + config.routes.payment} />
+                <meta name="robots" content="index, follow" />
             </Helmet>
 
             <PageDetails title="Thanh toán" paths={paths} />

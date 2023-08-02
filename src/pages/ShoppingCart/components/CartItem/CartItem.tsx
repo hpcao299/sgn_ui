@@ -72,7 +72,7 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                         placeholderSrc={loadingImg}
                         style={{ backgroundColor: '#dadada' }}
                     />
-                    <h1>{data.title}</h1>
+                    <h2>{data.title}</h2>
                 </Link>
             </div>
             <div className={cx('grid-item', 'cart-item-price')}>

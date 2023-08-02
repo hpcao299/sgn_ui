@@ -13,6 +13,10 @@
     column-gap: 70px;
 }
 
+.footer-content .heading {
+    font-weight: 600;
+}
+
 .footer-content h1,
 .footer-content h2,
 .footer-content h3,
