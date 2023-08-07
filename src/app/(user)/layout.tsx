@@ -2,6 +2,10 @@ import meta from '@/constants/meta';
 import '@/app/globals.css';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
+import { Header } from '@/layouts';
+import dynamic from 'next/dynamic';
+
+const Footer = dynamic(() => import('@/layouts/Footer'), { ssr: false });
 
 const roboto = Roboto({
     weight: ['300', '400', '500', '700', '900'],
@@ -28,8 +32,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="vi">
             <body className={roboto.className}>
-                <h1>Chào ae</h1>
-                {children}
+                <Header />
+                <main style={{ position: 'relative', minHeight: '100vh' }}>{children}</main>
+                <Footer />
             </body>
         </html>
     );
