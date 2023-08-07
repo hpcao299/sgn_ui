@@ -17,7 +17,7 @@ const Header: React.FC = () => {
             <div className={cx('top-header', 'container')}>
                 <div className={cx('logo')}>
                     <Link href={config.routes.home}>
-                        <Image src={logo} alt="SGN Logo" />
+                        <Image src={logo} alt="SGN Logo" width={170} height={60} priority />
                     </Link>
                 </div>
                 <div className={cx('actions')}>

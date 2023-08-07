@@ -1,11 +1,9 @@
-// import categoriesApi from '@/api/categoriesApi';
 import config from '@/config';
-import { Category } from '@/types';
+import { getCategories } from '@/libs/categories';
 import classNames from 'classnames/bind';
+import Link from 'next/link';
 import React from 'react';
 import styles from './Sidebar.module.css';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 
 const cx = classNames.bind(styles);
 
@@ -13,27 +11,23 @@ interface SidebarProps {
     className?: string;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ className }) => {
-    const searchParams = useSearchParams();
-    // const { data } = categoriesApi.useCategories();
+const Sidebar: React.FC<SidebarProps> = async ({ className }) => {
+    const data = await getCategories();
 
-    // const handleToHref = (slug: string): string => {
-    //     const newSearchParams = new URLSearchParams(searchParams);
-    //     newSearchParams.set('category', slug);
-
-    //     return `${config.routes.products}?${newSearchParams.toString()}`;
-    // };
+    const handleToHref = (slug: string): string => {
+        return `${config.routes.products}?slug=${slug}`;
+    };
 
     return (
         <div className={cx('sidebar', className)}>
             <ul className={cx('list')}>
-                {/* {data?.data.map((category: Category) => (
+                {data?.data.map(category => (
                     <li key={category.id} className={cx('list-item')}>
-                        <Link style={{ cursor: 'pointer' }} to={handleToHref(category.slug)}>
+                        <Link style={{ cursor: 'pointer' }} href={handleToHref(category.slug)}>
                             {category.title}
                         </Link>
                     </li>
-                ))} */}
+                ))}
             </ul>
         </div>
     );

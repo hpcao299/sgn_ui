@@ -1,5 +1,6 @@
 import meta from '@/constants/meta';
 import '@/app/globals.css';
+import '@/app/carousel.css';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import { Header } from '@/layouts';

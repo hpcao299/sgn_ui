@@ -5,7 +5,6 @@ import MenuIcon from '@/assets/icons/menu.svg';
 import config from '@/config';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './MobileMenu.module.css';
 
@@ -33,10 +32,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ links }) => {
     const [isShown, setIsShown] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
     const menuRef = useRef<HTMLElement>(null);
-    const searchParams = useSearchParams();
 
     const handleToHref = (slug: string) => {
-        return `${config.routes.products}?slug=${searchParams.get('slug')}`;
+        return `${config.routes.products}?slug=${slug}`;
     };
 
     const handleToggleMenu = () => {
@@ -66,7 +64,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ links }) => {
     }, [open]);
 
     return (
-        <div>
+        <div className={cx('wrapper')}>
             <div className={cx('mobile-menu-icon')} onClick={handleToggleMenu}>
                 <MenuIcon />
             </div>

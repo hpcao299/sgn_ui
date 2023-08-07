@@ -1,3 +1,7 @@
+.wrapper {
+    display: none;
+}
+
 .mobile-menu-icon {
     display: flex;
     color: var(--white-color);
@@ -94,6 +98,12 @@
     height: 5px;
     border-radius: 100%;
     background-color: var(--primary-color);
+}
+
+@media (max-width: 739px) {
+    .wrapper {
+        display: block;
+    }
 }
 
 @keyframes slideIn {

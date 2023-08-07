@@ -14,3 +14,7 @@ export interface ErrorResponse {
     message: string;
     errorCode?: string;
 }
+
+export interface ResponseData<T> {
+    data: T;
+}

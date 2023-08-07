@@ -31,7 +31,13 @@ const SubHeaderLogo = () => {
         <>
             {changeLogo ? (
                 <a href="#">
-                    <Image src={whiteLogo} alt="SGN Logo" className={cx('white-logo')} />
+                    <Image
+                        src={whiteLogo}
+                        width={120}
+                        height={43}
+                        alt="SGN Logo"
+                        className={cx('white-logo')}
+                    />
                 </a>
             ) : (
                 <div className={cx('product-categories')}>
