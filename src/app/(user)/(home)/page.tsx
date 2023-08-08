@@ -3,12 +3,11 @@ import { getBestSellings, getNewArrivals } from '@/libs/products';
 import classNames from 'classnames/bind';
 import { NextPage } from 'next';
 import dynamic from 'next/dynamic';
-import styles from './page.module.css';
+import styles from './Home.module.css';
 
 const cx = classNames.bind(styles);
 
 const ProductsList = dynamic(() => import('./ProductsList'), {
-    ssr: false,
     loading: () => <Loader className={cx('loader')} />,
 });
 
