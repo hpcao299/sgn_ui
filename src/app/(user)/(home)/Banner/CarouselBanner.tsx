@@ -3,8 +3,8 @@
 import Image from 'next/image';
 import Carousel from 'nuka-carousel';
 import React from 'react';
-import bigBanner1 from '@/assets/images/big_banner_1.jpeg';
-import bigBanner2 from '@/assets/images/big_banner_2.jpeg';
+import bigBanner1 from '/public/big_banner_1.jpeg';
+import bigBanner2 from '/public/big_banner_2.jpeg';
 
 const CarouselBanner: React.FC = () => {
     const settings = {

@@ -1,5 +1,5 @@
 import PhoneIcon from '@/assets/icons/phone.svg';
-import logo from '@/assets/images/sgn-logo.png';
+import logo from '/public/sgn-logo.png';
 import config from '@/config';
 import classNames from 'classnames/bind';
 import React from 'react';

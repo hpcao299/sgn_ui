@@ -1,0 +1,23 @@
+import { Product, ResponseData } from '@/types';
+
+const SECONDS_IN_AN_HOUR = 3600;
+
+export async function getNewArrivals(): Promise<ResponseData<Product[]>> {
+    const res = await fetch('http://localhost:8000/api/products/new-arrivals', {
+        next: { revalidate: SECONDS_IN_AN_HOUR },
+    });
+
+    const data = await res.json();
+
+    return data;
+}
+
+export async function getBestSellings(): Promise<ResponseData<Product[]>> {
+    const res = await fetch('http://localhost:8000/api/products/best-selling', {
+        next: { revalidate: SECONDS_IN_AN_HOUR },
+    });
+
+    const data = await res.json();
+
+    return data;
+}

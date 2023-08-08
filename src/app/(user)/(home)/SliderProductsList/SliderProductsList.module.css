@@ -1,0 +1,66 @@
+.container {
+    display: flex;
+    gap: 24px;
+    position: relative;
+    min-height: 50px;
+}
+
+.item {
+    width: calc((100% - 120px) / 5);
+}
+
+.control-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    background-color: transparent;
+    outline: none;
+    height: 50px;
+    width: 24px;
+    cursor: pointer;
+    background-color: var(--white-color);
+    z-index: 1;
+}
+
+.control-btn svg {
+    width: 16px;
+    height: 16px;
+    color: var(--text-color);
+}
+
+.control-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.prev-btn {
+    left: -48px;
+}
+
+.next-btn {
+    right: -48px;
+}
+
+.loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 740px) and (max-width: 1024px) {
+    .prev-btn {
+        left: -14px;
+    }
+
+    .next-btn {
+        right: -14px;
+    }
+}

@@ -13,6 +13,20 @@ const nextConfig = {
         return config;
     },
     reactStrictMode: false,
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'http',
+                hostname: 'localhost',
+                pathname: '/uploads/**',
+            },
+            {
+                protocol: 'http',
+                hostname: 'trangvangtructuyen.vn',
+                pathname: '/**',
+            },
+        ],
+    },
 };
 
 module.exports = nextConfig;

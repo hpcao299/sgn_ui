@@ -1,7 +1,7 @@
 'use client';
 
 import AlignLeftIcon from '@/assets/icons/alignLeft.svg';
-import whiteLogo from '@/assets/images/white-logo.png';
+import whiteLogo from '/public/white-logo.png';
 import classNames from 'classnames/bind';
 import { memo, useEffect, useState } from 'react';
 import styles from './SubHeader.module.css';
