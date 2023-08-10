@@ -1,10 +1,10 @@
-import meta from '@/constants/meta';
-import '@/app/globals.css';
 import '@/app/carousel.css';
-import type { Metadata } from 'next';
-import { Roboto } from 'next/font/google';
+import '@/app/globals.css';
+import meta from '@/constants/meta';
 import { Header } from '@/layouts';
+import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import { Roboto } from 'next/font/google';
 
 const Footer = dynamic(() => import('@/layouts/Footer'), { ssr: false });
 

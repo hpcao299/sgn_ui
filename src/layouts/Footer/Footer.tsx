@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
         >
             <div className={cx('container', 'footer-content')}>
                 <div className="">
-                    <h1 className={cx('heading')}>CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI SÀI GÒN NGUYỄN</h1>
+                    <p className={cx('heading')}>CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI SÀI GÒN NGUYỄN</p>
                     <p>
                         Chuyên cung cấp và sản xuất bao bì giấy carton, với kinh nghiệm hơn 5 năm
                         làm việc trong nghành sản xuất bao bì.

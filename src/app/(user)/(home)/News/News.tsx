@@ -34,7 +34,7 @@ const News: React.FC = () => {
     return (
         <div className={cx('news')}>
             <div className="container">
-                <h6 className={cx('news-heading')}>TIN TỨC</h6>
+                <div className={cx('news-heading')}>TIN TỨC</div>
                 <div className={cx('news-content')}>
                     {news.map((item, index) => (
                         <div key={index} className={cx('news-item')}>
@@ -42,12 +42,12 @@ const News: React.FC = () => {
                                 src={item.img}
                                 width={358}
                                 height={245}
-                                alt="New Image"
+                                alt="Tin tức gần đây"
                                 className={cx('news-img')}
                                 layout="responsive"
                             />
                             <div className={cx('news-date')}>{item.date}</div>
-                            <h5 className={cx('news-title')}>{item.title}</h5>
+                            <div className={cx('news-title')}>{item.title}</div>
                             <p className={cx('news-desc')}>{item.desc}</p>
                         </div>
                     ))}
@@ -56,7 +56,7 @@ const News: React.FC = () => {
 
             <Image
                 src={banner}
-                alt="Banner"
+                alt="Đơn giản hoá cho nhà kinh doanh"
                 width={1200}
                 height={150}
                 className={cx('news-banner')}

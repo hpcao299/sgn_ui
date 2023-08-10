@@ -7,6 +7,7 @@
 .news-heading {
     text-transform: uppercase;
     font-size: 24px;
+    font-weight: 600;
     text-align: center;
     margin-bottom: 40px;
 }

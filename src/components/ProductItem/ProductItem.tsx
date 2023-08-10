@@ -11,7 +11,6 @@ import React from 'react';
 import styles from './ProductItem.module.css';
 import Link from 'next/link';
 import { Image } from '@/components';
-import noImageSrc from '@/assets/images/no-image.jpeg';
 
 const cx = classNames.bind(styles);
 
@@ -41,12 +40,6 @@ const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
     //     }
     // };
 
-    const handleImageError: React.ReactEventHandler<HTMLImageElement> = event => {
-        event.currentTarget.onerror = null;
-        event.currentTarget.src = noImageSrc.src;
-        console.log(event.currentTarget.alt);
-    };
-
     return (
         <div className={cx('product-item')}>
             <Link href={`/products/${data.slug}`}>
@@ -62,7 +55,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
                 />
             </Link>
             <Link href={`/products/${data.slug}`}>
-                <h2 className={cx('product-title')}>{data.title}</h2>
+                <h3 className={cx('product-title')}>{data.title}</h3>
             </Link>
             <p className={cx('product-price')}>{formattedPrice(data.price)}</p>
             {/* <div className={cx('product-actions')}>

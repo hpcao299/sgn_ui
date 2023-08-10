@@ -21,3 +21,13 @@ export async function getBestSellings(): Promise<ResponseData<Product[]>> {
 
     return data;
 }
+
+export async function getProductDetails(slug: string) {
+    const res = await fetch(`http://localhost:8000/api/products/details/${slug}`, {
+        next: { revalidate: SECONDS_IN_AN_HOUR },
+    });
+
+    const data = await res.json();
+
+    return data;
+}
