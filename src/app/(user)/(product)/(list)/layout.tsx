@@ -4,8 +4,24 @@ import styles from './ProductsLayout.module.css';
 import classNames from 'classnames/bind';
 import { PageDetails } from '@/components';
 import FilterSelect from './FilterSelect';
+import { Metadata } from 'next';
+import meta from '@/constants/meta';
+import config from '@/config';
 
 const cx = classNames.bind(styles);
+
+export const metadata: Metadata = {
+    title: meta.title.products,
+    description: meta.desc.products,
+    alternates: { canonical: `${process.env.APP_URL}${config.routes.products}` },
+    openGraph: {
+        title: meta.title.products,
+        description: meta.desc.products,
+        type: 'website',
+        locale: 'vi_VN',
+        url: `${process.env.APP_URL}${config.routes.products}`,
+    },
+};
 
 const ProductsPageLayout = ({ children }: { children: React.ReactNode }) => {
     return (
