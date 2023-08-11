@@ -1,4 +1,3 @@
-import config from '@/config';
 import { getCategories } from '@/libs/categories';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
@@ -15,7 +14,7 @@ const Sidebar: React.FC<SidebarProps> = async ({ className }) => {
     const data = await getCategories();
 
     const handleToHref = (slug: string): string => {
-        return `${config.routes.products}?slug=${slug}`;
+        return `/${slug}`;
     };
 
     return (

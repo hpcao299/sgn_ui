@@ -34,7 +34,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ links }) => {
     const menuRef = useRef<HTMLElement>(null);
 
     const handleToHref = (slug: string) => {
-        return `${config.routes.products}?slug=${slug}`;
+        return `/${slug}`;
     };
 
     const handleToggleMenu = () => {

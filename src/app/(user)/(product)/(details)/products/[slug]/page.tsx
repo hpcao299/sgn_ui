@@ -47,7 +47,6 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
         twitter: {
             title: product.data.title,
             description: `Thông tin chi tiết về ${product.data.title} từ Công Ty TNHH Đầu Tư Thương Mại Sài Gòn Nguyễn. Xem thông số kỹ thuật, giá cả và mua hàng online ngay!`,
-            site: `${process.env.APP_URL}/products/${product.data.slug}`,
             images: {
                 url: product.data.image_url,
                 height: 600,

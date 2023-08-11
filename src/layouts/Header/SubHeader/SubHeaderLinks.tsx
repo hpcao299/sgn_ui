@@ -12,7 +12,7 @@ interface SubHeaderLinksProps {
 
 const SubHeaderLinks: React.FC<SubHeaderLinksProps> = ({ data }) => {
     const handleToHref = (slug: string) => {
-        return `${config.routes.products}?slug=${slug}`;
+        return `/${slug}`;
     };
 
     return (

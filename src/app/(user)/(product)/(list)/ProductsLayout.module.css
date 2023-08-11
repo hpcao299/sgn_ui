@@ -1,0 +1,16 @@
+.content {
+    padding-top: 30px;
+    padding-bottom: 100px;
+}
+
+.sidebar {
+    position: sticky;
+    position: -webkit-sticky;
+    top: calc(var(--sub-header-height) + 30px);
+}
+
+.products-container {
+    padding-left: 30px;
+    flex: 1;
+    position: relative;
+}

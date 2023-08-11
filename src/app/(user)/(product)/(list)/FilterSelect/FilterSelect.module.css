@@ -1,0 +1,13 @@
+.filter-products-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.filter-products {
+    height: 32px;
+    background-color: transparent;
+    border: 1px solid #dadada;
+    border-radius: 4px;
+    padding-left: 10px;
+    padding-right: 6px;
+}
