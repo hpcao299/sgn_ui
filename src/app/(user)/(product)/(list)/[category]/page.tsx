@@ -1,8 +1,12 @@
-import { Metadata, NextPage } from 'next';
+import { getProductsByCategory } from '@/libs/products';
+import { Metadata } from 'next';
 import React from 'react';
+import ProductsList from '../ProductsList/ProductsList';
+import meta from '@/constants/meta';
 
 export interface Props {
     params: { category: string };
+    searchParams: { filter?: string };
 }
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
@@ -31,8 +35,15 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
     };
 };
 
-const ProductsCategoryPage: NextPage = () => {
-    return <div>ProductsCategoryPage</div>;
+const ProductsCategoryPage = async ({ params, searchParams }: Props) => {
+    const { data } = await getProductsByCategory(params.category, searchParams.filter);
+
+    return (
+        <>
+            <h1 style={{ position: 'fixed', top: '-100px' }}>{meta.title.products}</h1>
+            <ProductsList data={data} />
+        </>
+    );
 };
 
 export default ProductsCategoryPage;

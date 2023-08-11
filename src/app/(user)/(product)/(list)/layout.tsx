@@ -1,5 +1,5 @@
 import { Sidebar } from '@/layouts';
-import React from 'react';
+import React, { Suspense } from 'react';
 import styles from './ProductsLayout.module.css';
 import classNames from 'classnames/bind';
 import { PageDetails } from '@/components';
@@ -18,7 +18,7 @@ const ProductsPageLayout = ({ children }: { children: React.ReactNode }) => {
                     </div>
                     <div className={cx('products-container')}>
                         <FilterSelect />
-                        {children}
+                        <Suspense>{children}</Suspense>
                     </div>
                 </div>
             </div>

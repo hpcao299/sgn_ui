@@ -8,9 +8,7 @@ import styles from './FilterSelect.module.css';
 const cx = classNames.bind(styles);
 
 const filterOptions = [
-    { title: 'Phổ biến', value: 'popular' },
     { title: 'Bán chạy', value: 'best-sellings' },
-    { title: 'Hàng mới', value: 'new-arrivals' },
     { title: 'Giá thấp đến cao', value: 'price-low-to-high' },
     { title: 'Giá cao đến thấp', value: 'price-high-to-low' },
 ];

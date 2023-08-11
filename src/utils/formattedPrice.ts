@@ -3,5 +3,5 @@ export function formattedPrice(price: number): string {
         return '';
     }
 
-    return `${price.toLocaleString()} VNĐ`;
+    return `${Number(price).toLocaleString()} VNĐ`;
 }

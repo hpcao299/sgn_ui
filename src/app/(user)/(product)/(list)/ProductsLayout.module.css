@@ -14,3 +14,15 @@
     flex: 1;
     position: relative;
 }
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .products-container {
+        padding-left: 24px;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .products-container {
+        padding-left: 0;
+    }
+}

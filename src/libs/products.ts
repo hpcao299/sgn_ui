@@ -22,6 +22,24 @@ export async function getBestSellings(): Promise<ResponseData<Product[]>> {
     return data;
 }
 
+export async function getProductsByCategory(
+    category: string,
+    filter?: string,
+): Promise<ResponseData<Product[]>> {
+    const filterQuery = filter ? `&filter=${filter}` : '';
+
+    const res = await fetch(
+        `http://localhost:8000/api/products/list?category=${category}${filterQuery}`,
+        {
+            next: { revalidate: SECONDS_IN_AN_HOUR },
+        },
+    );
+
+    const data = await res.json();
+
+    return data;
+}
+
 export async function getProductDetails(slug: string) {
     const res = await fetch(`http://localhost:8000/api/products/details/${slug}`, {
         next: { revalidate: SECONDS_IN_AN_HOUR },
