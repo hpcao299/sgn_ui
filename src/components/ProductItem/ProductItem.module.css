@@ -53,4 +53,8 @@
     .product-price {
         font-size: 14px;
     }
+
+    .product-img {
+        max-width: 150px;
+    }
 }

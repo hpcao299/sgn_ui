@@ -47,7 +47,7 @@
         padding: 44px 58px;
     }
 
-    .wrapper h2 {
+    .wrapper h1 {
         font-size: 22px;
     }
 }
@@ -57,7 +57,8 @@
         padding: 32px 16px;
     }
 
-    .wrapper h2 {
-        font-size: 22px;
+    .wrapper h1 {
+        font-size: 20px;
+        text-align: center;
     }
 }
