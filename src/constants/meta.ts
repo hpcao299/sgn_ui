@@ -26,7 +26,7 @@ const title = {
     login: 'Đăng nhập',
     signup: 'Đăng ký',
 
-    products: 'Danh sách sản phẩm của Sài Gòn Nguyễn',
+    products: 'Danh mục sản phẩm - Công Ty TNHH Đầu Tư Thương Mại Sài Gòn Nguyễn',
 
     cart: 'Giỏ hàng',
     payment: 'Thanh toán giỏ hàng',

@@ -1,0 +1,37 @@
+body .slider-container {
+    width: 100%;
+}
+
+.products-carousel .slider-control-bottomcenter {
+    display: none;
+}
+
+.products-carousel .slide {
+    padding: 0 15px !important;
+}
+
+.banners-carousel .slider-container,
+.banners-carousel .slider-frame,
+.banners-carousel .slider-list {
+    height: 100% !important;
+}
+
+.banners-carousel .slider-control-centerright,
+.banners-carousel .slider-control-centerleft {
+    display: none !important;
+}
+
+.banners-carousel .slider-control-bottomcenter button {
+    width: 10px;
+    height: 10px;
+}
+
+.banners-carousel .slider-control-bottomcenter button {
+    margin: 0 4px;
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .products-carousel .slide {
+        padding: 0 8px !important;
+    }
+}

@@ -1,0 +1,37 @@
+.section {
+    margin-top: 80px;
+    padding-bottom: 80px;
+}
+
+.section:not(:last-child) {
+    border-bottom: 1px solid #ececec;
+}
+
+.section-title {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .section {
+        margin-top: 52px;
+        padding-bottom: 58px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 0) and (max-width: 739px) {
+    .section {
+        margin-top: 56px;
+        padding-bottom: 48px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+}
