@@ -47,7 +47,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
                     src={data.image_url}
                     alt={data.title}
                     className={cx('product-img')}
-                    style={{ backgroundColor: '#dadada' }}
+                    style={{ backgroundColor: '#f0f0f0' }}
                     width={204}
                     height={204}
                     loading="lazy"

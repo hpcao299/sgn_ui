@@ -1,4 +1,3 @@
-import '@/app/carousel.css';
 import '@/app/globals.css';
 import meta from '@/constants/meta';
 import { Header } from '@/layouts';

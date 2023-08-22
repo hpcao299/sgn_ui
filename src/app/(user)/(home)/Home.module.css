@@ -14,10 +14,6 @@
     margin-bottom: 40px;
 }
 
-.loader {
-    margin: 0 auto;
-}
-
 @media (min-width: 740px) and (max-width: 1023px) {
     .section {
         margin-top: 52px;

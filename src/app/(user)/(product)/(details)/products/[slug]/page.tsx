@@ -80,7 +80,7 @@ const ProductDetailsPage = async ({ params }: Props) => {
                             <Image
                                 src={details.image_url}
                                 alt={details.title}
-                                style={{ backgroundColor: '#dadada' }}
+                                style={{ backgroundColor: '#f0f0f0' }}
                                 width={500}
                                 height={500}
                             />

@@ -29,7 +29,7 @@ const ProfilePage: NextPage = () => {
     return (
         <>
             <PageDetails title="Thông tin cá nhân" paths={paths} />
-            <h1 style={{ position: 'fixed', top: '-100px' }}>Thông tin cá nhân</h1>
+            <h1 style={{ position: 'fixed', top: '-100vh' }}>Thông tin cá nhân</h1>
             <div className={cx('content', 'container')}>
                 <div className={cx('user-details')}>
                     <h2 className={cx('user-name')}>{currentUser?.name}</h2>

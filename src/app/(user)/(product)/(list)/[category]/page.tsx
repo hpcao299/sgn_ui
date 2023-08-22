@@ -40,7 +40,7 @@ const ProductsCategoryPage = async ({ params, searchParams }: Props) => {
 
     return (
         <>
-            <h1 style={{ position: 'fixed', top: '-100px' }}>{meta.title.products}</h1>
+            <h1 style={{ position: 'fixed', top: '-100vh' }}>{meta.title.products}</h1>
             <ProductsList data={data} />
         </>
     );

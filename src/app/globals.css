@@ -12,6 +12,7 @@
     --text-color: #201f20;
     --white-color: #fff;
     --background-color: #fafafa;
+    --skeleton-color: #f0f0f0;
 
     --top-header-height: 88px;
     --sub-header-height: 60px;
@@ -60,6 +61,10 @@ input[type='number']::-webkit-outer-spin-button {
     flex: 1;
     height: 100vh;
     background-color: rgba(255, 255, 255, 0.7);
+}
+
+.loader-margin {
+    margin: 0 auto;
 }
 
 .section-heading {

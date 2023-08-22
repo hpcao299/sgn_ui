@@ -1,3 +1,4 @@
+import '@/app/carousel.css';
 import { Loader } from '@/components';
 import { getBestSellings, getNewArrivals } from '@/libs/products';
 import classNames from 'classnames/bind';
@@ -15,7 +16,8 @@ export const metadata: Metadata = {
 };
 
 const ProductsList = dynamic(() => import('./ProductsList'), {
-    loading: () => <Loader className={cx('loader')} />,
+    ssr: false,
+    loading: () => <Loader className="loader-margin" />,
 });
 
 const HomePage: NextPage = async () => {
@@ -26,7 +28,7 @@ const HomePage: NextPage = async () => {
 
     return (
         <>
-            <h1 style={{ position: 'fixed', top: '-100px' }}>
+            <h1 style={{ position: 'fixed', top: '-100vh' }}>
                 CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI SÀI GÒN NGUYỄN
             </h1>
             <div className={cx('section')}>
