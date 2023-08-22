@@ -21,8 +21,6 @@ const FilterSelect: React.FC = () => {
         searchParams.get('filter') || filterOptions[0].value,
     );
 
-    console.log('re-render');
-
     const onSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
         // now you got a read/write object
         const current = new URLSearchParams(Array.from(searchParams.entries())); // -> has to use this form

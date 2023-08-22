@@ -23,10 +23,15 @@ export const metadata: Metadata = {
     },
 };
 
+const paths = [
+    { to: config.routes.home, title: 'Trang chủ' },
+    { to: config.routes.products, title: 'Sản phẩm' },
+];
+
 const ProductsPageLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
-            <PageDetails title="San Pahm" />
+            <PageDetails title="Sản phẩm" paths={paths} />
             <div className={cx('content')}>
                 <div className="container flex">
                     <div>

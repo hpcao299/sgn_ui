@@ -2,7 +2,7 @@ import { ProductItem } from '@/components';
 import { Product } from '@/types';
 import classNames from 'classnames/bind';
 import React from 'react';
-import styles from './ProductsList.module.css';
+import styles from '../ProductsLayout.module.css';
 
 const cx = classNames.bind(styles);
 

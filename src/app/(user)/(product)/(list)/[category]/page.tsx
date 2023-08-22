@@ -1,8 +1,8 @@
+import meta from '@/constants/meta';
+import { getCategories } from '@/libs/categories';
 import { getProductsByCategory } from '@/libs/products';
 import { Metadata } from 'next';
-import React from 'react';
 import ProductsList from '../ProductsList/ProductsList';
-import meta from '@/constants/meta';
 
 export interface Props {
     params: { category: string };
@@ -33,6 +33,14 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
             description: `Danh mục sản phẩm ${data.title} chất lượng cao, buôn bán sỉ lẻ. Tìm kiếm và mua sắm ngay hôm nay!`,
         },
     };
+};
+
+export const generateStaticParams = async () => {
+    const categories = await getCategories();
+
+    return categories.data.map(category => ({
+        category: category.slug,
+    }));
 };
 
 const ProductsCategoryPage = async ({ params, searchParams }: Props) => {
