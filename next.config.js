@@ -25,6 +25,12 @@ const nextConfig = {
                 hostname: 'trangvangtructuyen.vn',
                 pathname: '/**',
             },
+            { protocol: 'https', hostname: 'sgn-cdn.onrender.com', pathname: '/uploads/**' },
+            {
+                protocol: 'https',
+                hostname: 'i.ibb.co',
+                pathname: '/**',
+            },
         ],
     },
 };

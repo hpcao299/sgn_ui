@@ -20,13 +20,17 @@ interface Props {
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
     const slug = params.slug;
 
-    const res = await fetch(`http://localhost:8000/api/products/details/${slug}`);
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/products/details/${slug}`,
+    );
     const product = await res.json();
 
     return {
         title: product.data.title,
         description: `Thông tin chi tiết về ${product.data.title} từ Công Ty TNHH Đầu Tư Thương Mại Sài Gòn Nguyễn. Xem thông số kỹ thuật, giá cả và mua hàng online ngay!`,
-        alternates: { canonical: `${process.env.APP_URL}/products/${product.data.slug}` },
+        alternates: {
+            canonical: `${process.env.NEXT_PUBLIC_APP_URL}/products/${product.data.slug}`,
+        },
         robots: {
             index: true,
             follow: true,
@@ -36,7 +40,7 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
             description: `Thông tin chi tiết về ${product.data.title} từ Công Ty TNHH Đầu Tư Thương Mại Sài Gòn Nguyễn. Xem thông số kỹ thuật, giá cả và mua hàng online ngay!`,
             type: 'website',
             locale: 'vi_VN',
-            url: `${process.env.APP_URL}/products/${product.data.slug}`,
+            url: `${process.env.NEXT_PUBLIC_APP_URL}/products/${product.data.slug}`,
             images: {
                 url: product.data.image_url,
                 height: 600,

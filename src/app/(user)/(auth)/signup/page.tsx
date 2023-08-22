@@ -16,11 +16,11 @@ const paths = [
 export const metadata: Metadata = {
     title: meta.title.signup,
     description: meta.desc.signup,
-    alternates: { canonical: `${process.env.APP_URL}${config.routes.signup}` },
+    alternates: { canonical: `${process.env.NEXT_PUBLIC_APP_URL}${config.routes.signup}` },
     openGraph: {
         title: meta.title.signup,
         description: meta.desc.signup,
-        url: `${process.env.APP_URL}${config.routes.signup}`,
+        url: `${process.env.NEXT_PUBLIC_APP_URL}${config.routes.signup}`,
         type: 'website',
         locale: 'vi_VN',
         images: {

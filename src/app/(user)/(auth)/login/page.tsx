@@ -12,13 +12,13 @@ const cx = classNames.bind(styles);
 export const metadata: Metadata = {
     title: meta.title.login,
     description: meta.desc.login,
-    alternates: { canonical: `${process.env.APP_URL}${config.routes.login}` },
+    alternates: { canonical: `${process.env.NEXT_PUBLIC_APP_URL}${config.routes.login}` },
     openGraph: {
         title: meta.title.login,
         description: meta.desc.login,
         type: 'website',
         locale: 'vi_VN',
-        url: `${process.env.APP_URL}${config.routes.login}`,
+        url: `${process.env.NEXT_PUBLIC_APP_URL}${config.routes.login}`,
         images: {
             url: '/opengraph-image.jpg',
             alt: 'SGN Logo',

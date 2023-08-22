@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 export const metadata: Metadata = {
     title: meta.title.profileUpdate,
     description: meta.desc.profileUpdate,
-    alternates: { canonical: `${process.env.APP_URL}${config.routes.profileUpdate}` },
+    alternates: { canonical: `${process.env.NEXT_PUBLIC_APP_URL}${config.routes.profileUpdate}` },
     robots: {
         index: false,
         follow: false,
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: meta.title.profileUpdate,
         description: meta.desc.profileUpdate,
-        url: `${process.env.APP_URL}${config.routes.profileUpdate}`,
+        url: `${process.env.NEXT_PUBLIC_APP_URL}${config.routes.profileUpdate}`,
         type: 'website',
         locale: 'vi_VN',
         images: {

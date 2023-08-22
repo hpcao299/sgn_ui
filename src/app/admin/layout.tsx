@@ -22,9 +22,9 @@ export const metadata: Metadata = {
         description: meta.desc.admin,
         type: 'website',
         locale: 'vi_VN',
-        url: `${process.env.APP_URL}/admin`,
+        url: `${process.env.NEXT_PUBLIC_APP_URL}/admin`,
     },
-    alternates: { canonical: `${process.env.APP_URL}/admin` },
+    alternates: { canonical: `${process.env.NEXT_PUBLIC_APP_URL}/admin` },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

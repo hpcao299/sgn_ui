@@ -10,13 +10,15 @@ export interface Props {
 }
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
-    const res = await fetch(`http://localhost:8000/api/topics/${params.category}`);
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/topics/${params.category}`,
+    );
     const { data } = await res.json();
 
     return {
         title: `${data.title} chất lượng cao, buôn bán sỉ lẻ`,
         description: `Danh mục sản phẩm ${data.title} chất lượng cao, buôn bán sỉ lẻ. Tìm kiếm và mua sắm ngay hôm nay!`,
-        alternates: { canonical: `${process.env.APP_URL}/${data.slug}` },
+        alternates: { canonical: `${process.env.NEXT_PUBLIC_APP_URL}/${data.slug}` },
         robots: {
             index: true,
             follow: true,
@@ -26,7 +28,7 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
             description: `Danh mục sản phẩm ${data.title} chất lượng cao, buôn bán sỉ lẻ. Tìm kiếm và mua sắm ngay hôm nay!`,
             type: 'website',
             locale: 'vi_VN',
-            url: `${process.env.APP_URL}/${data.slug}`,
+            url: `${process.env.NEXT_PUBLIC_APP_URL}/${data.slug}`,
         },
         twitter: {
             title: `${data.title} chất lượng cao, buôn bán sỉ lẻ`,

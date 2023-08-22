@@ -13,13 +13,13 @@ const cx = classNames.bind(styles);
 export const metadata: Metadata = {
     title: meta.title.products,
     description: meta.desc.products,
-    alternates: { canonical: `${process.env.APP_URL}${config.routes.products}` },
+    alternates: { canonical: `${process.env.NEXT_PUBLIC_APP_URL}${config.routes.products}` },
     openGraph: {
         title: meta.title.products,
         description: meta.desc.products,
         type: 'website',
         locale: 'vi_VN',
-        url: `${process.env.APP_URL}${config.routes.products}`,
+        url: `${process.env.NEXT_PUBLIC_APP_URL}${config.routes.products}`,
     },
 };
 

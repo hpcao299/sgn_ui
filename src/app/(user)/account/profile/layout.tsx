@@ -6,13 +6,13 @@ import React from 'react';
 export const metadata: Metadata = {
     title: meta.title.profile,
     description: meta.desc.profile,
-    alternates: { canonical: `${process.env.APP_URL}${config.routes.profile}` },
+    alternates: { canonical: `${process.env.NEXT_PUBLIC_APP_URL}${config.routes.profile}` },
     openGraph: {
         title: meta.title.profile,
         description: meta.desc.profile,
         type: 'website',
         locale: 'vi_VN',
-        url: `${process.env.APP_URL}${config.routes.profile}`,
+        url: `${process.env.NEXT_PUBLIC_APP_URL}${config.routes.profile}`,
         images: {
             url: '/opengraph-image.jpg',
             alt: 'SGN Logo',

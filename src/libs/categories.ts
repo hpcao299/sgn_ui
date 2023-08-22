@@ -1,7 +1,7 @@
 import { Category, ResponseData } from '@/types';
 
 export async function getCategories(): Promise<ResponseData<Category[]>> {
-    const res = await fetch(`http://localhost:8000/api/topics/for-you`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/topics/for-you`, {
         cache: 'force-cache',
     });
 
@@ -11,7 +11,7 @@ export async function getCategories(): Promise<ResponseData<Category[]>> {
 }
 
 export async function getCategory(category: string): Promise<ResponseData<Category>> {
-    const res = await fetch(`http://localhost:8000/api/topics/${category}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/topics/${category}`, {
         cache: 'force-cache',
     });
 

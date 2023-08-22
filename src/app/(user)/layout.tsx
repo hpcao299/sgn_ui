@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     title: meta.title.home,
     description: meta.desc.home,
     keywords: ['saigonnguyen', 'đồ gia dụng', 'Sài Gòn Nguyễn'],
-    alternates: { canonical: process.env.APP_URL },
+    alternates: { canonical: process.env.NEXT_PUBLIC_APP_URL },
     openGraph: {
         title: meta.title.home,
         description: meta.desc.home,
         type: 'website',
         locale: 'vi_VN',
-        url: process.env.APP_URL,
+        url: process.env.NEXT_PUBLIC_APP_URL,
     },
 };
 
