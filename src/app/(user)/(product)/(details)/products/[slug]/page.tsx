@@ -21,7 +21,7 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
     const slug = params.slug;
 
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/products/details/${slug}`,
+        `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/products/details/${slug}`,
     );
     const product = await res.json();
 

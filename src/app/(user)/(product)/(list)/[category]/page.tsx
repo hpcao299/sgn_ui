@@ -10,9 +10,7 @@ export interface Props {
 }
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/topics/${params.category}`,
-    );
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/topics/${params.category}`);
     const { data } = await res.json();
 
     return {
