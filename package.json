@@ -20,7 +20,6 @@
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-hook-form": "^7.45.4",
-        "react-in-viewport": "^1.0.0-alpha.30",
         "react-responsive": "^9.0.2",
         "swr": "^2.2.0",
         "typescript": "5.1.6"
