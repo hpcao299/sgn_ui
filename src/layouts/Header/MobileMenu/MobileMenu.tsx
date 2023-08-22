@@ -32,6 +32,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ links }) => {
     const [isShown, setIsShown] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
     const menuRef = useRef<HTMLElement>(null);
+    const menuLinksRef = useRef<HTMLElement>(null);
 
     const handleToHref = (slug: string) => {
         return `/${slug}`;
@@ -42,24 +43,27 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ links }) => {
     };
 
     useEffect(() => {
-        const handleOutsideClick = (e: MouseEvent) => {
+        const handleClick = (e: MouseEvent) => {
             if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
                 setOpen(false);
+            } else if (menuLinksRef.current && menuLinksRef.current.contains(e.target as Node)) {
+                setOpen(false);
+                setIsShown(false);
             }
         };
 
         if (!open) {
-            document.removeEventListener('click', handleOutsideClick);
+            document.removeEventListener('click', handleClick);
             setTimeout(() => {
                 setIsShown(false);
             }, 500);
         } else {
             setIsShown(true);
-            document.addEventListener('click', handleOutsideClick);
+            document.addEventListener('click', handleClick);
         }
 
         return () => {
-            document.removeEventListener('click', handleOutsideClick);
+            document.removeEventListener('click', handleClick);
         };
     }, [open]);
 
@@ -74,7 +78,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ links }) => {
                         ref={menuRef as React.RefObject<HTMLDivElement>}
                         className={cx('mobile-menu', open ? 'open' : 'close')}
                     >
-                        <ul className={cx('mobile-links')}>
+                        <ul
+                            className={cx('mobile-links')}
+                            ref={menuLinksRef as React.RefObject<HTMLUListElement>}
+                        >
                             {links.map((link, i) => (
                                 <li key={i}>
                                     <Link href={link.to}>
