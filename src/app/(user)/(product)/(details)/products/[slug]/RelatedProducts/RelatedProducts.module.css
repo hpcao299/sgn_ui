@@ -4,12 +4,6 @@
     padding: 100px 0;
 }
 
-.related.loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .title {
     text-transform: uppercase;
     text-align: center;

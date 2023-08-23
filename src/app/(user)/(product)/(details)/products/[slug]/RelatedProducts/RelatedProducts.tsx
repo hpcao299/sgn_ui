@@ -1,11 +1,12 @@
 'use client';
 
-import { Loader, ProductItem } from '@/components';
+import productsApi from '@/apis/productsApi';
+import { ProductItem } from '@/components';
+import { ProductItemSkeleton } from '@/components/ProductItem';
 import { Product } from '@/types';
 import classNames from 'classnames/bind';
 import React from 'react';
 import styles from './RelatedProducts.module.css';
-import productsApi from '@/apis/productsApi';
 
 interface RelatedProductsProps {
     slug: string;
@@ -21,7 +22,23 @@ const RelatedProducts: React.FC<RelatedProductsProps> = ({ slug }) => {
             <div className="container">
                 <h2 className={cx('title')}>Sản phẩm liên quan</h2>
                 {isLoading ? (
-                    <Loader className={cx('loader')} />
+                    <div className={cx('list')}>
+                        <div className={cx('list-item')}>
+                            <ProductItemSkeleton />
+                        </div>
+                        <div className={cx('list-item')}>
+                            <ProductItemSkeleton />
+                        </div>
+                        <div className={cx('list-item')}>
+                            <ProductItemSkeleton />
+                        </div>
+                        <div className={cx('list-item')}>
+                            <ProductItemSkeleton />
+                        </div>
+                        <div className={cx('list-item')}>
+                            <ProductItemSkeleton />
+                        </div>
+                    </div>
                 ) : (
                     <div className={cx('list')}>
                         {data.data.map((item: Product) => (
