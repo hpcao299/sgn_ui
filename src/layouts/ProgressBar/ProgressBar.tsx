@@ -7,7 +7,7 @@ const ProgressBar: React.FC = () => {
     return (
         <AppProgressBar
             height="3px"
-            color="#27aae2"
+            color="#027aad"
             options={{ showSpinner: false }}
             shallowRouting
             delay={500}
