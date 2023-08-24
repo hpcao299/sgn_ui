@@ -2,9 +2,12 @@
 
 import { Button, PageDetails } from '@/components';
 import config from '@/config';
+import constants from '@/constants';
+import { useAuthStore, useNotifyStore } from '@/stores';
 import classNames from 'classnames/bind';
 import { NextPage } from 'next';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import OrdersList from './OrdersList';
 import styles from './Profile.module.css';
 
@@ -16,14 +19,24 @@ const paths = [
 ];
 
 const ProfilePage: NextPage = () => {
+    const signOut = useAuthStore(state => state.signOut);
+    const addNewNotification = useNotifyStore(state => state.addNewNotification);
+    const router = useRouter();
+
     const currentUser = {
         name: 'Test user',
         email: 'test@gmail.com',
         phone: '0913777991',
     };
 
-    const handleSignOut = () => {
-        console.log('sign out');
+    const handleSignOut = async () => {
+        try {
+            await signOut();
+            router.push(config.routes.home);
+        } catch (error) {
+            addNewNotification(constants.notifications.SIGN_OUT_FAILED);
+            console.error(error);
+        }
     };
 
     return (

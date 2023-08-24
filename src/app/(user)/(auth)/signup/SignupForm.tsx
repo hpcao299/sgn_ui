@@ -6,6 +6,7 @@ import { Button } from '@/components';
 import { InputField } from '@/components/custom-fields';
 import config from '@/config';
 import constants from '@/constants';
+import { useAuthStore, useNotifyStore } from '@/stores';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -28,8 +29,8 @@ const defaultValues: ISignUpForm = {
 };
 
 const SignupForm: React.FC = () => {
-    // const { addNewNotification } = useNotifyContext();
-    // const { login, currentUser } = useAuthContext();
+    const addNewNotification = useNotifyStore(state => state.addNewNotification);
+    const signUp = useAuthStore(state => state.signUp);
     const router = useRouter();
     const [isLoading, setIsLoading] = useState<boolean>();
     const [error, setError] = useState<string>();
@@ -40,19 +41,15 @@ const SignupForm: React.FC = () => {
         watch,
     } = useForm<ISignUpForm>({ defaultValues });
 
-    // useEffect(() => {
-    //     if (currentUser) navigate(config.routes.home);
-    // }, [currentUser, navigate]);
-
     const onSubmit: SubmitHandler<ISignUpForm> = async data => {
         const { email, password } = data;
         console.log({ email, password });
         setIsLoading(true);
 
         try {
-            // await signUp(email, password);
-            // addNewNotification(constants.notifications.SIGNUP_SUCCESS);
-            // navigate(config.routes.profileUpdate);
+            await signUp(email, password);
+            addNewNotification(constants.notifications.SIGNUP_SUCCESS);
+            router.push(config.routes.profileUpdate);
         } catch (error: any) {
             if (error.code === 'auth/email-already-in-use') {
                 setError('Email đã được dùng bởi tài khoản khác.');
