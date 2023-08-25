@@ -8,6 +8,7 @@ interface State {
 }
 
 interface Actions {
+    setCurrentUser: (details: { email: string; id: string }) => void;
     signUp: (email: string, password: string) => Promise<unknown>;
     login: (email: string, password: string) => Promise<unknown>;
     getCurrentUser: () => Promise<CurrentUser | null>;
@@ -17,12 +18,14 @@ interface Actions {
 
 const useAuthStore = create<State & Actions>(set => ({
     currentUser: null,
+    setCurrentUser(details) {
+        set({ currentUser: details });
+    },
     signUp: async (email: string, password: string) => {
         try {
             const userCredential = await auth.createUserWithEmailAndPassword(email, password);
             const user = userCredential.user;
             await usersApi.registerUser({ email: user?.email || '' });
-            set({ currentUser: { email: user?.email || '', id: user?.uid || '' } });
             return Promise.resolve(user);
         } catch (error) {
             return Promise.reject(error);
