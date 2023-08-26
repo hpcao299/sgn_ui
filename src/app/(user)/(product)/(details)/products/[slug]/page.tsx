@@ -1,15 +1,15 @@
-import { PageDetails, Image } from '@/components';
+import { SWRProvider } from '@/app/swr-provider';
+import { Image, PageDetails } from '@/components';
+import config from '@/config';
 import { getProductDetails } from '@/libs/products';
 import { formattedPrice } from '@/utils';
-import { Metadata } from 'next';
-import React from 'react';
-import styles from './ProductDetails.module.css';
 import classNames from 'classnames/bind';
-import config from '@/config';
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import { SWRProvider } from '@/app/swr-provider';
+import styles from './ProductDetails.module.css';
 
 const RelatedProducts = dynamic(() => import('./RelatedProducts'));
+const ProductActions = dynamic(() => import('./ProductActions'));
 
 const cx = classNames.bind(styles);
 
@@ -20,9 +20,7 @@ interface Props {
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
     const slug = params.slug;
 
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/products/details/${slug}`,
-    );
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/products/details/${slug}`);
     const product = await res.json();
 
     return {
@@ -97,7 +95,7 @@ const ProductDetailsPage = async ({ params }: Props) => {
                                 </div>
                                 <p className={cx('product-desc')}>{details.short_desc}</p>
                             </div>
-                            {/* {data && <ProductActions productId={details.id} />} */}
+                            <ProductActions productId={details.id} />
                         </div>
                     </div>
                     <div className={cx('product-sub-content')}>

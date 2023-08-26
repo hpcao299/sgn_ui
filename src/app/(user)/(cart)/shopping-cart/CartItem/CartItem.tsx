@@ -70,8 +70,8 @@ const CartItem: React.FC<CartItemProps> = ({ data }) => {
                         alt={data.title}
                         className={cx('product-img')}
                         style={{ backgroundColor: '#f0f0f0' }}
-                        width={143}
-                        height={143}
+                        width={70}
+                        height={70}
                         loading="lazy"
                         // onError={handleImageError}
                     />
