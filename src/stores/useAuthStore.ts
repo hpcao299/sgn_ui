@@ -50,14 +50,13 @@ const useAuthStore = create<State & Actions>(set => ({
         }
     },
     getCurrentUser: async () => {
-        // try {
-        //     const user = await usersApi.getCurrentUser();
-        //     setCurrentUser(user.data);
-        //     return user.data;
-        // } catch (error) {
-        //     console.error(error);
-        // }
-        return null;
+        try {
+            const user = await usersApi.getCurrentUser();
+            set({ currentUser: user.data });
+            return user.data;
+        } catch (error) {
+            return Promise.reject(error);
+        }
     },
     setNumItems: (count: number) => {
         set(state => ({

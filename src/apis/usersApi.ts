@@ -1,4 +1,5 @@
 import { RegisterUserDto } from '@/types';
+import axiosClient from './axiosClient';
 
 const usersApi = {
     async registerUser(details: RegisterUserDto) {
@@ -11,6 +12,10 @@ const usersApi = {
         });
 
         return response.json();
+    },
+    getCurrentUser() {
+        const url = '/users/current-user';
+        return axiosClient.get(url);
     },
 };
 

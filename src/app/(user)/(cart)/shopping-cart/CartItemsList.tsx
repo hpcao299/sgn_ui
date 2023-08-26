@@ -14,9 +14,10 @@ const cx = classNames.bind(styles);
 
 interface CartItemsListProps {
     data: CartItemType[];
+    isLoading: boolean;
 }
 
-const CartItemsList: React.FC<CartItemsListProps> = ({ data }) => {
+const CartItemsList: React.FC<CartItemsListProps> = ({ data, isLoading }) => {
     return (
         <>
             <MediaQuery maxWidth={739}>
@@ -39,8 +40,7 @@ const CartItemsList: React.FC<CartItemsListProps> = ({ data }) => {
                         <div className={cx('grid-item')}>tạm tính</div>
                         <div className={cx('grid-item', 'small-grid-item')}>xoá</div>
                     </div>
-                    {/* {data?.length === 0 && !isLoading ? ( */}
-                    {data?.length === 0 ? (
+                    {data?.length === 0 && !isLoading ? (
                         <div className={cx('empty-text')}>
                             <p>Giỏ hàng trống</p>
                             <Link href={config.routes.home}>Lựa chọn các sản phẩm khác</Link>

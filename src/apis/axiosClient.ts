@@ -32,7 +32,7 @@ axiosClient.interceptors.response.use(
         return response;
     },
     function (err) {
-        return Promise.reject(err);
+        return Promise.reject(err.response.data);
     },
 );
 
