@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, PageDetails } from '@/components';
+import { Button, Loader, PageDetails } from '@/components';
 import config from '@/config';
 import constants from '@/constants';
 import { useAuthStore, useNotifyStore } from '@/stores';
@@ -37,7 +37,7 @@ const ProfilePage: NextPage = () => {
         <>
             <PageDetails title="Thông tin cá nhân" paths={paths} />
             <h1 style={{ position: 'fixed', top: '-100vh' }}>Thông tin cá nhân</h1>
-            {currentUser && (
+            {currentUser ? (
                 <div className={cx('content', 'container')}>
                     <div className={cx('user-details')}>
                         <h2 className={cx('user-name')}>{currentUser?.name}</h2>
@@ -63,6 +63,10 @@ const ProfilePage: NextPage = () => {
                         <h2>Đơn hàng đã đặt</h2>
                         <OrdersList />
                     </div>
+                </div>
+            ) : (
+                <div style={{ marginTop: '12px' }}>
+                    <Loader className="loader-margin" />
                 </div>
             )}
         </>

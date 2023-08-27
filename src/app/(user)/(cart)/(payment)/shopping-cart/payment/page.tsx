@@ -1,7 +1,7 @@
 'use client';
 
 import cartApi from '@/apis/cartApi';
-import { ErrorHandler, Loader } from '@/components';
+import { ErrorHandler } from '@/components';
 import config from '@/config';
 import { CartItem as CartItemType, ErrorResponse } from '@/types';
 import { formattedPrice } from '@/utils';
@@ -10,7 +10,7 @@ import { NextPage } from 'next';
 import Link from 'next/link';
 import styles from './Payment.module.css';
 import PaymentForm from './PaymentForm';
-import PaymentItem from './PaymentItem';
+import PaymentItem, { PaymentItemSkeleton } from './PaymentItem';
 
 const cx = classNames.bind(styles);
 
@@ -30,18 +30,22 @@ const PaymentPage: NextPage = () => {
             ) : (
                 <div className={cx('content')}>
                     <div className={cx('products-content')}>
-                        {isLoading ? (
-                            <Loader className={cx('loader')} />
-                        ) : (
-                            <div className={cx('products-list', isLoading && 'loading')}>
-                                {cartItems?.map(item => <PaymentItem key={item.id} data={item} />)}
+                        <div className={cx('products-list')}>
+                            {isLoading ? (
+                                [1, 2, 3].map((a, i) => <PaymentItemSkeleton key={i} />)
+                            ) : (
+                                <>
+                                    {cartItems?.map(item => (
+                                        <PaymentItem key={item.id} data={item} />
+                                    ))}
 
-                                <div className={cx('total-price')}>
-                                    <div>Tổng cộng:</div>
-                                    <div>{formattedPrice(total)}</div>
-                                </div>
-                            </div>
-                        )}
+                                    <div className={cx('total-price')}>
+                                        <div>Tổng cộng:</div>
+                                        <div>{formattedPrice(total)}</div>
+                                    </div>
+                                </>
+                            )}
+                        </div>
                     </div>
                     <div className={cx('payment-form-wrapper')}>
                         <PaymentForm />

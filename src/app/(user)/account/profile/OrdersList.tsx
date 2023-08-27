@@ -1,11 +1,12 @@
 'use client';
 
 import orderApi from '@/apis/orderApi';
-import { ErrorHandler, Loader } from '@/components';
+import { ErrorHandler } from '@/components';
 import { ErrorResponse, HasOrderProduct, Order } from '@/types';
 import classNames from 'classnames/bind';
 import React from 'react';
 import OrderItem from './OrderItem';
+import OrderItemSkeleton from './OrderItem/OrderItemSkeleton';
 import styles from './Profile.module.css';
 import transformedData from './transformedData';
 
@@ -25,11 +26,12 @@ const OrdersList: React.FC = () => {
             )}
 
             {error && <ErrorHandler error={error as ErrorResponse} />}
-            {isLoading && <Loader className={cx('loader')} />}
-            <div className={cx('orders-list', isLoading && 'loading')}>
-                {orderItems.map(item => (
-                    <OrderItem key={item.order_id} data={item} />
-                ))}
+            <div className={cx('orders-list')}>
+                {isLoading ? (
+                    <OrderItemSkeleton />
+                ) : (
+                    orderItems.map(item => <OrderItem key={item.order_id} data={item} />)
+                )}
             </div>
         </>
     );

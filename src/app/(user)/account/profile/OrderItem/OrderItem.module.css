@@ -73,6 +73,31 @@
     overflow: hidden;
 }
 
+/* Loading Skeleton */
+.order.loading .item-img {
+    aspect-ratio: 1 / 1;
+}
+
+.order.loading .item-img,
+.order.loading .order-info div,
+.order.loading .item-info div {
+    background-color: var(--skeleton-color);
+    color: transparent;
+}
+
+.order.loading .order-info div,
+.order.loading .item-info div {
+    height: 20px;
+}
+
+.order.loading .order-info div {
+    margin: 8px 0;
+}
+
+.order.loading .item-info div {
+    margin-bottom: 10px;
+}
+
 @media (max-width: 1023px) {
     .order-info {
         font-size: 18px;
