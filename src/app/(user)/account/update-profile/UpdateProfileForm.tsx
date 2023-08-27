@@ -1,18 +1,18 @@
 'use client';
 
-import styles from './UpdateProfile.module.css';
-// import usersApi from '@/api/usersApi';
+import usersApi from '@/apis/usersApi';
 import PhoneIcon from '@/assets/icons/phone.svg';
 import UserIcon from '@/assets/icons/user.svg';
 import { Button } from '@/components';
 import { InputField } from '@/components/custom-fields';
+import config from '@/config';
 import constants from '@/constants';
-// import { useAuthContext } from '@/contexts/AuthContext';
-// import { useNotifyContext } from '@/contexts/NotifyContext';
+import { useAuthStore, useNotifyStore } from '@/stores';
 import classNames from 'classnames/bind';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import styles from './UpdateProfile.module.css';
 
 const cx = classNames.bind(styles);
 
@@ -28,8 +28,8 @@ const defaultValues: IUpdateProfileForm = {
 
 const UpdateProfileForm: React.FC = () => {
     const router = useRouter();
-    // const { getCurrentUser } = useAuthContext();
-    // const { addNewNotification } = useNotifyContext();
+    const getCurrentUser = useAuthStore(state => state.getCurrentUser);
+    const addNewNotification = useNotifyStore(state => state.addNewNotification);
     const [isLoading, setIsLoading] = useState<boolean>();
     const [error, setError] = useState<string>();
     const {
@@ -38,17 +38,20 @@ const UpdateProfileForm: React.FC = () => {
         formState: { errors },
     } = useForm<IUpdateProfileForm>({ defaultValues });
 
+    useEffect(() => {
+        router.prefetch(config.routes.profile);
+    }, []);
+
     const onSubmit: SubmitHandler<IUpdateProfileForm> = async data => {
-        console.log(data);
         setIsLoading(true);
         try {
-            // await usersApi.updateUserDetails(data);
-            // addNewNotification(constants.notifications.UPDATE_PROFILE_SUCCESS);
-            // getCurrentUser();
-            // navigate(config.routes.profile);
+            await usersApi.updateUserDetails(data);
+            addNewNotification(constants.notifications.UPDATE_PROFILE_SUCCESS);
+            getCurrentUser();
+            router.push(config.routes.profile);
         } catch (error: any) {
             setError(error.message);
-            // addNewNotification(constants.notifications.UPDATE_PROFILE_FAILED);
+            addNewNotification(constants.notifications.UPDATE_PROFILE_FAILED);
         }
         setIsLoading(false);
     };
