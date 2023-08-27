@@ -1,23 +1,37 @@
-import React from 'react';
-import styles from './Profile.module.css';
+'use client';
+
+import orderApi from '@/apis/orderApi';
+import { ErrorHandler, Loader } from '@/components';
+import { ErrorResponse, HasOrderProduct, Order } from '@/types';
 import classNames from 'classnames/bind';
+import React from 'react';
 import OrderItem from './OrderItem';
+import styles from './Profile.module.css';
+import transformedData from './transformedData';
 
 const cx = classNames.bind(styles);
 
 const OrdersList: React.FC = () => {
+    const { data, isLoading, error } = orderApi.getOrdersList();
+    const itemsList: HasOrderProduct[] = data?.data;
+    const orderItems: Order[] = transformedData(itemsList || []);
+
     return (
-        <div className={cx('orders-list')}>
-            <OrderItem
-                data={{
-                    order_id: 1,
-                    orderred_at: String(
-                        'Sat Aug 12 2023 22:17:19 GMT+1000 (Australian Eastern Standard Time)',
-                    ),
-                    items: [],
-                }}
-            />
-        </div>
+        <>
+            {!error && orderItems.length === 0 && !isLoading && (
+                <div style={{ textAlign: 'center', fontSize: '18px', marginTop: 10 }}>
+                    Bạn chưa đặt đơn hàng nào.
+                </div>
+            )}
+
+            {error && <ErrorHandler error={error as ErrorResponse} />}
+            {isLoading && <Loader className={cx('loader')} />}
+            <div className={cx('orders-list', isLoading && 'loading')}>
+                {orderItems.map(item => (
+                    <OrderItem key={item.order_id} data={item} />
+                ))}
+            </div>
+        </>
     );
 };
 
