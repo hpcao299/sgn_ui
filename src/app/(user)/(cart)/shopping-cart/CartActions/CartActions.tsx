@@ -30,7 +30,7 @@ const CartActions: React.FC<CartActionsProps> = ({ data }) => {
                         {formattedPrice(total)}
                     </div>
                 </div>
-                <Link href={config.routes.payment}>
+                <Link rel="prefetch" href={config.routes.payment}>
                     <Button color="red">Tiến Hành Thanh Toán</Button>
                 </Link>
             </div>

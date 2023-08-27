@@ -8,8 +8,8 @@ export interface RegisterUserDto {
 }
 
 export interface CurrentUser {
-    id: string;
-    email: string;
+    id?: string;
+    email?: string;
     name?: string;
     phone?: string;
     is_verified?: number;

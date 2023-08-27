@@ -6,6 +6,8 @@ import dynamic from 'next/dynamic';
 import { Roboto } from 'next/font/google';
 
 const ProgressBar = dynamic(() => import('@/layouts/ProgressBar'), { ssr: false });
+const Notifications = dynamic(() => import('@/layouts/Notifications'), { ssr: false });
+const AuthWatcher = dynamic(() => import('@/utils/AuthWatcher'), { ssr: false });
 
 const roboto = Roboto({
     weight: ['300', '400', '500', '700', '900'],
@@ -33,6 +35,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="vi">
             <body className={roboto.className}>
                 <ProgressBar />
+                <Notifications />
+                <AuthWatcher />
                 <Header />
                 <main style={{ position: 'relative', minHeight: '100vh' }}>{children}</main>
                 <Footer />

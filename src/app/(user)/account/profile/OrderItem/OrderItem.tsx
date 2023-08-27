@@ -36,6 +36,8 @@ const OrderItem: React.FC<OrderItemProps> = ({ data }) => {
                             className={cx('item-img')}
                             loading="lazy"
                             style={{ backgroundColor: '#f0f0f0' }}
+                            width={160}
+                            height={160}
                         />
                         <div className={cx('item-info')}>
                             <h3 className={cx('item-title')}>{item.title}</h3>

@@ -63,6 +63,25 @@
     margin-top: 12px;
 }
 
+/* Loading Skeleton */
+.item.loading .product-img {
+    aspect-ratio: 1 / 1;
+}
+
+.item.loading .product-img,
+.item.loading .item-title,
+.item.loading .item-quantity,
+.item.loading .item-total {
+    background-color: var(--skeleton-color);
+    color: transparent;
+}
+
+.item.loading .item-quantity,
+.item.loading .item-title,
+.item.loading .item-total {
+    height: 20px;
+}
+
 @media (min-width: 740px) and (max-width: 1023px) {
     .item-details {
         padding-left: 18px;

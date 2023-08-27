@@ -1,4 +1,10 @@
-const notifications = {
+import { NotificationDetails } from '@/stores/useNotifyStore';
+
+interface NotificationsObject {
+    [key: string]: NotificationDetails;
+}
+
+const notifications: NotificationsObject = {
     LOGIN_SUCCESS: {
         title: 'Đăng nhập thành công',
         message: 'Bạn đã có thể trải nghiêm dịch vụ của chúng tôi.',

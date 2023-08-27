@@ -1,21 +1,22 @@
+'use client';
+
 import BagIcon from '@/assets/icons/bag.svg';
 import UserIcon from '@/assets/icons/user.svg';
 import config from '@/config';
-// import { useAuthContext } from '@/contexts/AuthContext';
 import classNames from 'classnames/bind';
 import Link from 'next/link';
 import React, { memo } from 'react';
 import styles from './SubHeader.module.css';
+import { useAuthStore } from '@/stores';
 
 const cx = classNames.bind(styles);
 
 const SubHeaderActions: React.FC = () => {
-    // const { currentUser } = useAuthContext();
-    const currentUser = null;
+    const currentUser = useAuthStore(state => state.currentUser);
 
     return (
         <>
-            {/* {currentUser ? (
+            {currentUser ? (
                 currentUser.is_admin ? (
                     <>
                         <Link
@@ -50,10 +51,7 @@ const SubHeaderActions: React.FC = () => {
                 <Link href={config.routes.login} className={cx('header-text-link', 'header-login')}>
                     Đăng nhập
                 </Link>
-            )} */}
-            <Link href={config.routes.login} className={cx('header-text-link', 'header-login')}>
-                Đăng nhập
-            </Link>
+            )}
         </>
     );
 };

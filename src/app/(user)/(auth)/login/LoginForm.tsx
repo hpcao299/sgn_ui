@@ -6,14 +6,13 @@ import { Button } from '@/components';
 import { InputField } from '@/components/custom-fields';
 import config from '@/config';
 import constants from '@/constants';
-// import { useAuthContext } from '@/contexts/AuthContext';
-// import { useNotifyContext } from '@/contexts/NotifyContext';
+import { useAuthStore, useNotifyStore } from '@/stores';
+import classNames from 'classnames/bind';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import styles from './Login.module.css';
-import classNames from 'classnames/bind';
-import { useRouter } from 'next/navigation';
 
 const cx = classNames.bind(styles);
 
@@ -29,6 +28,8 @@ const defaultValues: ILoginForm = {
 
 const LoginForm: React.FC = () => {
     const router = useRouter();
+    const login = useAuthStore(state => state.login);
+    const addNewNotification = useNotifyStore(state => state.addNewNotification);
     const [isLoading, setIsLoading] = useState<boolean>();
     const [error, setError] = useState<string>();
     const {
@@ -39,17 +40,16 @@ const LoginForm: React.FC = () => {
 
     const onSubmit: SubmitHandler<ILoginForm> = async data => {
         const { email, password } = data;
+        setError('');
         setIsLoading(true);
 
         try {
-            // await login(email, password);
-            // addNewNotification(constants.notifications.LOGIN_SUCCESS);
-            // router.push(config.routes.home);
+            await login(email, password);
+            addNewNotification(constants.notifications.LOGIN_SUCCESS);
+            router.push(config.routes.home);
         } catch (error: any) {
-            if (error.code === 'auth/user-not-found') {
-                setError('Không tìm thấy tài khoản nào với email đã cho.');
-            } else if (error.code === 'auth/wrong-password') {
-                setError('Mật khẩu đã cho không trùng khớp.');
+            if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                setError('Email hoặc mật khẩu đã cho không trùng khớp');
             } else {
                 setError(error.message);
             }
