@@ -7,6 +7,7 @@ import classNames from 'classnames/bind';
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import styles from './ProductDetails.module.css';
+import { notFound } from 'next/navigation';
 
 const RelatedProducts = dynamic(() => import('./RelatedProducts'));
 const ProductActions = dynamic(() => import('./ProductActions'));
@@ -22,6 +23,10 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/products/details/${slug}`);
     const product = await res.json();
+
+    if (!product.data) {
+        notFound();
+    }
 
     return {
         title: product.data.title,

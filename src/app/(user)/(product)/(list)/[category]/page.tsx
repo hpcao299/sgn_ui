@@ -3,6 +3,7 @@ import { getCategories } from '@/libs/categories';
 import { getProductsByCategory } from '@/libs/products';
 import { Metadata } from 'next';
 import ProductsList from '../ProductsList/ProductsList';
+import { notFound } from 'next/navigation';
 
 export interface Props {
     params: { category: string };
@@ -12,6 +13,10 @@ export interface Props {
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/topics/${params.category}`);
     const { data } = await res.json();
+
+    if (!data) {
+        notFound();
+    }
 
     return {
         title: `${data.title} chất lượng cao, buôn bán sỉ lẻ`,
