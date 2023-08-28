@@ -1,34 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SGN eCommerce Website
 
-## Getting Startedd
+This repository contains the code for an eCommerce website developed by **Phuc Cao**. The website is built using React and TypeScript and utilizes various libraries and technologies to create a functional and visually appealing online shopping experience.
 
-First, run the development server:
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f3fd5c2a-5377-49a0-b1b7-a2a16142e709/deploy-status)](https://app.netlify.com/sites/saigonnguyen/deploys)
+![Preview Image](https://i.yourimageshare.com/T63LNVRXYr.webp)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-   Browse and search for products
+-   View detailed product information
+-   Add products to the shopping cart
+-   Proceed to checkout and place orders
+-   User authentication and account management
+-   Admin panel for managing products and orders
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Design
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The website design is available on [Adobe XD](https://xd.adobe.com/view/72299d7b-c20a-4d56-8353-89c93fdb48f5-277a/). It provides a visual representation of the user interface, layout, and interactions of the eCommerce website. The design can serve as a reference for implementing the front-end components and styling.
 
-## Learn More
+## Migrating to Next.js
+Because of low SEO score, this previous ReactJS app had been migrated to Next.js in order to increase availability to users. Also, it was also a case for learning. However, old ReactJS app is still available on Internet.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **ReactJS App:** [https://saigonnguyen.netlify.app](https://saigonnguyen.netlify.app)
+- **Next.js App:** [https://saigonnguyen.vercel.app](https://saigonnguyen.vercel.app)
