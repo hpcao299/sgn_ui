@@ -49,3 +49,13 @@ export async function getProductDetails(slug: string) {
 
     return data;
 }
+
+export async function getProductsSlugList(): Promise<ResponseData<{ slug: string }[]>> {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/products/list/slug`, {
+        next: { revalidate: SECONDS_IN_AN_HOUR },
+    });
+
+    const data = await res.json();
+
+    return data;
+}
