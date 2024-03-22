@@ -3,8 +3,11 @@
 import { useEffect } from 'react';
 import { auth } from '@/config/firebase';
 import { useAuthStore } from '@/stores';
+import { useRouter } from 'next/navigation';
+import config from '@/config';
 
 const AuthWatcher = () => {
+    const router = useRouter();
     const [setCurrentUser, getCurrentUser, signOut] = useAuthStore(state => [
         state.setCurrentUser,
         state.getCurrentUser,
@@ -21,7 +24,11 @@ const AuthWatcher = () => {
                 setCurrentUser(currentUser);
                 document.cookie = `email=${user.email};path=/`;
 
-                getCurrentUser();
+                getCurrentUser().then(data => {
+                    if (!data?.is_verified) {
+                        router.push(config.routes.profileUpdate);
+                    }
+                });
 
                 return;
             }

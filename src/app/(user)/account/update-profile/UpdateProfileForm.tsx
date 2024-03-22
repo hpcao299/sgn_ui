@@ -48,7 +48,7 @@ const UpdateProfileForm: React.FC = () => {
             await usersApi.updateUserDetails(data);
             addNewNotification(constants.notifications.UPDATE_PROFILE_SUCCESS);
             getCurrentUser();
-            router.push(config.routes.profile);
+            router.push(config.routes.home);
         } catch (error: any) {
             setError(error.message);
             addNewNotification(constants.notifications.UPDATE_PROFILE_FAILED);

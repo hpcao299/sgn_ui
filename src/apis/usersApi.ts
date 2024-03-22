@@ -3,15 +3,9 @@ import axiosClient from './axiosClient';
 
 const usersApi = {
     async registerUser(details: RegisterUserDto) {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/users/register`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(details),
-        });
+        const url = '/users/register';
 
-        return response.json();
+        return axiosClient.post(url, details);
     },
     getCurrentUser() {
         const url = '/users/current-user';
