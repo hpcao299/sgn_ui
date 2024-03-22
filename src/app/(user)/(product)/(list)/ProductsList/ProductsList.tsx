@@ -13,7 +13,7 @@ interface ProductsListProps {
 const ProductsList: React.FC<ProductsListProps> = ({ data }) => {
     return (
         <div className={cx('products-list')}>
-            {data.map(item => (
+            {data?.map(item => (
                 <div key={item.id} className={cx('products-item')}>
                     <ProductItem data={item} />
                 </div>

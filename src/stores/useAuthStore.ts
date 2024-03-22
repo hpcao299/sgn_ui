@@ -53,7 +53,7 @@ const useAuthStore = create<State & Actions>(set => ({
         try {
             const user = await usersApi.getCurrentUser();
             set({ currentUser: user.data });
-            return user.data;
+            return Promise.resolve(user.data);
         } catch (error) {
             return Promise.reject(error);
         }
