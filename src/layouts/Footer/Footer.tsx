@@ -25,7 +25,7 @@ const contactsList = [
     },
     {
         Icon: WwwIcon,
-        text: 'http://thungcartonsgn.vn/',
+        text: 'https://saigonnguyen.online/',
     },
 ];
 
@@ -34,7 +34,11 @@ const Footer: React.FC = () => {
 
     return (
         <footer
-            className={cx('footer', pathname === config.routes.home && 'footer-contain-banner')}
+            className={cx(
+                'footer',
+                (pathname === config.routes.home || pathname === config.routes.new) &&
+                    'footer-contain-banner',
+            )}
         >
             <div className={cx('container', 'footer-content')}>
                 <div className="">
