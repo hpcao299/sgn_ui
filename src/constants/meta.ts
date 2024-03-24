@@ -1,5 +1,9 @@
 const desc = {
     home: 'Chào mừng bạn đến với Công Ty TNHH Đầu Tư Thương Mại Sài Gòn Nguyễn. Chúng tôi cung cấp các sản phẩm gia dụng với chất lượng và giá cả hấp dẫn. Khám phá ngay!',
+    info: 'Những thông tin về Công Ty TNHH Đầu Tư Thương Mại Sài Gòn Nguyễn. Chúng tôi là đơn vị uy tín cung cấp các mặt hàng gia dụng thường ngày như bìa carton và hơn thế nữa.',
+    new: 'Chào mừng bạn đến với Công Ty TNHH Đầu Tư Thương Mại Sài Gòn Nguyễn. Chúng tôi cung cấp các sản phẩm gia dụng với chất lượng và giá cả hấp dẫn. Khám phá ngay!',
+    contact:
+        'Các thông tin liên hệ với chúng tôi. Sài Gòn Nguyễn luôn có một đội ngũ hỗ trợ hoạt động và hỗ trợ khách hàng bất cứ khi nào trên các nền tảng.',
     products:
         'Danh mục sản phẩm đa dạng và phong phú từ Công Ty TNHH Đầu Tư Thương Mại Sài Gòn Nguyễn. Tìm kiếm và mua sắm ngay hôm nay!',
     productDetails:
@@ -22,6 +26,9 @@ const desc = {
 
 const title = {
     home: 'CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI SÀI GÒN NGUYỄN',
+    info: 'Thông tin | Sài Gòn Nguyễn',
+    contact: 'Liên hệ | Sài Gòn Nguyễn',
+    new: 'Tin tức | Sài Gòn Nguyễn',
 
     login: 'Đăng nhập',
     signup: 'Đăng ký',
@@ -39,6 +46,9 @@ const title = {
     notFound: 'Trang không được tìm thấy',
 };
 
-const meta = { title, desc };
+const meta = {
+    title,
+    desc,
+};
 
 export default meta;

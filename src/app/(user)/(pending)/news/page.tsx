@@ -1,29 +1,35 @@
 import { PageDetails } from '@/components';
 import config from '@/config';
-import { NextPage } from 'next';
-import Link from 'next/link';
-import React from 'react';
+import meta from '@/constants/meta';
+import { Metadata, NextPage } from 'next';
+import News from '../../(home)/News';
 
-const paths = [
-    { to: config.routes.home, title: 'Trang chủ' },
-    { to: config.routes.new, title: 'Tin tức' },
-];
+export const metadata: Metadata = {
+    title: meta.title.new,
+    description: meta.desc.new,
+    keywords: ['saigonnguyen', 'đồ gia dụng', 'Sài Gòn Nguyễn'],
+    alternates: { canonical: `${process.env.NEXT_PUBLIC_APP_URL}${config.routes.new}` },
+    openGraph: {
+        title: meta.title.new,
+        description: meta.desc.new,
+        type: 'website',
+        locale: 'vi_VN',
+        url: `${process.env.NEXT_PUBLIC_APP_URL}${config.routes.new}`,
+        images: {
+            url: '/opengraph-image.jpg',
+            alt: 'SGN Logo',
+        },
+    },
+};
 
 const NewsPage: NextPage = () => {
     return (
         <>
-            <PageDetails title="Tin tức" paths={paths} />
-            <div style={{ marginTop: '24px', textAlign: 'center' }}>
-                <h1 style={{ fontSize: '24px', marginBottom: '8px' }}>Trang đang được cập nhật</h1>
-                <p>
-                    <Link
-                        style={{ color: 'var(--primary-color)', fontSize: '18px' }}
-                        href={config.routes.home}
-                    >
-                        Quay về trang chủ
-                    </Link>
-                </p>
-            </div>
+            <h1 style={{ position: 'absolute', top: '-1000vh' }}>
+                Tin tức | Trang website Sài Gòn Nguyễn
+            </h1>
+            <PageDetails title="Tin tức" />
+            <News />
         </>
     );
 };
