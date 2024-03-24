@@ -1,13 +1,17 @@
+import classNames from 'classnames/bind';
+import Image from 'next/image';
+import React from 'react';
+import styles from './News.module.css';
 import banner from '/public/footer-banner.png';
 import new1 from '/public/new_1.png';
 import new2 from '/public/new_2.png';
 import new3 from '/public/new_3.png';
-import classNames from 'classnames/bind';
-import React from 'react';
-import styles from './News.module.css';
-import Image from 'next/image';
 
 const cx = classNames.bind(styles);
+
+interface NewsProps {
+    hideTitle?: boolean;
+}
 
 const news = [
     {
@@ -30,11 +34,11 @@ const news = [
     },
 ];
 
-const News: React.FC = () => {
+const News: React.FC<NewsProps> = ({ hideTitle }) => {
     return (
         <div className={cx('news')}>
             <div className="container">
-                <div className={cx('news-heading')}>TIN TỨC</div>
+                {!hideTitle && <div className={cx('news-heading')}>TIN TỨC</div>}
                 <div className={cx('news-content')}>
                     {news.map((item, index) => (
                         <div key={index} className={cx('news-item')}>
