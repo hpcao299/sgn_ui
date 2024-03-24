@@ -2,7 +2,7 @@
 
 This repository contains the code for an eCommerce website developed by **Phuc Cao**. The website is built using React and TypeScript and utilizes various libraries and technologies to create a functional and visually appealing online shopping experience.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f3fd5c2a-5377-49a0-b1b7-a2a16142e709/deploy-status)](https://app.netlify.com/sites/saigonnguyen/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f3fd5c2a-5377-49a0-b1b7-a2a16142e709/deploy-status)](https://app.netlify.com/sites/saigonnguyen/deploys) [![Vercel Status](https://vercelbadge.vercel.app/api/hpcao299/sgn_ui)](https://vercel.com/hpcao299s-projects/sgn-ui/deployments)
 ![Preview Image](https://i.yourimageshare.com/T63LNVRXYr.webp)
 
 ## Features
