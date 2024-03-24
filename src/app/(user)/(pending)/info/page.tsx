@@ -1,10 +1,14 @@
 import { PageDetails } from '@/components';
 import config from '@/config';
 import meta from '@/constants/meta';
+import classNames from 'classnames/bind';
 import { Metadata, NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import styles from './Info.module.css';
 import logo from '/public/sgn-logo.png';
+
+const cx = classNames.bind(styles);
 
 export const metadata: Metadata = {
     title: meta.title.info,
@@ -29,15 +33,8 @@ const InfoPage: NextPage = () => {
         <>
             <PageDetails title="Thông tin Sài Gòn Nguyễn" />
             <div className="container">
-                <div
-                    style={{
-                        marginTop: '72px',
-                        paddingBottom: '88px',
-                        paddingLeft: '128px',
-                        paddingRight: '128px',
-                    }}
-                >
-                    <div style={{ display: 'flex', marginBottom: '36px' }}>
+                <div className={cx('content')}>
+                    <div className={cx('logo-wrapper')}>
                         <Image
                             src={logo}
                             alt="SGN Logo"
@@ -49,24 +46,8 @@ const InfoPage: NextPage = () => {
                             height={60}
                         />
                     </div>
-                    <h1
-                        style={{
-                            color: 'var(--primary-color)',
-                            fontWeight: 700,
-                            textTransform: 'uppercase',
-                            fontSize: '16px',
-                        }}
-                    >
-                        CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI SÀI GÒN NGUYỄN
-                    </h1>
-                    <ul
-                        style={{
-                            marginTop: '16px',
-                            paddingLeft: '16px',
-                            fontSize: '16px',
-                            lineHeight: '1.7',
-                        }}
-                    >
+                    <h1 className={cx('heading')}>CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI SÀI GÒN NGUYỄN</h1>
+                    <ul className={cx('content-list')}>
                         <li>
                             Chuyên cung cấp và sản xuất bao bì giấy carton, với kinh nghiệm hơn 5
                             năm làm việc trong nghành sản xuất bao bì.
@@ -82,7 +63,7 @@ const InfoPage: NextPage = () => {
                         </li>
                         <li>
                             <p>Các sản phẩm bao bì chủ đạo như:</p>
-                            <ul style={{ paddingLeft: '16px' }}>
+                            <ul className={cx('sub-content-list')}>
                                 <li>
                                     Thùng carton SGN chuyên phục vụ cho ngành THƯƠNG MẠI ĐIỆN TỬ (
                                     luôn sẳn sàng hơn 100 size để giao ngay trong 24h )
@@ -101,69 +82,31 @@ const InfoPage: NextPage = () => {
                             </ul>
                         </li>
                     </ul>
-                    <div style={{ marginTop: '28px' }}>
-                        <h2
-                            style={{
-                                fontSize: '15px',
-                                fontWeight: 700,
-                            }}
-                        >
-                            Mọi chi tiết xin liên hệ
-                        </h2>
-                        <ul
-                            style={{
-                                marginTop: '16px',
-                                listStyleType: 'none',
-                                fontSize: '15px',
-                                lineHeight: '1.7',
-                            }}
-                        >
+                    <div className={cx('contact-info')}>
+                        <h2 className={cx('sub-heading')}>Mọi chi tiết xin liên hệ</h2>
+                        <ul className={cx('contact-content-list')}>
                             <li>Địa chỉ: 185/3 Đường An Phú Đông 10, P. An Phú Đông, Q.12, HCM</li>
                             <li>
                                 Điện thoại:{' '}
-                                <a
-                                    href="tel:0901338974"
-                                    style={{
-                                        color: 'var(--primary-color)',
-                                        textDecoration: 'none',
-                                    }}
-                                >
+                                <a href="tel:0901338974" className={cx('link')}>
                                     090 1338974
                                 </a>
                             </li>
                             <li>
                                 Zalo:{' '}
-                                <a
-                                    href="tel:0901338974"
-                                    style={{
-                                        color: 'var(--primary-color)',
-                                        textDecoration: 'none',
-                                    }}
-                                >
+                                <a href="tel:0901338974" className={cx('link')}>
                                     090 1338974
                                 </a>
                             </li>
                             <li>
                                 Email:{' '}
-                                <a
-                                    href="mailto:saigonnguyenco@gmail.com"
-                                    style={{
-                                        color: 'var(--primary-color)',
-                                        textDecoration: 'none',
-                                    }}
-                                >
+                                <a href="mailto:saigonnguyenco@gmail.com" className={cx('link')}>
                                     saigonnguyenco@gmail.com
                                 </a>
                             </li>
                             <li>
                                 Website:{' '}
-                                <Link
-                                    href="/"
-                                    style={{
-                                        color: 'var(--primary-color)',
-                                        textDecoration: 'none',
-                                    }}
-                                >
+                                <Link href="/" className={cx('link')}>
                                     https://saigonnguyen.online/
                                 </Link>
                             </li>

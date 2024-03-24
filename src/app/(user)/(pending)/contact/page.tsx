@@ -1,8 +1,12 @@
 import { PageDetails } from '@/components';
 import config from '@/config';
 import meta from '@/constants/meta';
+import classNames from 'classnames/bind';
 import { Metadata, NextPage } from 'next';
 import Link from 'next/link';
+import styles from './Contact.module.css';
+
+const cx = classNames.bind(styles);
 
 export const metadata: Metadata = {
     title: meta.title.contact,
@@ -27,33 +31,12 @@ const ContactPage: NextPage = () => {
         <>
             <PageDetails title="Liên hệ" />
             <div className="container">
-                <div
-                    style={{
-                        marginTop: '72px',
-                        paddingBottom: '88px',
-                        paddingLeft: '128px',
-                        paddingRight: '128px',
-                    }}
-                >
-                    <div
-                        style={{
-                            fontWeight: 700,
-                            fontSize: '28px',
-                        }}
-                    >
-                        Thông tin liên hệ
-                    </div>
+                <div className={cx('content')}>
+                    <div className={cx('heading')}>Thông tin liên hệ</div>
                     <h1 style={{ position: 'absolute', top: '-1000vh' }}>
                         Thông tin liên hệ Sài Gòn Nguyễn
                     </h1>
-                    <ul
-                        style={{
-                            marginTop: '16px',
-                            listStyleType: 'none',
-                            fontSize: '18px',
-                            lineHeight: '1.7',
-                        }}
-                    >
+                    <ul className={cx('content-list')}>
                         <li>Địa chỉ: 185/3 Đường An Phú Đông 10, P. An Phú Đông, Q.12, HCM</li>
                         <li>
                             Điện thoại:{' '}

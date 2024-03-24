@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
+import Link from 'next/link';
 import React from 'react';
 import styles from './PageDetails.module.css';
-import Link from 'next/link';
 
 const cx = classNames.bind(styles);
 
@@ -14,7 +14,9 @@ const PageDetails: React.FC<PageDetailsProps> = ({ paths, title }) => {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container', 'content')}>
-                <div className={cx('page-title')}>{title}</div>
+                <div className={cx('page-title', { 'page-no-margin': !Boolean(paths) })}>
+                    {title}
+                </div>
                 <div className={cx('links')}>
                     {paths &&
                         paths.map((path, index) => (
