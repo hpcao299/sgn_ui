@@ -29,9 +29,11 @@ interface IProductDetailsForm {
 const defaultValues: IProductDetailsForm = {
     title: '',
     price: 1000,
-    short_desc: '',
-    full_desc: '',
-    image_url: '',
+    short_desc:
+        'Ngày nay mặt hàng văn phòng phẩm như giấy in, giấy photo là không thể thiếu tại các văn phòng, công ty, tiệm photo hay các trường học. Vấn đề ở đây quý khách sẽ chọn lựa loại giấy in nào cho phù hợp, vừa đảm bảo chất lượng in cũng vừa đảm bảo tốt vấn đề giá cả. Hôm nay Văn phòng phẩm giá rẻ sẽ giới thiệu đến quý khách hàng giấy Excel A4 80gsm.',
+    full_desc:
+        'Giấy A4 Excel 80 gsm là loại giấy in photo thông dụng trong các công ty văn phòng hiện nay. kích thước khổ A4, định lượng giấy 80gsm, giấy nặng 80gr trên 1m2, có độ dày tương đối phù hợp với các dòng mấy in hiện đại. - Được sử dụng nhiều trong in, photo, để đóng thành cuốn hoặc dùng làm phiếu thu - chỉ - xuất - nhập - đơn đặt hàng trong các văn phòng công ty kinh doanh. - Đây là loại khá phổ biến và được khách hàng ưa chuộng hiện nay vì định lượng và độ dày phù hợp với các dòng máy in hiện đại, sử dụng Giấy A4 Excel 80 gsm bạn sẽ không phải lo lắng về chất lượng các bản in, kẹt giấy khi in hay nhòe chữ. - Kích thước khổ giấy A4, định lượng 80gsm, giấy có độ dày tương đối cao, các mép giấy được cắt chính xác, tránh trường hợp bị kẹt giấy. Chất lượng: Đẹp, trắng, mịn, láng. Quy cách: Khổ A4 hướng dẫn bảo quản: Giấy thuộc loại vật liệu dễ bị cháy, dễ nhòe chữ khi thấm nước, bị vò nát không trở lại độ phẳng, căng của bề mặt giấy như ban đầu, cho nên: - Tránh để nơi có nhiệt độ quá cao - Tránh để gần nơi có dầu mỡ, nước. - Để cao tầm với của trẻ em, với những giấy tờ quan trọng. - Không để bụi bám qua nhiều làm ảnh hưởng đến độ sáng, độ mịn và định lượng của giấy.',
+    image_url: 'abc',
     topic_id: 1,
 };
 
@@ -186,11 +188,27 @@ const Form: React.FC<FormProps> = ({ productDetails, productId }) => {
                 </select>
                 <input
                     type="text"
-                    {...register('image_url', {
-                        required: { value: true, message: 'Chọn hình ảnh cho sản phẩm.' },
-                    })}
+                    // {...register('image_url', {
+                    //     required: { value: true, message: 'Chọn hình ảnh cho sản phẩm.' },
+                    // })}
+                    {...register('image_url')}
                     hidden
                     style={{ display: 'none' }}
+                />
+                <Controller
+                    name="image_url"
+                    control={control}
+                    rules={{
+                        required: 'Vui lòng nhập link ảnh sản phẩm.',
+                    }}
+                    render={({ field }) => (
+                        <InputField
+                            type="text"
+                            placeholder="Link ảnh sản phẩm"
+                            error={errors.title?.message || ''}
+                            {...field}
+                        />
+                    )}
                 />
                 <ImageUploader
                     previewImage={productDetails?.image_url}
