@@ -22,4 +22,4 @@ The website design is available on [Adobe XD](https://xd.adobe.com/view/72299d7b
 Because of low SEO score, this previous ReactJS app had been migrated to Next.js in order to increase availability to users. Also, it was also a case for learning. However, old ReactJS app is still available on Internet.
 
 - **ReactJS App:** [https://saigonnguyen.netlify.app](https://saigonnguyen.netlify.app)
-- **Next.js App:** [https://saigonnguyen.vercel.app](https://saigonnguyen.vercel.app)
+- **Next.js App:** [https://saigonnguyen.online](https://saigonnguyen.online)
