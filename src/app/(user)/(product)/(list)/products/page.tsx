@@ -1,10 +1,21 @@
 import meta from '@/constants/meta';
-import { getNewArrivals } from '@/libs/products';
-import { NextPage } from 'next';
+import { getProductsList } from '@/libs/products';
+import { FilterOption, filterOptions } from '@/types';
 import ProductsList from '../ProductsList/ProductsList';
 
-const ProductsPage: NextPage = async () => {
-    const { data } = await getNewArrivals();
+export interface Props {
+    searchParams: { filter?: FilterOption; page?: string };
+}
+
+const ProductsPage = async ({ searchParams }: Props) => {
+    const currentPage = searchParams.page ? Number(searchParams.page) : 1;
+    const filterOption = searchParams.filter
+        ? filterOptions.includes(searchParams.filter)
+            ? searchParams.filter
+            : 'new-arrivals'
+        : 'new-arrivals';
+
+    const { data } = await getProductsList(currentPage, filterOption);
 
     return (
         <>

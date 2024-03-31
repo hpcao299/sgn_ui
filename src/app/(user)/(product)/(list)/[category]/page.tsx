@@ -1,13 +1,14 @@
 import meta from '@/constants/meta';
 import { getCategories } from '@/libs/categories';
 import { getProductsByCategory } from '@/libs/products';
+import { FilterOption, filterOptions } from '@/types';
 import { Metadata } from 'next';
-import ProductsList from '../ProductsList/ProductsList';
 import { notFound } from 'next/navigation';
+import ProductsList from '../ProductsList/ProductsList';
 
 export interface Props {
     params: { category: string };
-    searchParams: { filter?: string };
+    searchParams: { filter?: FilterOption; page?: string };
 }
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
@@ -49,11 +50,18 @@ export const generateStaticParams = async () => {
 };
 
 const ProductsCategoryPage = async ({ params, searchParams }: Props) => {
-    const { data } = await getProductsByCategory(params.category, searchParams.filter);
+    const currentPage = searchParams.page ? Number(searchParams.page) : 1;
+    const filterOption = searchParams.filter
+        ? filterOptions.includes(searchParams.filter)
+            ? searchParams.filter
+            : 'new-arrivals'
+        : 'new-arrivals';
+
+    const { data } = await getProductsByCategory(currentPage, params.category, filterOption);
 
     return (
         <>
-            <h1 style={{ position: 'fixed', top: '-100vh' }}>{meta.title.products}</h1>
+            <h1 style={{ opacity: 0 }}>{meta.title.products}</h1>
             <ProductsList data={data} />
         </>
     );

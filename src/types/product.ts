@@ -19,3 +19,16 @@ export interface ProductDetailsDto {
     full_desc: string;
     price: number;
 }
+
+export type FilterOption =
+    | 'best-sellings'
+    | 'new-arrivals'
+    | 'price-high-to-low'
+    | 'price-low-to-high';
+
+export const filterOptions = [
+    'best-sellings',
+    'new-arrivals',
+    'price-high-to-low',
+    'price-low-to-high',
+];

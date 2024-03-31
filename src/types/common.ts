@@ -18,3 +18,9 @@ export interface ErrorResponse {
 export interface ResponseData<T> {
     data: T;
 }
+
+export interface PaginateResponseData<T> {
+    data: T;
+    total_pages: number;
+    current_page: number;
+}
