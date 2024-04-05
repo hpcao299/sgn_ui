@@ -1,3 +1,4 @@
+import { Pagination } from '@/components';
 import meta from '@/constants/meta';
 import { getCategories } from '@/libs/categories';
 import { getProductsByCategory } from '@/libs/products';
@@ -57,12 +58,17 @@ const ProductsCategoryPage = async ({ params, searchParams }: Props) => {
             : 'new-arrivals'
         : 'new-arrivals';
 
-    const { data } = await getProductsByCategory(currentPage, params.category, filterOption);
+    const { data, current_page, total_pages } = await getProductsByCategory(
+        currentPage,
+        params.category,
+        filterOption,
+    );
 
     return (
         <>
             <h1 style={{ opacity: 0 }}>{meta.title.products}</h1>
             <ProductsList data={data} />
+            <Pagination current_page={current_page} total_pages={total_pages} />
         </>
     );
 };

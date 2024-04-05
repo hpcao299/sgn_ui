@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+}
+
+.item button {
+    outline: none;
+    background-color: transparent;
+    border: 1px solid rgb(229, 231, 235);
+    transition: all 0.2s;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.item.active button {
+    color: #fff;
+    background-color: var(--red-color);
+}
+
+.item.active button:hover {
+    background: var(--red-color);
+    border-color: #dadada;
+}
+
+.item button:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.item.disabled button {
+    color: rgba(0, 0, 0, 0.25);
+    cursor: not-allowed;
+}
+
+.item.disabled button:hover {
+    background-color: transparent;
+}

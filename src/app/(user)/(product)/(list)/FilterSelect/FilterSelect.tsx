@@ -29,6 +29,8 @@ const FilterSelect: React.FC = () => {
         // update as necessary
         const value = event.target.value.trim();
 
+        current.delete('page');
+
         if (!value) {
             current.delete('filter');
         } else {
