@@ -8,6 +8,7 @@ import styles from './FilterSelect.module.css';
 const cx = classNames.bind(styles);
 
 const filterOptions = [
+    { title: 'Mới nhất', value: 'new-arrivals' },
     { title: 'Bán chạy', value: 'best-sellings' },
     { title: 'Giá thấp đến cao', value: 'price-low-to-high' },
     { title: 'Giá cao đến thấp', value: 'price-high-to-low' },
@@ -27,6 +28,8 @@ const FilterSelect: React.FC = () => {
 
         // update as necessary
         const value = event.target.value.trim();
+
+        current.delete('page');
 
         if (!value) {
             current.delete('filter');

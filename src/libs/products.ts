@@ -1,4 +1,4 @@
-import { Product, ResponseData } from '@/types';
+import { FilterOption, PaginateResponseData, Product, ResponseData } from '@/types';
 
 const SECONDS_IN_AN_HOUR = 3600;
 
@@ -22,14 +22,33 @@ export async function getBestSellings(): Promise<ResponseData<Product[]>> {
     return data;
 }
 
+// used in [category] page
 export async function getProductsByCategory(
+    page: number,
     category: string,
-    filter?: string,
-): Promise<ResponseData<Product[]>> {
+    filter?: FilterOption,
+): Promise<PaginateResponseData<Product[]>> {
     const filterQuery = filter ? `&filter=${filter}` : '';
 
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/products/list?category=${category}${filterQuery}`,
+        `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/products/list?category=${category}&p=${page}${filterQuery}`,
+        {
+            next: { revalidate: SECONDS_IN_AN_HOUR },
+        },
+    );
+
+    const data = await res.json();
+
+    return data;
+}
+
+// used in /products page
+export async function getProductsList(
+    page: number,
+    filter: FilterOption,
+): Promise<PaginateResponseData<Product[]>> {
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/products/list?filter=${filter}&p=${page}`,
         {
             next: { revalidate: SECONDS_IN_AN_HOUR },
         },

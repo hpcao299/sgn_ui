@@ -5,6 +5,8 @@ const routes = {
     new: '/news',
     contact: '/contact',
 
+    search: '/search',
+
     products: '/products',
     productsDetails: '/products/:slug',
 
