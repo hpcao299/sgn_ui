@@ -5,8 +5,8 @@ const productsApi = {
     useRelatedProducts(slug: string) {
         return useSWR(`/products/related?slug=${slug}`);
     },
-    searchProducts(query: string, categorySlug?: string) {
-        const url = `/products/search?q=${query}${categorySlug ? `&category=${categorySlug}` : ''}`;
+    searchProducts(query: string, noLimit?: boolean) {
+        const url = `/products/search?q=${query}${noLimit ? `&no_limit=true` : ''}`;
         return axiosClient.get(url);
     },
 };

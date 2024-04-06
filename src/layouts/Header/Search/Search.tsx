@@ -9,6 +9,8 @@ import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './Search.module.css';
 import SearchItem from './SearchItem';
+import { usePathname } from 'next/navigation';
+import config from '@/config';
 
 const cx = classNames.bind(styles);
 
@@ -53,6 +55,7 @@ const filterOptions = [
 
 const Search: React.FC = () => {
     const formRef = useRef<HTMLFormElement>(null);
+    const pathname = usePathname();
     const [query, setQuery] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [data, setData] = useState<Product[]>([]);
@@ -106,7 +109,7 @@ const Search: React.FC = () => {
     }, [visible]);
 
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper', { 'hide-search': pathname.includes(config.routes.search) })}>
             <div className={cx('select-wrapper')}>
                 <select name="filter" id="filter" defaultValue="Tất-cả" className={cx('select')}>
                     {filterOptions.map(option => (

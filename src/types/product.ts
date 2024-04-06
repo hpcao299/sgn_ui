@@ -4,11 +4,15 @@ export interface Product {
     title: string;
     slug: string;
     image_url: string;
-    created_at: Date;
+    created_at: string;
 
     price: number;
     has_sold: number;
     topic_id: number;
+}
+
+export interface SearchProduct extends Product {
+    short_desc: string;
 }
 
 export interface ProductDetailsDto {
