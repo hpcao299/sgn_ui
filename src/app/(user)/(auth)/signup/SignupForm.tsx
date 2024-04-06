@@ -43,7 +43,7 @@ const SignupForm: React.FC = () => {
 
     const onSubmit: SubmitHandler<ISignUpForm> = async data => {
         const { email, password } = data;
-        console.log({ email, password });
+
         setIsLoading(true);
 
         try {
