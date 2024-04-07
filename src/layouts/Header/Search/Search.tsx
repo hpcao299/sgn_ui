@@ -9,7 +9,7 @@ import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './Search.module.css';
 import SearchItem from './SearchItem';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import config from '@/config';
 
 const cx = classNames.bind(styles);
@@ -56,6 +56,7 @@ const filterOptions = [
 const Search: React.FC = () => {
     const formRef = useRef<HTMLFormElement>(null);
     const pathname = usePathname();
+    const router = useRouter();
     const [query, setQuery] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [data, setData] = useState<Product[]>([]);
@@ -119,10 +120,17 @@ const Search: React.FC = () => {
                     ))}
                 </select>
             </div>
-            <form className={cx('search')} ref={formRef}>
+            <form
+                className={cx('search')}
+                ref={formRef}
+                onSubmit={e => {
+                    e.preventDefault();
+                    router.push(`/search?q=${query}`);
+                }}
+            >
                 <input
                     type="text"
-                    name="search"
+                    name="q"
                     id="search"
                     placeholder="Từ khoá"
                     autoComplete="off"
@@ -130,7 +138,7 @@ const Search: React.FC = () => {
                     onChange={handleChangeQuery}
                     onFocus={handleFocusSearch}
                 />
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} type="submit">
                     <SearchIcon />
                 </button>
                 <div className={cx('search-results', { show: visible, hidden: !visible })}>
@@ -156,7 +164,7 @@ const Search: React.FC = () => {
                             </svg>
                             <span>
                                 {isLoading
-                                    ? 'Tìm'
+                                    ? 'Đang tìm'
                                     : data.length === 0
                                     ? 'Không tìm thấy kết quả cho'
                                     : 'Kết quả cho'}{' '}
@@ -170,7 +178,11 @@ const Search: React.FC = () => {
                     {!isLoading && data.length !== 0 && (
                         <ul className={cx('result-list')}>
                             {data.map(item => (
-                                <SearchItem key={item.id} data={item} />
+                                <SearchItem
+                                    onClickLink={() => setVisible(false)}
+                                    key={item.id}
+                                    data={item}
+                                />
                             ))}
                         </ul>
                     )}

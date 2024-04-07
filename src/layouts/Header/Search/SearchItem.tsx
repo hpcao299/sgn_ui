@@ -10,12 +10,17 @@ const cx = classNames.bind(styles);
 
 interface SearchItemProps {
     data: Product;
+    onClickLink: () => void;
 }
 
-const SearchItem: React.FC<SearchItemProps> = ({ data }) => {
+const SearchItem: React.FC<SearchItemProps> = ({ data, onClickLink }) => {
     return (
         <li>
-            <Link href={`/products/${data.slug}`} style={{ textDecoration: 'none' }}>
+            <Link
+                href={`/products/${data.slug}`}
+                style={{ textDecoration: 'none' }}
+                onClick={onClickLink}
+            >
                 <div className={cx('result-item')}>
                     <Image src={data.image_url} alt={data.title} width={48} height={48} />
                     <div>
