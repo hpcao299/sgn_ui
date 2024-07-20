@@ -20,6 +20,10 @@ export const metadata: Metadata = {
         type: 'website',
         locale: 'vi_VN',
         url: `${process.env.NEXT_PUBLIC_APP_URL}${config.routes.products}`,
+        images: {
+            url: '/opengraph-image.jpg',
+            alt: 'SGN Logo',
+        },
     },
 };
 
