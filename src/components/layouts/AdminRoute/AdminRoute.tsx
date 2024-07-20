@@ -4,6 +4,7 @@ import meta from '@/constants/meta';
 import { useAuthContext } from '@/contexts/AuthContext';
 import React, { Suspense } from 'react';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import { SWRConfig } from 'swr';
 
 interface AdminRouteProps {
@@ -46,6 +47,7 @@ const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
+                                flexDirection: 'column',
                                 flex: 1,
                                 height: '100vh',
                                 fontSize: '20px',
@@ -53,6 +55,16 @@ const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
                             }}
                         >
                             Tài khoản admin không hợp lệ
+                            <Link
+                                to="/login"
+                                style={{
+                                    display: 'inline-block',
+                                    marginTop: '8px',
+                                    color: 'var(--light-primary-color)',
+                                }}
+                            >
+                                Quay về trang đăng nhập
+                            </Link>
                         </div>
                     )}
                 </SWRConfig>

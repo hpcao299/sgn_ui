@@ -18,17 +18,29 @@ const routes = {
     signup: '/signup',
     forgotPassword: '/forgot-password',
 
-    admin: '/admin',
+    // admin: '/admin',
 
-    adminProducts: '/admin/products',
-    adminAddProduct: '/admin/products/new',
-    adminProductDetails: '/admin/products/:id',
-    adminEditProduct: '/admin/products/edit/:id',
+    // adminProducts: '/admin/products',
+    // adminAddProduct: '/admin/products/new',
+    // adminProductDetails: '/admin/products/:id',
+    // adminEditProduct: '/admin/products/edit/:id',
 
-    adminOrders: '/admin/orders',
-    adminOrderDetails: '/admin/orders/:id',
+    // adminOrders: '/admin/orders',
+    // adminOrderDetails: '/admin/orders/:id',
 
-    adminUsers: '/admin/users',
+    // adminUsers: '/admin/users',
+
+    admin: '/',
+
+    adminProducts: '/products',
+    adminAddProduct: '/products/new',
+    adminProductDetails: '/products/:id',
+    adminEditProduct: '/products/edit/:id',
+
+    adminOrders: '/orders',
+    adminOrderDetails: '/orders/:id',
+
+    adminUsers: '/users',
 };
 
 export default routes;

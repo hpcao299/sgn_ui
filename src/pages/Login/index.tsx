@@ -80,7 +80,7 @@ const LoginPage: React.FC = () => {
                 <meta name="robots" content="index, follow" />
             </Helmet>
 
-            <PageDetails title="Đăng nhập" paths={paths} />
+            <PageDetails title="Đăng nhập (admin)" paths={paths} />
             <div className={cx('container')}>
                 <div className={cx('wrapper')}>
                     <h2>Đăng nhập</h2>
@@ -90,7 +90,7 @@ const LoginPage: React.FC = () => {
                             name="email"
                             control={control}
                             rules={{
-                                required: 'Vui lòng nhập email của bạn.',
+                                required: 'Vui lòng nhập email admin của bạn.',
                                 pattern: {
                                     value: constants.regExps.email,
                                     message: 'Email không hợp lệ.',
@@ -99,7 +99,7 @@ const LoginPage: React.FC = () => {
                             render={({ field }) => (
                                 <InputField
                                     type="text"
-                                    placeholder="Tài khoản hoặc email"
+                                    placeholder="Email admin"
                                     Icon={UserIcon}
                                     error={errors.email?.message || ''}
                                     {...field}
@@ -127,7 +127,7 @@ const LoginPage: React.FC = () => {
                                 />
                             )}
                         />
-                        <div className={cx('form-actions')}>
+                        {/* <div className={cx('form-actions')}>
                             <div className={cx('save-password')}>
                                 <input id="save-password" type="checkbox" name="save-password" />
                                 <label htmlFor="save-password">Lưu mật khẩu</label>
@@ -142,15 +142,16 @@ const LoginPage: React.FC = () => {
                             >
                                 Quên mật khẩu?
                             </a>
-                        </div>
+                        </div> */}
+                        <div style={{ marginTop: '20px' }}></div>
                         <Button type="submit" color="primary" loading={isLoading}>
                             Đăng Nhập
                         </Button>
                     </form>
-                    <p className={cx('text-link')}>
+                    {/* <p className={cx('text-link')}>
                         <span>Bạn chưa có tài khoản?</span>{' '}
                         <Link to={config.routes.signup}>Đăng ký ngay</Link>
-                    </p>
+                    </p> */}
                 </div>
             </div>
         </>

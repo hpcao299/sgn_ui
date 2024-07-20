@@ -2,15 +2,16 @@ import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { SWRConfig } from 'swr';
 import { Loader } from './components/elements';
-import DefaultLayout from './components/layouts/DefaultLayout/DefaultLayout';
+// import DefaultLayout from './components/layouts/DefaultLayout/DefaultLayout';
 import GlobalStyles from './components/layouts/GlobalStyles/GlobalStyles';
-import PrivateRoute from './components/layouts/PrivateRoute/PrivateRoute';
+// import PrivateRoute from './components/layouts/PrivateRoute/PrivateRoute';
 import config from './config';
 import ContextProviders from './contexts';
 import NotFoundPage from './pages/NotFound';
 import adminPages from './pages/admin';
-import { privateRoutes, publicRoutes } from './routes/routes';
+// import { privateRoutes, publicRoutes } from './routes/routes';
 import { AuthWatcher, ScrollToTop } from './utils';
+import LoginPage from './pages/Login';
 
 const Notifications = lazy(() => import('@/components/elements/Notifications'));
 
@@ -29,7 +30,7 @@ function App() {
                         }
                     >
                         <Routes>
-                            {publicRoutes.map((route, index) => {
+                            {/* {publicRoutes.map((route, index) => {
                                 const Component = route.component;
 
                                 return (
@@ -61,8 +62,9 @@ function App() {
                                         )}
                                     />
                                 );
-                            })}
+                            })} */}
                             {adminPages()}
+                            <Route path="/login" Component={LoginPage} />
                             <Route path="*" Component={NotFoundPage} />
                         </Routes>
                     </Suspense>
