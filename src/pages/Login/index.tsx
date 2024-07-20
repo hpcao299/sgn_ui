@@ -12,7 +12,7 @@ import classNames from 'classnames/bind';
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 
 const cx = classNames.bind(styles);
