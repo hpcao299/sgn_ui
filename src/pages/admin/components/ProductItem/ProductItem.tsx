@@ -15,7 +15,7 @@ interface ProductItemProps {
 const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
     return (
         <div className={cx('product-item')}>
-            <Link to={`/admin/products/${data.id}`}>
+            <Link to={`/products/${data.id}`}>
                 <LazyLoadImage
                     src={data.image_url}
                     alt={data.title}
@@ -26,7 +26,7 @@ const ProductItem: React.FC<ProductItemProps> = ({ data }) => {
                     style={{ backgroundColor: '#dadada' }}
                 />
             </Link>
-            <Link to={`/admin/products/${data.id}`}>
+            <Link to={`/products/${data.id}`}>
                 <h2 className={cx('product-title')}>{data.title}</h2>
             </Link>
             <div className={cx('product-has-sold')}>Đã bán: {data.has_sold}</div>

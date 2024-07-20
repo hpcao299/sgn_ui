@@ -69,7 +69,7 @@ const Form: React.FC<FormProps> = ({ productDetails, productId }) => {
     const editProduct = async (productId: number, data: IProductDetailsForm) => {
         try {
             await productApi.editProduct(productId, data);
-            navigate(`/admin/products/${productId}`);
+            navigate(`/products/${productId}`);
             addNewNotification(constants.notifications.EDIT_PRODUCT_SUCCESS);
         } catch (error) {
             addNewNotification(constants.notifications.EDIT_PRODUCT_FAILED);

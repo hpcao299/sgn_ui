@@ -23,10 +23,6 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
     const [error, setError] = useState<string>('');
 
     useEffect(() => {
-        uploaderApi.getHelloString();
-    }, []);
-
-    useEffect(() => {
         const uploadImage = async (file: File) => {
             setIsLoading(true);
             try {

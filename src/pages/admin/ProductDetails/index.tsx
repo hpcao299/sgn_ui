@@ -65,7 +65,7 @@ const ProductDetailsPage: React.FC = () => {
                         <Link
                             className={cx('edit-btn')}
                             style={{ display: 'block' }}
-                            to={`/admin/products/edit/${details.id}`}
+                            to={`/products/edit/${details.id}`}
                         >
                             <Button>Chỉnh sửa thông tin</Button>
                         </Link>
