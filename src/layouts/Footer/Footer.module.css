@@ -86,3 +86,20 @@
         justify-content: center;
     }
 }
+
+.footer-creator {
+    padding: 16px 0;
+    text-align: center;
+    background-color: #197ba5;
+    color: #fff;
+    font-weight: 500;
+}
+
+.footer-creator a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.footer-creator a:hover {
+    text-decoration: underline;
+}
