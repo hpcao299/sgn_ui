@@ -33,49 +33,63 @@ const Footer: React.FC = () => {
     const pathname = usePathname();
 
     return (
-        <footer
-            className={cx(
-                'footer',
-                (pathname === config.routes.home || pathname === config.routes.new) &&
-                    'footer-contain-banner',
-            )}
-        >
-            <div className={cx('container', 'footer-content')}>
-                <div className="">
-                    <p className={cx('heading')}>CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI SÀI GÒN NGUYỄN</p>
-                    <p>
-                        Chuyên cung cấp và sản xuất bao bì giấy carton, với kinh nghiệm hơn 5 năm
-                        làm việc trong nghành sản xuất bao bì.
-                    </p>
-                    <p>
-                        Ngoài hơn 100 size thùng được sản xuất tồn kho sẳn để giao cho quý khách
-                        trong 24h. Chúng tôi còn nhận sản xuất thiết kế và in ấn theo yêu cầu của
-                        khách hàng và giao hàng từ 4-5 ngày làm việc.
-                    </p>
-                </div>
-                <div className="">
-                    <p className={cx('heading')}>THÔNG TIN LIÊN HỆ</p>
-                    <p>Xưởng SX 1: 185/3 Đường An Phú Đông 10, P. An Phú Đông, Q.12, HCM</p>
-                    <p>Xưởng SX 2: Quyết Tiến 2, Vân Côn, Hoài Đức, Hà Nội</p>
+        <>
+            <footer
+                className={cx(
+                    'footer',
+                    (pathname === config.routes.home || pathname === config.routes.new) &&
+                        'footer-contain-banner',
+                )}
+            >
+                <div className={cx('container', 'footer-content')}>
+                    <div className="">
+                        <p className={cx('heading')}>
+                            CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI SÀI GÒN NGUYỄN
+                        </p>
+                        <p>
+                            Chuyên cung cấp và sản xuất bao bì giấy carton, với kinh nghiệm hơn 5
+                            năm làm việc trong nghành sản xuất bao bì.
+                        </p>
+                        <p>
+                            Ngoài hơn 100 size thùng được sản xuất tồn kho sẳn để giao cho quý khách
+                            trong 24h. Chúng tôi còn nhận sản xuất thiết kế và in ấn theo yêu cầu
+                            của khách hàng và giao hàng từ 4-5 ngày làm việc.
+                        </p>
+                    </div>
+                    <div className="">
+                        <p className={cx('heading')}>THÔNG TIN LIÊN HỆ</p>
+                        <p>Xưởng SX 1: 185/3 Đường An Phú Đông 10, P. An Phú Đông, Q.12, HCM</p>
+                        <p>Xưởng SX 2: Quyết Tiến 2, Vân Côn, Hoài Đức, Hà Nội</p>
 
-                    <div className={cx('contact-info-wrapper')}>
-                        {contactsList.map((contact, index) => {
-                            const Icon = contact.Icon;
+                        <div className={cx('contact-info-wrapper')}>
+                            {contactsList.map((contact, index) => {
+                                const Icon = contact.Icon;
 
-                            return (
-                                <p key={index} className={cx('contact-info')}>
-                                    <Icon />
-                                    <span>{contact.text}</span>
-                                </p>
-                            );
-                        })}
+                                return (
+                                    <p key={index} className={cx('contact-info')}>
+                                        <Icon />
+                                        <span>{contact.text}</span>
+                                    </p>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div>
+                        <Feed />
                     </div>
                 </div>
-                <div>
-                    <Feed />
+            </footer>
+            <div className={cx('footer-creator')}>
+                <div className="container">
+                    Được cung cấp bởi Hoàng Phúc -{' '}
+                    <span>
+                        <a href="https://jameskaois.com" target="_blank" rel="noopener noreferrer">
+                            jameskaois.com
+                        </a>
+                    </span>
                 </div>
             </div>
-        </footer>
+        </>
     );
 };
 
