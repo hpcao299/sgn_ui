@@ -21,6 +21,11 @@ const nextConfig = {
                 hostname: 'files.saigonnguyen.online',
                 pathname: '/uploads/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'files-sgn.jameskaois.com',
+                pathname: '/uploads/**',
+            },
         ],
     },
 };
