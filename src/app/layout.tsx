@@ -12,6 +12,12 @@ const roboto = Roboto({
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html lang="vi">
+            <head>
+                <meta
+                    name="google-site-verification"
+                    content="l3WwT8fO3K35vD4uvnGSPbkQs3yIYbLcPZMdOaNqz0Q"
+                />
+            </head>
             <body className={roboto.className}>{children}</body>
         </html>
     );
